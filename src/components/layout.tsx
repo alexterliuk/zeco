@@ -5,8 +5,8 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React, { FunctionComponent } from "react";
-import PropTypes, { ReactElementLike } from "prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
