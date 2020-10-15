@@ -1,14 +1,14 @@
-import { Link } from "gatsby"
-import PropTypes, { InferProps } from "prop-types"
-import React from "react"
+import { Link } from "gatsby";
+import PropTypes, { InferProps } from "prop-types";
+import React from "react";
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 const headerDefaultProps = {
   siteTitle: ``,
-}
+};
 
 const Header = ({ siteTitle }: HeaderProps) => (
   <header
@@ -37,12 +37,12 @@ const Header = ({ siteTitle }: HeaderProps) => (
       </h1>
     </div>
   </header>
-)
+);
 
-Header.propTypes = headerPropTypes
+Header.propTypes = headerPropTypes;
 
-Header.defaultProps = headerDefaultProps
+Header.defaultProps = headerDefaultProps;
 
-type HeaderProps = InferProps<typeof headerPropTypes>
+type HeaderProps = InferProps<typeof headerPropTypes>;
 
-export default Header
+export default Header;
