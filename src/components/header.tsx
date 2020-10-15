@@ -1,8 +1,16 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
+import PropTypes, { InferProps } from "prop-types"
 import React from "react"
 
-const Header = ({ siteTitle }) => (
+const headerPropTypes = {
+  siteTitle: PropTypes.string,
+}
+
+const headerDefaultProps = {
+  siteTitle: ``,
+}
+
+const Header = ({ siteTitle }: HeaderProps) => (
   <header
     style={{
       background: `rebeccapurple`,
@@ -31,12 +39,10 @@ const Header = ({ siteTitle }) => (
   </header>
 )
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+Header.propTypes = headerPropTypes
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
+Header.defaultProps = headerDefaultProps
+
+type HeaderProps = InferProps<typeof headerPropTypes>
 
 export default Header
