@@ -1,6 +1,8 @@
 import { Link } from "gatsby";
 import PropTypes, { InferProps } from "prop-types";
 import React from "react";
+import styled from "styled-components";
+
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
@@ -10,20 +12,20 @@ const headerDefaultProps = {
   siteTitle: ``,
 };
 
+const Container = styled.div`
+  background: rebeccapurple;
+  marginBottom: 1.45rem;
+`;
+
+const Inner = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.45rem 1.0875rem;,
+`;
+
 const Header = ({ siteTitle }: HeaderProps) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
+  <Container>
+    <Inner>
       <h1 style={{ margin: 0 }}>
         <Link
           to="/"
@@ -35,8 +37,8 @@ const Header = ({ siteTitle }: HeaderProps) => (
           {siteTitle}
         </Link>
       </h1>
-    </div>
-  </header>
+    </Inner>
+  </Container>
 );
 
 Header.propTypes = headerPropTypes;
