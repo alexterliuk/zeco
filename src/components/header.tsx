@@ -1,8 +1,7 @@
-import { Link } from "gatsby";
-import PropTypes, { InferProps } from "prop-types";
-import React from "react";
-import styled from "styled-components";
-
+import React from 'react';
+import PropTypes, { InferProps } from 'prop-types';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
@@ -14,7 +13,7 @@ const headerDefaultProps = {
 
 const Container = styled.div`
   background: rebeccapurple;
-  marginBottom: 1.45rem;
+  margin-bottom: 1.45rem;
 `;
 
 const Inner = styled.div`
@@ -23,20 +22,21 @@ const Inner = styled.div`
   padding: 1.45rem 1.0875rem;,
 `;
 
+const Heading = styled.h1`
+  margin: 0;
+`;
+
+const HeadingLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+`;
+
 const Header = ({ siteTitle }: HeaderProps) => (
   <Container>
     <Inner>
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+      <Heading>
+        <HeadingLink to="/">{siteTitle}</HeadingLink>
+      </Heading>
     </Inner>
   </Container>
 );
