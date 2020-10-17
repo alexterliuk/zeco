@@ -1,4 +1,5 @@
 const ukrenergo: CompanyProfile = {
+  id: 'ukrenergo',
   name: 'Укренерго',
   shortName: '',
   EDRPOU: '12548788',

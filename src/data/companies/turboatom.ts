@@ -1,4 +1,5 @@
 const turboatom: CompanyProfile = {
+  id: 'turboatom',
   name: 'Турбоатом',
   shortName: '',
   EDRPOU: '12548788',
