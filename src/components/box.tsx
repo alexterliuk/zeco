@@ -1,9 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
+import PropTypes, { InferProps } from 'prop-types';
+
+const boxPropTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  profit: PropTypes.bool,
+};
 
 const Container = styled.button`
   display: inline-block;
@@ -16,42 +21,31 @@ const Container = styled.button`
   border-radius: 2px;
 `;
 
-const Box = (props: any) => {
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `);
-
-  return (
-    <>
-      <Tooltip
-        label={props.title}
+const Box = ({ id, name, profit }: BoxProps) => (
+  <>
+    <Tooltip
+      label={name}
+      style={{
+        background: 'hsla(0, 0%, 0%, 0.75)',
+        color: 'white',
+        border: 'none',
+        borderRadius: '2px',
+        padding: '.25em .5em',
+      }}
+    >
+      <Container
+        onClick={() => ({})}
         style={{
-          background: 'hsla(0, 0%, 0%, 0.75)',
-          color: 'white',
-          border: 'none',
-          borderRadius: '2px',
-          padding: '.25em .5em',
+          backgroundColor: profit ? 'green' : 'red',
+          color: profit ? 'green' : 'red',
         }}
-      >
-        <Container
-          style={{
-            backgroundColor: props.profit ? 'green' : 'red',
-            color: props.profit ? 'green' : 'red',
-          }}
-        />
-      </Tooltip>
-    </>
-  );
-};
+      />
+    </Tooltip>
+  </>
+);
 
-// Layout.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
+Box.propTypes = boxPropTypes;
+
+type BoxProps = InferProps<typeof boxPropTypes>;
 
 export default Box;
