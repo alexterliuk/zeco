@@ -1,4 +1,5 @@
 interface CompanyProfile {
+  id: string;
   name: string;
   shortName: string;
   EDRPOU: string;

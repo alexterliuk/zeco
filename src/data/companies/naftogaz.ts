@@ -1,4 +1,5 @@
 const naftogaz: CompanyProfile = {
+  id: 'naftogaz',
   name: 'Нафтогаз',
   shortName: '',
   EDRPOU: '12548788',
