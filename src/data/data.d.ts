@@ -23,3 +23,7 @@ interface Financials {
   revenueGrowth: FinancialResult;
   profitGrowth: FinancialResult;
 }
+
+interface Companies {
+  [key: string]: CompanyProfile;
+}
