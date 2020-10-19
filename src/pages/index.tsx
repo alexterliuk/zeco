@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Layout from '../components/layout';
 import Image from '../components/image';
 import SEO from '../components/seo';
-import BoxWrapper from '../components/box-wrapper';
+import BoxSection from '../components/box-section';
 
 const ImageContainer = styled.div`
   max-width: 300px;
@@ -20,7 +20,7 @@ const IndexPage = () => (
     <ImageContainer>
       <Image />
     </ImageContainer>
-    <BoxWrapper />
+    <BoxSection />
     <Link to="/page-2/">Go to page 2</Link> <br />
     <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
   </Layout>
