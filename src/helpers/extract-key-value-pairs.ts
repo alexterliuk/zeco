@@ -33,5 +33,6 @@ type KeyValuePairsObj = {
   [key: string]: any;
 };
 
-export type KeyValuePairs = Array<{ key: string; value: any }>;
+export type KeyValuePairs = Array<KeyValuePair>;
+export type KeyValuePair = { key: string; value: any };
 export default extractKeyValuePairs;
