@@ -26,14 +26,17 @@ const updateZecoConfig = (pathSegments: string[] = [], value?: any): void => {
   // TODO: add check whether new value type === orig value type
   //       to avoid assigning not appropriate values
 
-  if (typeof configOption === 'object' && configOption.hasOwnProperty(lastPathSegm)) {
+  if (
+    typeof configOption === 'object' &&
+    configOption.hasOwnProperty(lastPathSegm)
+  ) {
     configOption[lastPathSegm] = value;
   }
 };
 
 type ZecoConfig = {
   [key: string]: any;
-}
+};
 
 export { updateZecoConfig };
 export default zecoConfig;
