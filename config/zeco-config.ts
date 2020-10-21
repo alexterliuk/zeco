@@ -17,7 +17,7 @@ const getItem = (pathSegments: string[] = []): any => {
   return typeof item === 'object' ? JSON.parse(JSON.stringify(item)) : item;
 };
 
-const updateItem = (pathSegments: string[] = [], value?: any): void => {
+const updateItem = (pathSegments: string[] = [], value: any): void => {
   if (value === undefined) return;
 
   let lastPathSegm = pathSegments[pathSegments.length - 1];
