@@ -4,7 +4,8 @@ const zecoConfig: ZecoConfig = {
     year: 2020,
   },
   showInCompanyPanel: {
-    regInfo: ['location'], // name not added, bec. it is always shown
+    // name not added to regInfo, bec. it is always shown
+    regInfo: ['!location'], // ! - show only value but not key
     finInfo: ['netProfit', 'profitGrowth', 'netRevenue', 'revenueGrowth'],
   },
 };
