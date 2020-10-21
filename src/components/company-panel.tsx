@@ -27,7 +27,9 @@ const Panel = styled.div`
 // TODO: add translations.ts
 
 const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
+  const quarter = zecoConfig.getItem(['financials', 'quarter']);
   const year = zecoConfig.getItem(['financials', 'year']);
+
   const { regInfo } = deBangAndMemo(
     zecoConfig.getItem(['showInCompanyPanel', 'regInfo']),
     'regInfo'
@@ -62,13 +64,11 @@ const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
     <CompanyInfoItem
       key={rec.key}
       name={finInfo.startsWithBang[rec.key] ? '' : rec.key}
-      value={rec.value.quarters[1]}
+      value={quarter === undefined ? rec.value.year : rec.value.quarters[quarter]}
       pos={finInfo.arr.findIndex((f: string) => f === rec.key)}
     />
   ));
   finItems.sort((a, b) => a.props.pos - b.props.pos);
-
-  // TODO: choose quarter dynamically instead of hardcoding
 
   return (
     <Panel>
