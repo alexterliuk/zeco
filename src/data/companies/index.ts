@@ -8,7 +8,8 @@ const companies: Companies = {
   ukrenergo,
 };
 
-const _ids: CompaniesIds[] = Object.keys(companies);
-type CompaniesIds = keyof typeof companies;
+const companiesIds: CompaniesIds[] = Object.keys(companies);
+export type CompaniesIds = keyof typeof companies;
 
-export default { _ids, ...companies };
+export default companies;
+export { companiesIds };
