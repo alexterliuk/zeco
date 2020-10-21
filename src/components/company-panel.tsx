@@ -64,7 +64,9 @@ const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
     <CompanyInfoItem
       key={rec.key}
       name={finInfo.startsWithBang[rec.key] ? '' : rec.key}
-      value={quarter === undefined ? rec.value.year : rec.value.quarters[quarter]}
+      value={
+        quarter === undefined ? rec.value.year : rec.value.quarters[quarter]
+      }
       pos={finInfo.arr.findIndex((f: string) => f === rec.key)}
     />
   ));
