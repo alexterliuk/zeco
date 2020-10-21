@@ -27,19 +27,21 @@ const Panel = styled.div`
 // TODO: add translations.ts
 
 const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
-  const year = zecoConfig.financials.year;
+  const year = zecoConfig.getItem(['financials', 'year']);
   const { regInfo } = deBangAndMemo(
-    zecoConfig.showInCompanyPanel.regInfo,
+    zecoConfig.getItem(['showInCompanyPanel', 'regInfo']),
     'regInfo'
   );
   const { finInfo } = deBangAndMemo(
-    zecoConfig.showInCompanyPanel.finInfo,
+    zecoConfig.getItem(['showInCompanyPanel', 'finInfo']),
     'finInfo'
   );
 
   // rec stands for record
   const nameRec = companyData.filter(rec => rec.key === 'name');
   const name = (nameRec[0] && nameRec[0].value) || '';
+
+  // TODO: add logic for displaying млрд грн, percents etc.
 
   const regInfoToShow = companyData.filter(rec =>
     regInfo.arr.includes(rec.key)

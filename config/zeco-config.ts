@@ -1,3 +1,5 @@
+import pickData from '../src/helpers/pick-data';
+
 const zecoConfig: ZecoConfig = {
   lang: 'uk',
   financials: {
@@ -10,28 +12,28 @@ const zecoConfig: ZecoConfig = {
   },
 };
 
-const updateZecoConfig = (pathSegments: string[] = [], value?: any): void => {
+const getItem = (pathSegments: string[] = []): any => {
+  const item = pickData(zecoConfig, pathSegments);
+  return typeof item === 'object' ? JSON.parse(JSON.stringify(item)) : item;
+};
+
+const updateItem = (pathSegments: string[] = [], value?: any): void => {
   if (value === undefined) return;
 
   let lastPathSegm = pathSegments[pathSegments.length - 1];
-  let configOption = zecoConfig;
-  let i = 0;
-
-  while (configOption) {
-    if (!pathSegments.hasOwnProperty(i) || i === pathSegments.length - 1) {
-      break;
-    }
-    configOption = configOption[pathSegments[i++]];
-  }
+  const configItem =
+    pathSegments.length === 1
+      ? zecoConfig
+      : pickData(zecoConfig, pathSegments.slice(0, -1));
 
   // TODO: add check whether new value type === orig value type
   //       to avoid assigning not appropriate values
 
   if (
-    typeof configOption === 'object' &&
-    configOption.hasOwnProperty(lastPathSegm)
+    typeof configItem === 'object' &&
+    configItem.hasOwnProperty(lastPathSegm)
   ) {
-    configOption[lastPathSegm] = value;
+    configItem[lastPathSegm] = value;
   }
 };
 
@@ -39,5 +41,4 @@ type ZecoConfig = {
   [key: string]: any;
 };
 
-export { updateZecoConfig };
-export default zecoConfig;
+export default { getItem, updateItem };
