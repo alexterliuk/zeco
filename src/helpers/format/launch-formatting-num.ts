@@ -35,10 +35,13 @@ function launchFormattingNum(
 
   if (dot) segments.splice(1, 0, dotDivider ? '.' : ',');
   if (minusAtStart) segments.unshift('-');
-  if (addToStart) segments.splice(0, 0, addToStart);
-  if (addToEnd) segments.splice(segments.length, 0, addToEnd);
 
-  return segments.join('').trim();
+  let result = segments.join('').trim();
+
+  if (addToStart) result = addToStart + result;
+  if (addToEnd) result = result + addToEnd;
+
+  return result;
 }
 
 export default launchFormattingNum;
