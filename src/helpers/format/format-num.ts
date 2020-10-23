@@ -2,11 +2,11 @@ import setDefaultFormat from './set-default-format';
 import launchFormattingNum from './launch-formatting-num';
 
 const formats: { [f: string]: { [opt: string]: any } } = {
-  percent: { addToEnd: '%' },
   gap1: { gapAfter: 1 }, // if no gapN given, gap3 is used
   gap2: { gapAfter: 2 },
   gap3: { gapAfter: 3 },
   dot: { dotDivider: true }, // if absent, comma is used
+  percent: { addToEnd: '%' },
   usd: { addToStart: '$' },
   uah: { addToStart: '₴' },
   // this is example of doo function
