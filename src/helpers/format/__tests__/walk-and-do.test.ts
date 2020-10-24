@@ -1,6 +1,6 @@
 import walkAndDo from '../walk-and-do';
 
-// (1) - calling with not appropriate string (1 argument)
+// (1) - calling with not appropriate string (1st argument)
 describe("walkAndDo returns { composed: '', split: [] }", () => {
   const res = {
     composed: '',
