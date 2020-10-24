@@ -41,3 +41,4 @@ function formatNum(num: number, givenFormats: string[]): string {
 }
 
 export default formatNum;
+export { formats };
