@@ -6,6 +6,8 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@reach/tooltip": "^0.11.2",
+    "@types/jest": "^26.0.15",
+    "@types/react-test-renderer": "^16.9.3",
     "@types/styled-components": "^5.1.4",
     "babel-plugin-styled-components": "^1.11.1",
     "gatsby": "^2.24.85",
@@ -25,7 +27,12 @@
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.0",
-    "prettier": "2.1.2"
+    "babel-jest": "^26.6.1",
+    "babel-preset-gatsby": "^0.5.14",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.1",
+    "prettier": "2.1.2",
+    "react-test-renderer": "^17.0.1"
   },
   "keywords": [
     "gatsby"
@@ -38,7 +45,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

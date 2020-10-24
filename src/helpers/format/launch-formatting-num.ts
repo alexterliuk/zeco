@@ -34,10 +34,10 @@ function launchFormattingNum(
   );
 
   if (dot) segments.splice(1, 0, dotDivider ? '.' : ',');
-  if (minusAtStart) segments.unshift('-');
 
   let result = segments.join('').trim();
 
+  if (minusAtStart) result = '-' + result;
   if (addToStart) result = addToStart + result;
   if (addToEnd) result = result + addToEnd;
 

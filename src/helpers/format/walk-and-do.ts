@@ -9,11 +9,19 @@
  *       segm is current composed char segment
  *       segmLastCharIdxInStr is index
  *       str is original whole string
+ *   walkAndDo's options structure:
+ *   {
+ *     rtl?: boolean,   // if absent, 'ltr' applied
+ *     doo?: function,  // if absent, defaultDoo is applied - it adds a space
+ *                      //           to start (if rtl) or to end of each segm
+ *     each?: number,   // if absent, call doo or defaultDoo after each char
+ *     stop?: number,   // if absent, go over all str
+ *   }
  * @param {string} str
  * @param {object} [options]
  */
 function walkAndDo(str: string, options?: WalkAndDoOptions): WalkAndDoReturn {
-  const validStr = str.length > 0;
+  const validStr = str?.length > 0;
   if (!validStr || typeof options !== 'object' || options === null) {
     return { composed: '', split: [] };
   }
