@@ -27,6 +27,8 @@ const Panel = styled.div`
 // TODO: add translations.ts
 
 const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
+  if (!Array.isArray(companyData) || !companyData.length) return null;
+
   const quarter = zecoConfig.getItem(['financials', 'quarter']);
   const year = zecoConfig.getItem(['financials', 'year']);
 

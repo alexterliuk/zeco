@@ -45,6 +45,8 @@ getCompanyData = wrapInMemoContext(getCompanyData);
  */
 function composeCompanyData(id: string, companies: Companies): KeyValuePairs {
   const company = companies[id];
+  if (!company) return [];
+
   const regularData = extractKeyValuePairs(company, ['financials']);
 
   const years = Object.keys(company.financials);

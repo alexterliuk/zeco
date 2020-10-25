@@ -8,6 +8,8 @@ function extractKeyValuePairs(
   data: KeyValuePairsObj,
   ignoreKeys: string[] = []
 ): KeyValuePairs {
+  if (typeof data !== 'object') return [];
+
   const keys = Object.keys(data);
   const ignoreThis = ignoreKeys.reduce(
     (acc: IgnoreKeys, k) => ((acc[k] = true), acc),
