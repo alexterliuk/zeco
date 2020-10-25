@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes, { InferProps } from 'prop-types';
 import styled from 'styled-components';
+import { format, getFinFormatsForValue } from '../helpers/format/index';
 
 const companyInfoItemPropTypes = {
   name: PropTypes.string,
@@ -20,10 +21,12 @@ const Right = styled.span`
 `;
 
 const CompanyInfoItem = ({ name, value }: companyInfoItemProps) => {
+  const formattedValue = format(value, getFinFormatsForValue(name));
+
   return name ? (
     <Item>
       <Left>{name}</Left>
-      <Right>{value}</Right>
+      <Right>{formattedValue}</Right>
     </Item>
   ) : (
     <Item>
