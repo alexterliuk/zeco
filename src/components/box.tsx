@@ -49,7 +49,7 @@ interface BoxProps {
   id: string;
   name: string;
   profit: boolean;
-  handleClick: Dispatch<SetStateAction<string>>;
+  handleClick: (id: string) => void;
 }
 
 export default Box;

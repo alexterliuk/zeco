@@ -13,8 +13,6 @@ const companyPanelPropTypes = {
   companyData: PropTypes.array,
 };
 
-// TODO: add transition style, so that updating values in panel is noticeable
-
 const Panel = styled.div`
   max-width: 400px;
   padding: 20px 30px;
@@ -24,11 +22,16 @@ const Panel = styled.div`
   box-shadow: 0px 0px 8px 1px #d4d9dc;
   /*background: #efefef;*/
   margin-top: 2.5rem;
+  transition: opacity 200ms;
+  will-change: opacity;
 `;
 
 // TODO: add translations.ts
 
-const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
+const CompanyPanel = ({
+  companyData = [],
+  companyPanelOpacity,
+}: CompanyPanelProps) => {
   if (!Array.isArray(companyData) || !companyData.length) return null;
 
   const quarter = zecoConfig.getItem(['financials', 'quarter']);
@@ -77,7 +80,7 @@ const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
   finItems.sort((a, b) => a.props.pos - b.props.pos);
 
   return (
-    <Panel>
+    <Panel style={{ opacity: companyPanelOpacity }}>
       <h3>{name}</h3>
       {regItems}
       {finItems}
@@ -89,6 +92,7 @@ CompanyPanel.propTypes = companyPanelPropTypes;
 
 type CompanyPanelProps = {
   companyData: KeyValuePairs;
+  companyPanelOpacity: number;
 };
 
 export default CompanyPanel;
