@@ -11,7 +11,7 @@ const Container = styled.section`
   max-width: 762px;
 `;
 
-const BoxSection = ({ setCompanyId }: BoxSectionProps) => {
+const BoxSection = ({ updateCompanyPanel }: BoxSectionProps) => {
   const boxes = companiesIds.map((k: CompaniesIds) => {
     const company: CompanyProfile = companies[k];
     const { name, id } = company;
@@ -21,7 +21,7 @@ const BoxSection = ({ setCompanyId }: BoxSectionProps) => {
       <Box
         name={name}
         profit={profit}
-        handleClick={setCompanyId}
+        handleClick={updateCompanyPanel}
         id={id}
         key={id}
       />
@@ -32,11 +32,11 @@ const BoxSection = ({ setCompanyId }: BoxSectionProps) => {
 };
 
 BoxSection.propTypes = {
-  setCompanyId: PropTypes.func,
+  updateCompanyPanel: PropTypes.func,
 };
 
 interface BoxSectionProps {
-  setCompanyId: Dispatch<SetStateAction<string>>;
+  updateCompanyPanel: (id: string) => void;
 }
 
 export default BoxSection;

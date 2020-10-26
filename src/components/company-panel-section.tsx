@@ -13,19 +13,31 @@ const Container = styled.section`
   margin-top: 2.5rem;
 `;
 
-const CompanyPanelSection = ({ id }: { id: string }) => {
+const CompanyPanelSection = ({
+  id,
+  companyPanelOpacity,
+}: CompanyPanelSectionProps) => {
   const companyData = getCompanyData(id, companies);
 
   return (
     <Container>
-      <CompanyPanel companyData={companyData} />
+      <CompanyPanel
+        companyData={companyData}
+        companyPanelOpacity={companyPanelOpacity}
+      />
     </Container>
   );
 };
 
 CompanyPanelSection.propTypes = {
   id: PropTypes.string,
+  companyPanelOpacity: PropTypes.number,
 };
+
+interface CompanyPanelSectionProps {
+  id: string;
+  companyPanelOpacity: number;
+}
 
 /**
  *
