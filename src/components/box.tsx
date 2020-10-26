@@ -1,14 +1,8 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
+import PropTypes, { InferProps } from 'prop-types';
 import styled from 'styled-components';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
-import PropTypes, { InferProps } from 'prop-types';
-
-const boxPropTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  profit: PropTypes.bool,
-};
 
 const Container = styled.button`
   display: inline-block;
@@ -21,31 +15,41 @@ const Container = styled.button`
   border-radius: 2px;
 `;
 
-const Box = ({ id, name, profit }: BoxProps) => (
-  <>
-    <Tooltip
-      label={name}
-      style={{
-        background: 'hsla(0, 0%, 0%, 0.75)',
-        color: 'white',
-        border: 'none',
-        borderRadius: '2px',
-        padding: '.25em .5em',
+const Box = ({ id, name, profit, handleClick }: BoxProps) => (
+  <Tooltip
+    label={name}
+    style={{
+      background: 'hsla(0, 0%, 0%, 0.75)',
+      color: 'white',
+      border: 'none',
+      borderRadius: '2px',
+      padding: '.25em .5em',
+    }}
+  >
+    <Container
+      onClick={() => {
+        handleClick(id);
       }}
-    >
-      <Container
-        onClick={() => ({})}
-        style={{
-          backgroundColor: profit ? 'green' : 'red',
-          color: profit ? 'green' : 'red',
-        }}
-      />
-    </Tooltip>
-  </>
+      style={{
+        backgroundColor: profit ? 'green' : 'red',
+        color: profit ? 'green' : 'red',
+      }}
+    />
+  </Tooltip>
 );
 
-Box.propTypes = boxPropTypes;
+Box.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  profit: PropTypes.bool,
+  handleClick: PropTypes.func,
+};
 
-type BoxProps = InferProps<typeof boxPropTypes>;
+interface BoxProps {
+  id: string;
+  name: string;
+  profit: boolean;
+  handleClick: Dispatch<SetStateAction<string>>;
+}
 
 export default Box;

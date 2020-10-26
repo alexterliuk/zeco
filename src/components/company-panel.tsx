@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import zecoConfig from '../../config/zeco-config';
 import deBangAndMemo from '../helpers/de-bang-and-memo';
@@ -12,6 +12,8 @@ import {
 const companyPanelPropTypes = {
   companyData: PropTypes.array,
 };
+
+// TODO: add transition style, so that updating values in panel is noticeable
 
 const Panel = styled.div`
   max-width: 400px;
@@ -45,7 +47,7 @@ const CompanyPanel = ({ companyData = [] }: CompanyPanelProps) => {
   const nameRec = companyData.filter(rec => rec.key === 'name');
   const name = (nameRec[0] && nameRec[0].value) || '';
 
-  // TODO: add logic for displaying млрд грн, percents etc.
+  // TODO: add logic for displaying млрд грн?
 
   const regInfoToShow = companyData.filter(rec =>
     regInfo.arr.includes(rec.key)
