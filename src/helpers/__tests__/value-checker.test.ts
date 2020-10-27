@@ -51,7 +51,7 @@ describe('isFunction', () => {
     expect(isFunction(func)).toBe(func);
   });
 
-  it('returns [function, function] if called with functions', () => {
+  it('returns [function, function, ...] if called with functions', () => {
     const func1 = () => {};
     const func2 = () => {};
     expect(isFunction(func1, func2)).toEqual([func1, func2]);
