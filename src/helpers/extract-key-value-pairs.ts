@@ -8,7 +8,7 @@ function extractKeyValuePairs(
   data: KeyValuePairsObj,
   ignoreKeys: string[] = []
 ): KeyValuePairs {
-  if (typeof data !== 'object') return [];
+  if (typeof data !== 'object' || data === null) return [];
 
   const keys = Object.keys(data);
   const ignoreThis = ignoreKeys.reduce(
@@ -16,7 +16,7 @@ function extractKeyValuePairs(
     {}
   );
   const result = [];
-  let key = keys.pop();
+  let key = keys.shift();
 
   while (key) {
     if (!ignoreThis[key]) {
