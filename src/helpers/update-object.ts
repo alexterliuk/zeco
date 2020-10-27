@@ -17,9 +17,11 @@ function updateObject(
   const singleKey = pathSegments.length === 1 && lastPathSegm;
 
   if (singleKey) {
-    obj[singleKey] = val;
+    if (obj.hasOwnProperty(singleKey)) {
+      obj[singleKey] = val;
+    }
   } else {
-    const picked = pickData(obj, pathSegments.slice(0, -1))[lastPathSegm];
+    const picked = pickData(obj, pathSegments.slice(0, -1));
     if (typeof picked === 'object') {
       picked[lastPathSegm] = val;
     }
