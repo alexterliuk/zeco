@@ -12,7 +12,11 @@ function pickData(
 
   while (data) {
     const key = pathSegments[i];
-    if (typeof data !== 'object' || !data.hasOwnProperty(key)) {
+    if (
+      data === null ||
+      typeof data !== 'object' ||
+      !data.hasOwnProperty(key)
+    ) {
       break;
     }
     data = data[key];
