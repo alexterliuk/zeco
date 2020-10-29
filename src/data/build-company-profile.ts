@@ -19,7 +19,9 @@ function buildCompanyProfile(
       usreou,
       location: '',
       industry: '',
-      statements: getStatementsTemplate(year || 2020),
+      statements: {
+        [year || 2020]: getStatementsTemplate(year || 2020),
+      },
     };
   }
 }
@@ -50,7 +52,7 @@ function getStatementsTemplate(year: number) {
     ['financials', financialsNames],
   ];
 
-  return { [_year]: composeStatementsTemplate(names) };
+  return composeStatementsTemplate(names);
 }
 
 function getOneStatementTemplate() {
@@ -77,3 +79,4 @@ function composeStatementsTemplate(names: (string | (string | string[])[])[]) {
 }
 
 export default buildCompanyProfile;
+export { getStatementsTemplate };
