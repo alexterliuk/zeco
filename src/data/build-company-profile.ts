@@ -3,6 +3,7 @@ import {
   FinancialStatements,
   FinancialStatement,
 } from './data';
+import { toUsreou } from './update-company-profile';
 
 /**
  *
@@ -18,19 +19,22 @@ function buildCompanyProfile(
   year?: number
 ): CompanyProfile | undefined {
   if (id && shortName && usreou) {
-    return {
-      id,
-      name: '',
-      shortName,
-      usreou,
-      location: '',
-      industry: '',
-      // @ts-ignore due to recursive nature of composeStatementsTemplate
-      // which makes either FinancialStatements or Partial of it
-      statements: {
-        [year || 2020]: getStatementsTemplate(),
-      },
-    };
+    const validUsreou = toUsreou(usreou);
+    if (validUsreou) {
+      return {
+        id,
+        name: '',
+        shortName,
+        usreou: validUsreou,
+        location: '',
+        industry: '',
+        // @ts-ignore due to recursive nature of composeStatementsTemplate
+        // which makes either FinancialStatements or Partial of it
+        statements: {
+          [year || 2020]: getStatementsTemplate(),
+        },
+      };
+    }
   }
 }
 
@@ -38,13 +42,15 @@ function buildCompanyProfile(
  *
  */
 function getStatementsTemplate() {
-  const assetsNames = ['totalValue', 'current', 'fixed'];
+  const assetsNames = ['current', 'fixed', 'totalValue'];
   const financialsNames = [
-    'netIncome',
-    'incomeGrowth',
-    'grossProfit',
     'netProfit',
+    'netLoss',
+    'grossProfit',
+    'grossLoss',
+    'netIncome',
     'profitGrowth',
+    'incomeGrowth',
     'ebitda',
     'ebitdaMargin',
   ];
@@ -52,6 +58,7 @@ function getStatementsTemplate() {
     ['assets', assetsNames],
     'equity',
     'producedCost',
+    'salaryExpenses',
     ['financials', financialsNames],
   ];
 

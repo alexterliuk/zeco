@@ -22,11 +22,13 @@ export interface FinancialStatements {
   financials: {
     netProfit: FinancialStatement;
     netLoss: FinancialStatement;
-    netIncome: FinancialStatement;
     grossProfit: FinancialStatement;
     grossLoss: FinancialStatement;
+    netIncome: FinancialStatement;
     profitGrowth: FinancialStatement;
     incomeGrowth: FinancialStatement;
+    ebitda: FinancialStatement;
+    ebitdaMargin: FinancialStatement;
   };
 }
 
