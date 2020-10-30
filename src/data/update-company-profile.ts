@@ -1,4 +1,5 @@
 import { getStatementsTemplate } from './build-company-profile';
+import { CompanyProfile, FinancialStatements } from './data';
 
 /**
  *
@@ -6,7 +7,7 @@ import { getStatementsTemplate } from './build-company-profile';
  * @param {array} statementsSets
  */
 function updateCompanyProfile(
-  companyProfile,
+  companyProfile: CompanyProfile,
   statementsSets: { [key: string]: string[] }[]
 ) {
   const colNamesRows = statementsSets.map(set => set.colNames.slice(1));
@@ -27,13 +28,13 @@ function updateCompanyProfile(
 
 /**
  * Input in data contains values for time periods (which are columns).
- * Search in a company profile corresponding fields and add values.
+ * Search for corresponding fields in a company profile and add values.
  * @param companyProfile
  * @param row
  * @param periods
  */
 function addDataToCompanyProfile(
-  companyProfile: object,
+  companyProfile: CompanyProfile,
   row: { name: string; data: string[] },
   periods: string[]
 ) {
@@ -45,7 +46,7 @@ function addDataToCompanyProfile(
     const quarter = parsedPeriods[i].quarter;
     const statements = companyProfile.statements;
     if (!statements[year]) {
-      statements[year] = getStatementsTemplate(year);
+      statements[year] = <FinancialStatements>getStatementsTemplate();
     }
 
     let asset = row.name.includes('assets') && row.name.slice(6);
@@ -65,10 +66,13 @@ function addDataToCompanyProfile(
     ];
     const financial = financialsNames.includes(name) && name;
     const statement = asset
-      ? statements[year].assets[asset]
+      ? // @ts-ignore
+        statements[year].assets[asset]
       : financial
-      ? statements[year].financials[name]
-      : statements[year][name];
+      ? // @ts-ignore
+        statements[year].financials[name]
+      : // @ts-ignore
+        statements[year][name];
 
     if (statement) {
       if (quarter || quarter === 0) {

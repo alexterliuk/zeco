@@ -1,16 +1,22 @@
+import {
+  CompanyProfile,
+  FinancialStatements,
+  FinancialStatement,
+} from './data';
+
 /**
  *
  * @param {string} id
  * @param {string} shortName
- * @param {number} usreou
+ * @param {number} usreou - edrpou in Ukrainian
  * @param {number} [year]
  */
 function buildCompanyProfile(
   id: string,
   shortName: string,
-  usreou: number,
+  usreou: number | string,
   year?: number
-) {
+): CompanyProfile | undefined {
   if (id && shortName && usreou) {
     return {
       id,
@@ -19,8 +25,10 @@ function buildCompanyProfile(
       usreou,
       location: '',
       industry: '',
+      // @ts-ignore due to recursive nature of composeStatementsTemplate
+      // which makes either FinancialStatements or Partial of it
       statements: {
-        [year || 2020]: getStatementsTemplate(year || 2020),
+        [year || 2020]: getStatementsTemplate(),
       },
     };
   }
@@ -28,26 +36,21 @@ function buildCompanyProfile(
 
 /**
  *
- * @param {number} year
  */
-function getStatementsTemplate(year: number) {
-  const _year = Number.isFinite(year) && year > 2009 ? year : 2020;
+function getStatementsTemplate() {
   const assetsNames = ['totalValue', 'current', 'fixed'];
   const financialsNames = [
     'netIncome',
     'incomeGrowth',
     'grossProfit',
     'netProfit',
-    'netProfitMargin',
     'profitGrowth',
     'ebitda',
     'ebitdaMargin',
   ];
   const names = [
     ['assets', assetsNames],
-    'avgWorkforce',
     'equity',
-    'payables',
     'producedCost',
     ['financials', financialsNames],
   ];
@@ -55,7 +58,7 @@ function getStatementsTemplate(year: number) {
   return composeStatementsTemplate(names);
 }
 
-function getOneStatementTemplate() {
+function getOneStatementTemplate(): FinancialStatement {
   return {
     quarters: [],
     halfyear: [],
@@ -67,15 +70,20 @@ function getOneStatementTemplate() {
  *
  * @param {array} names
  */
-function composeStatementsTemplate(names: (string | (string | string[])[])[]) {
-  return names.reduce((acc: { [key: string]: object }, n: any) => {
-    const arr = Array.isArray(n);
-    const currName = arr ? n[0] : n;
-    acc[currName] = arr
-      ? composeStatementsTemplate(n[1])
-      : getOneStatementTemplate();
-    return acc;
-  }, {});
+function composeStatementsTemplate(
+  names: (string | (string | string[])[])[]
+): Partial<FinancialStatements> {
+  return names.reduce(
+    (acc: { [key: string]: {} | FinancialStatement }, n: any) => {
+      const arr = Array.isArray(n);
+      const currName = arr ? n[0] : n;
+      acc[currName] = arr
+        ? composeStatementsTemplate(n[1])
+        : getOneStatementTemplate();
+      return acc;
+    },
+    {}
+  );
 }
 
 export default buildCompanyProfile;
