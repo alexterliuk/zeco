@@ -62,7 +62,6 @@ function addDataToCompanyProfile(
       'netIncome',
       'profitGrowth',
       'incomeGrowth',
-      'grossProfit',
       'ebitda',
       'ebitdaMargin',
     ];

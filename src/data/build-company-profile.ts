@@ -38,13 +38,15 @@ function buildCompanyProfile(
  *
  */
 function getStatementsTemplate() {
-  const assetsNames = ['totalValue', 'current', 'fixed'];
+  const assetsNames = ['current', 'fixed', 'totalValue'];
   const financialsNames = [
-    'netIncome',
-    'incomeGrowth',
-    'grossProfit',
     'netProfit',
+    'netLoss',
+    'grossProfit',
+    'grossLoss',
+    'netIncome',
     'profitGrowth',
+    'incomeGrowth',
     'ebitda',
     'ebitdaMargin',
   ];
@@ -52,6 +54,7 @@ function getStatementsTemplate() {
     ['assets', assetsNames],
     'equity',
     'producedCost',
+    'salaryExpenses',
     ['financials', financialsNames],
   ];
 
