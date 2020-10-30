@@ -4,7 +4,7 @@
  * @param {object} reqRows - needed rows
  * @param {array} names - with strings
  */
-function getRowsFromExcelData(
+function getRowsFromParsedExcelData(
   exData: ParsedExcelData,
   reqRows: RequiredExcelDataRows,
   names: excelDataFileNames[]
@@ -34,4 +34,4 @@ type RequiredExcelDataRows = {
 
 type excelDataFileNames = 'finZvit' | 'finCoeff' | 'finBalance';
 
-export default getRowsFromExcelData;
+export default getRowsFromParsedExcelData;
