@@ -1,29 +1,42 @@
-interface CompanyProfile {
+export interface CompanyProfile {
   id: string;
   name: string;
   shortName: string;
-  EDRPOU: string;
+  usreou: number | string;
   location: string;
-  financials: {
-    [key: number]: Financials;
+  industry: string;
+  statements: {
+    [key: number]: FinancialStatements;
   };
 }
 
-interface FinancialResult {
+export interface FinancialStatements {
+  assets: {
+    current: FinancialStatement;
+    fixed: FinancialStatement;
+    totalValue: FinancialStatement;
+  };
+  equity: FinancialStatement;
+  producedCost: FinancialStatement;
+  salaryExpenses: FinancialStatement;
+  financials: {
+    netProfit: FinancialStatement;
+    netLoss: FinancialStatement;
+    netIncome: FinancialStatement;
+    grossProfit: FinancialStatement;
+    grossLoss: FinancialStatement;
+    profitGrowth: FinancialStatement;
+    incomeGrowth: FinancialStatement;
+  };
+}
+
+export interface FinancialStatement {
   quarters: number[];
-  year: number;
+  halfyear: number[];
+  year: number | false;
 }
 
-interface Financials {
-  netProfit: FinancialResult;
-  netProfitMargin: FinancialResult;
-  ebitda: FinancialResult;
-  ebitdaMargin: FinancialResult;
-  netRevenue: FinancialResult;
-  revenueGrowth: FinancialResult;
-  profitGrowth: FinancialResult;
-}
-
-interface Companies {
-  [key: string]: CompanyProfile;
-}
+//
+// interface Companies {
+//   [key: string]: CompanyProfile;
+// }
