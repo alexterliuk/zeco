@@ -12,7 +12,7 @@ function updateCompanyProfile(
 ) {
   const colNamesRows = statementsSets.map(set => set.colNames.slice(1));
   const sameColNames = areRowsIdentical(colNamesRows);
-  if (!sameColNames) {
+  if (!sameColNames && sameColNames !== undefined) {
     console.error(
       'No update, because colNames in statementsSets (first rows) are not identical.'
     );
