@@ -125,11 +125,20 @@ function parsePeriod(period: string): ParsedTimePeriod {
 }
 
 /**
- *
- * @param {string} str
+ * Expected string formats: '2548', '2 584', '25.8% or such a like negative.
+ * If number is NaN, or Infinity, 'INVALID' is returned.
+ * @param {string | number} v
  */
-function strToNum(str: string): string | number {
-  return str.includes('%') ? str : Number(str.split(' ').join(''));
+function strToNum(v: string | number) {
+  const retNum = (n: number) => (Number.isFinite(n) ? n : 'INVALID');
+
+  if (typeof v === 'string') {
+    if (v.includes('%')) return v;
+    const num = Number(v.split(' ').join(''));
+    return retNum(num);
+  }
+
+  return retNum(v);
 }
 
 /**
