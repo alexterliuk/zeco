@@ -3,6 +3,7 @@ import {
   FinancialStatements,
   FinancialStatement,
 } from './data';
+import { toUsreou } from './update-company-profile';
 
 /**
  *
@@ -18,19 +19,22 @@ function buildCompanyProfile(
   year?: number
 ): CompanyProfile | undefined {
   if (id && shortName && usreou) {
-    return {
-      id,
-      name: '',
-      shortName,
-      usreou,
-      location: '',
-      industry: '',
-      // @ts-ignore due to recursive nature of composeStatementsTemplate
-      // which makes either FinancialStatements or Partial of it
-      statements: {
-        [year || 2020]: getStatementsTemplate(),
-      },
-    };
+    const validUsreou = toUsreou(usreou);
+    if (validUsreou) {
+      return {
+        id,
+        name: '',
+        shortName,
+        usreou: validUsreou,
+        location: '',
+        industry: '',
+        // @ts-ignore due to recursive nature of composeStatementsTemplate
+        // which makes either FinancialStatements or Partial of it
+        statements: {
+          [year || 2020]: getStatementsTemplate(),
+        },
+      };
+    }
   }
 }
 
