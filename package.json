@@ -46,7 +46,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest"
+    "test": "jest",
+    "parse-excel": "node src/data/parse-excel.js"
   },
   "repository": {
     "type": "git",
