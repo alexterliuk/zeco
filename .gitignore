@@ -73,4 +73,5 @@ yarn-error.log
 
 # Parsing Excel files
 companies-excel
+companies-parsed
 err-logs
