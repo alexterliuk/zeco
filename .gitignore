@@ -72,4 +72,5 @@ yarn-error.log
 .yarn-integrity
 
 # Parsing Excel files
+companies-excel
 err-logs
