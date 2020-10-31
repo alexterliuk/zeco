@@ -17,7 +17,7 @@ async function parseExcelToJson() {
         const errMsg = `ENOENT: ${pathToFile}'`;
         console.log(makeRed(errMsg));
         try {
-          const pathToLog = path.join(__dirname, 'err-logs\\errors.txt');
+          const pathToLog = path.join(__dirname, 'err-logs/errors.txt');
           const time = new Date().toUTCString();
           fs.appendFileSync(pathToLog, `${time} - ${errMsg}\n`);
         } catch (e) {
