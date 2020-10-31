@@ -1,6 +1,7 @@
 import turboatom from './turboatom';
 import naftogaz from './naftogaz';
 import ukrenergo from './ukrenergo';
+import { Companies } from '../data';
 
 const companies: Companies = {
   turboatom,

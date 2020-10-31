@@ -38,7 +38,6 @@ export interface FinancialStatement {
   year: number | false;
 }
 
-//
-// interface Companies {
-//   [key: string]: CompanyProfile;
-// }
+interface Companies {
+  [key: string]: CompanyProfile;
+}
