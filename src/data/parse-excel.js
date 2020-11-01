@@ -44,7 +44,9 @@ async function parseExcelToJson() {
       }
     }
 
-    pathsToParsed.push({ id, parsedDataFileNames });
+    if (parsedDataFileNames.length) {
+      pathsToParsed.push({ id, parsedDataFileNames });
+    }
   }
 
   return pathsToParsed;
