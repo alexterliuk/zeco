@@ -4,6 +4,11 @@ const path = require('path');
 const readXlsxFile = require('read-excel-file');
 const { companiesFaces, excelDataTypes } = require('./companies-faces');
 const { makeRed } = require('./color-makers');
+const requiredRows = require('./required-rows');
+const getRowsFromParsedExcelData = require('./get-rows-from-parsed-excel-data')
+  .default;
+const buildCompanyProfile = require('./build-company-profile').default;
+const updateCompanyProfile = require('./update-company-profile').default;
 
 async function parseExcelToJson() {
   const pathsToParsed = [];
@@ -89,4 +94,36 @@ async function preConvertToCompanies() {
     });
     return acc;
   }, []);
+}
+
+async function convertParsedExcelToCompanies() {
+  const specs = await preConvertToCompanies();
+
+  for (const spec of specs) {
+    const exData = spec.args[0];
+    const keys = spec.args[1];
+    const parsedRequiredRows = getRowsFromParsedExcelData(
+      exData,
+      requiredRows,
+      keys
+    );
+    const { id, shortName, usreou } = companiesFaces.find(
+      c => c.id === spec.companyId
+    );
+    const companyProfile = buildCompanyProfile(id, shortName, usreou);
+
+    if (companyProfile) {
+      updateCompanyProfile(companyProfile, parsedRequiredRows);
+      let companyProfileStr = JSON.stringify(companyProfile, null, 2);
+      const _path = path.join(__dirname, `companies/${id}.ts`);
+
+      const part1 = "import { CompanyProfile } from '../data';\n\n";
+      const part2 = `const ${id}: CompanyProfile = {`;
+      const part3 = companyProfileStr.slice(1);
+      const part4 = `;\n\nexport default ${id};\n`;
+      const composedStr = `${part1}${part2}${part3}${part4}`;
+
+      fs.writeFileSync(_path, composedStr);
+    }
+  }
 }
