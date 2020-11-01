@@ -1,5 +1,5 @@
 const requiredRows = {
-  finZvit: [
+  zvit: [
     { i: 0, name: 'colNames' },
     { i: 1, name: 'netIncome' },
     { i: 7, name: 'producedCost' },
@@ -9,12 +9,12 @@ const requiredRows = {
     { i: 41, name: 'netLoss' },
     { i: 52, name: 'salaryExpenses' },
   ],
-  finCoeff: [
+  fincoeff: [
     { i: 0, name: 'colNames' },
     { i: 15, name: 'incomeGrowth' },
     { i: 16, name: 'profitGrowth' },
   ],
-  finBalance: [
+  balance: [
     { i: 0, name: 'colNames' },
     { i: 5, name: 'assetsFixed' },
     { i: 49, name: 'assetsCurrent' },
@@ -23,4 +23,4 @@ const requiredRows = {
   ],
 };
 
-export default requiredRows;
+module.exports = requiredRows;

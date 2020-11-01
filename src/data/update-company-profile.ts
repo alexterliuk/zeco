@@ -134,7 +134,10 @@ function strToNum(v: string | number) {
 
   if (typeof v === 'string') {
     if (v.includes('%')) return v;
-    const num = Number(v.split(' ').join(''));
+    const num = Number(v.split(/\s/).join(''));
+    if (!Number.isFinite(num)) {
+      if (v === '-') return false;
+    }
     return retNum(num);
   }
 

@@ -6,7 +6,7 @@ export interface CompanyProfile {
   location: string;
   industry: string;
   statements: {
-    [key: number]: FinancialStatements;
+    [key: string]: FinancialStatements;
   };
 }
 
@@ -33,12 +33,11 @@ export interface FinancialStatements {
 }
 
 export interface FinancialStatement {
-  quarters: number[];
+  quarters: (number | string | false)[];
   halfyear: number[];
-  year: number | false;
+  year: number | string | false;
 }
 
-//
-// interface Companies {
-//   [key: string]: CompanyProfile;
-// }
+interface Companies {
+  [key: string]: CompanyProfile;
+}

@@ -32,6 +32,6 @@ type RequiredExcelDataRows = {
   [key in excelDataFileNames]: { i: number; name: string }[];
 };
 
-type excelDataFileNames = 'finZvit' | 'finCoeff' | 'finBalance';
+type excelDataFileNames = 'zvit' | 'fincoeff' | 'balance';
 
 export default getRowsFromParsedExcelData;

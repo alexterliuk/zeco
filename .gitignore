@@ -70,3 +70,11 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Parsing Excel files
+companies-excel
+companies-parsed
+err-logs
+build-company-profile.js
+update-company-profile.js
+get-rows-from-parsed-excel-data.js

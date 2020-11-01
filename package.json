@@ -23,6 +23,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-helmet": "^6.1.0",
+    "read-excel-file": "^4.0.7",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
@@ -45,7 +46,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest"
+    "test": "jest",
+    "pre-parse-excel": "tsc src/data/get-rows-from-parsed-excel-data.ts src/data/build-company-profile.ts src/data/update-company-profile.ts",
+    "parse-excel": "node src/data/parse-excel.js && prettier --write src/data/companies"
   },
   "repository": {
     "type": "git",
