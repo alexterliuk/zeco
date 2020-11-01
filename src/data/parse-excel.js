@@ -10,6 +10,10 @@ const getRowsFromParsedExcelData = require('./get-rows-from-parsed-excel-data')
 const buildCompanyProfile = require('./build-company-profile').default;
 const updateCompanyProfile = require('./update-company-profile').default;
 
+/**
+ *
+ * @returns {Promise<Array>}
+ */
 async function parseExcelToJson() {
   const pathsToParsed = [];
 
@@ -57,9 +61,13 @@ async function parseExcelToJson() {
   return pathsToParsed;
 }
 
-async function preConvertToCompanies() {
-  const pathsToParsed = await parseExcelToJson();
-  if (!pathsToParsed.length) return;
+/**
+ *
+ * @param pathsToParsed
+ * @returns {Promise<Array|*>}
+ */
+async function preConvertToCompanies(pathsToParsed) {
+  if (!pathsToParsed.length) return [];
 
   const fileNameEndings = `-(${excelDataTypes.join('|')}).json`;
   const pattern = new RegExp(fileNameEndings);
@@ -96,9 +104,12 @@ async function preConvertToCompanies() {
   }, []);
 }
 
-async function convertParsedExcelToCompanies() {
-  const specs = await preConvertToCompanies();
-
+/**
+ *
+ * @param specs
+ * @returns {Promise<void>}
+ */
+async function convertParsedExcelToCompanies(specs) {
   for (const spec of specs) {
     const exData = spec.args[0];
     const keys = spec.args[1];
@@ -127,3 +138,15 @@ async function convertParsedExcelToCompanies() {
     }
   }
 }
+
+/**
+ *
+ * @returns {Promise<void>}
+ */
+async function parseExcel() {
+  const pathsToParsed = await parseExcelToJson();
+  const specs = await preConvertToCompanies(pathsToParsed);
+  void convertParsedExcelToCompanies(specs);
+}
+
+void parseExcel();
