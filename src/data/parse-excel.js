@@ -2,13 +2,14 @@
 const fs = require('fs');
 const path = require('path');
 const readXlsxFile = require('read-excel-file');
-const { companiesIds, excelDataTypes } = require('./companies-ids');
+const { companiesFaces, excelDataTypes } = require('./companies-faces');
 const { makeRed } = require('./color-makers');
 
 async function parseExcelToJson() {
   const pathsToParsed = [];
 
-  for (const id of companiesIds) {
+  for (const face of companiesFaces) {
+    const id = face.id;
     const parsedDataFileNames = [];
 
     for (const dataType of excelDataTypes) {
