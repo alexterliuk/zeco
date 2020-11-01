@@ -75,3 +75,6 @@ yarn-error.log
 companies-excel
 companies-parsed
 err-logs
+build-company-profile.js
+update-company-profile.js
+get-rows-from-parsed-excel-data.js
