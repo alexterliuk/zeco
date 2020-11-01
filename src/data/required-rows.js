@@ -23,4 +23,4 @@ const requiredRows = {
   ],
 };
 
-export default requiredRows;
+module.exports = requiredRows;
