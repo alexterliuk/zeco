@@ -48,7 +48,7 @@
     "clean": "gatsby clean",
     "test": "jest",
     "pre-parse-excel": "tsc src/data/get-rows-from-parsed-excel-data.ts src/data/build-company-profile.ts src/data/update-company-profile.ts",
-    "parse-excel": "node src/data/parse-excel.js"
+    "parse-excel": "node src/data/parse-excel.js && prettier --write src/data/companies"
   },
   "repository": {
     "type": "git",
