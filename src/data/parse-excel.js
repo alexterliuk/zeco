@@ -23,11 +23,15 @@ async function parseExcelToJson() {
 
     for (const dataType of excelDataTypes) {
       const slug = `${id}-${dataType}`;
-      const pathToFile = path.join(__dirname, `companies-excel/${slug}.xlsx`);
+      const pathToCompany = path.join(__dirname, `companies/${id}.ts`);
+      const pathToExcel = path.join(__dirname, `companies-excel/${slug}.xlsx`);
 
-      const fileExists = fs.existsSync(pathToFile);
-      if (!fileExists) {
-        const errMsg = `ENOENT: ${pathToFile}'`;
+      const companyExists = fs.existsSync(pathToCompany);
+      if (companyExists) continue;
+
+      const excelFileExists = fs.existsSync(pathToExcel);
+      if (!excelFileExists) {
+        const errMsg = `ENOENT: ${pathToExcel}'`;
         console.log(makeRed(errMsg));
         try {
           const pathToLog = path.join(__dirname, 'err-logs/errors.txt');
@@ -40,7 +44,7 @@ async function parseExcelToJson() {
       }
 
       try {
-        const data = fs.readFileSync(pathToFile);
+        const data = fs.readFileSync(pathToExcel);
         const parsedExcel = await readXlsxFile(data);
         if (parsedExcel.length) {
           const _path = path.join(__dirname, `companies-parsed/${slug}.json`);
@@ -48,7 +52,7 @@ async function parseExcelToJson() {
           parsedDataFileNames.push(`${slug}.json`);
         }
       } catch (e) {
-        console.log(makeRed(`Crashed when working with ${pathToFile}'`));
+        console.log(makeRed(`Crashed when working with ${pathToExcel}'`));
         console.log(e);
       }
     }
