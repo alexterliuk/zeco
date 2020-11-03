@@ -1,10 +1,10 @@
 import { CompanyProfile } from '../data';
 
-const naftogaz: CompanyProfile = {
-  id: 'naftogaz',
+const khartron: CompanyProfile = {
+  id: 'khartron',
   name: '',
-  shortName: 'Нафтогаз',
-  usreou: '20077720',
+  shortName: 'Хартрон',
+  usreou: '14313062',
   location: '',
   industry: '',
   statements: {
@@ -13,39 +13,39 @@ const naftogaz: CompanyProfile = {
         current: {
           quarters: [],
           halfyear: [],
-          year: 141490069,
+          year: 100297,
         },
         fixed: {
           quarters: [],
           halfyear: [],
-          year: 502842,
+          year: 2555,
         },
         totalValue: {
           quarters: [],
           halfyear: [],
-          year: 540546369,
+          year: 301882,
         },
       },
       equity: {
         quarters: [],
         halfyear: [],
-        year: 409265990,
+        year: 185000,
       },
       producedCost: {
         quarters: [],
         halfyear: [],
-        year: 116277398,
+        year: 11039,
       },
       salaryExpenses: {
         quarters: [],
         halfyear: [],
-        year: 522135,
+        year: 11302,
       },
       financials: {
         netProfit: {
           quarters: [],
           halfyear: [],
-          year: 27978859,
+          year: 6987,
         },
         netLoss: {
           quarters: [],
@@ -55,7 +55,7 @@ const naftogaz: CompanyProfile = {
         grossProfit: {
           quarters: [],
           halfyear: [],
-          year: 45105429,
+          year: 870,
         },
         grossLoss: {
           quarters: [],
@@ -65,17 +65,17 @@ const naftogaz: CompanyProfile = {
         netIncome: {
           quarters: [],
           halfyear: [],
-          year: 161382827,
+          year: 11909,
         },
         profitGrowth: {
           quarters: [],
           halfyear: [],
-          year: false,
+          year: '13.4%',
         },
         incomeGrowth: {
           quarters: [],
           halfyear: [],
-          year: '43.1%',
+          year: '-85.4%',
         },
         ebitda: {
           quarters: [],
@@ -94,39 +94,39 @@ const naftogaz: CompanyProfile = {
         current: {
           quarters: [],
           halfyear: [],
-          year: 216387816,
+          year: 101941,
         },
         fixed: {
           quarters: [],
           halfyear: [],
-          year: 589099,
+          year: 2330,
         },
         totalValue: {
           quarters: [],
           halfyear: [],
-          year: 638946642,
+          year: 305946,
         },
       },
       equity: {
         quarters: [],
         halfyear: [],
-        year: 431503975,
+        year: 215988,
       },
       producedCost: {
         quarters: [],
         halfyear: [],
-        year: 146639564,
+        year: 2850,
       },
       salaryExpenses: {
         quarters: [],
         halfyear: [],
-        year: 724469,
+        year: 13740,
       },
       financials: {
         netProfit: {
           quarters: [],
           halfyear: [],
-          year: 39330152,
+          year: 8923,
         },
         netLoss: {
           quarters: [],
@@ -136,7 +136,7 @@ const naftogaz: CompanyProfile = {
         grossProfit: {
           quarters: [],
           halfyear: [],
-          year: 41287869,
+          year: 465,
         },
         grossLoss: {
           quarters: [],
@@ -146,17 +146,17 @@ const naftogaz: CompanyProfile = {
         netIncome: {
           quarters: [],
           halfyear: [],
-          year: 187927433,
+          year: 3315,
         },
         profitGrowth: {
           quarters: [],
           halfyear: [],
-          year: '48.3%',
+          year: '27.7%',
         },
         incomeGrowth: {
           quarters: [],
           halfyear: [],
-          year: '16.4%',
+          year: '-72.2%',
         },
         ebitda: {
           quarters: [],
@@ -175,39 +175,39 @@ const naftogaz: CompanyProfile = {
         current: {
           quarters: [],
           halfyear: [],
-          year: 154879794,
+          year: 119814,
         },
         fixed: {
           quarters: [],
           halfyear: [],
-          year: 568113,
+          year: 2768,
         },
         totalValue: {
           quarters: [],
           halfyear: [],
-          year: 555846264,
+          year: 324086,
         },
       },
       equity: {
         quarters: [],
         halfyear: [],
-        year: 473682933,
+        year: 269716,
       },
       producedCost: {
         quarters: [],
         halfyear: [],
-        year: 158900569,
+        year: 2960,
       },
       salaryExpenses: {
         quarters: [],
         halfyear: [],
-        year: 2177067,
+        year: 16629,
       },
       financials: {
         netProfit: {
           quarters: [],
           halfyear: [],
-          year: 23583461,
+          year: 26186,
         },
         netLoss: {
           quarters: [],
@@ -217,7 +217,7 @@ const naftogaz: CompanyProfile = {
         grossProfit: {
           quarters: [],
           halfyear: [],
-          year: 46037553,
+          year: 731,
         },
         grossLoss: {
           quarters: [],
@@ -227,17 +227,17 @@ const naftogaz: CompanyProfile = {
         netIncome: {
           quarters: [],
           halfyear: [],
-          year: 204938122,
+          year: 3691,
         },
         profitGrowth: {
           quarters: [],
           halfyear: [],
-          year: '-40.0%',
+          year: '193.5%',
         },
         incomeGrowth: {
           quarters: [],
           halfyear: [],
-          year: '9.1%',
+          year: '11.3%',
         },
         ebitda: {
           quarters: [],
@@ -416,4 +416,4 @@ const naftogaz: CompanyProfile = {
   },
 };
 
-export default naftogaz;
+export default khartron;
