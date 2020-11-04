@@ -10,6 +10,7 @@ import {
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
 import { TranslationsTypes } from '../translations/translations';
+import translate from '../translations/translate';
 
 const companyPanelPropTypes = {
   companyData: PropTypes.array,
@@ -36,7 +37,6 @@ const CompanyPanel = ({
   if (!Array.isArray(companyData) || !companyData.length) return null;
   // rec stands for record
   const id = companyData.filter(rec => rec.key === 'id')[0].value;
-  const name = companyData.filter(rec => rec.key === 'shortName')[0].value;
   const quarter = zecoConfig.getItem(['statements', 'quarter']);
   const year = zecoConfig.getItem(['statements', 'year']);
   const translateConfig: { id: string; type: TranslationsTypes } = {
@@ -103,7 +103,7 @@ const CompanyPanel = ({
 
   return (
     <Panel style={{ opacity: companyPanelOpacity }}>
-      <h3>{name}</h3>
+      <h3>{translate(id, 'companies', 'shortName')}</h3>
       {regItems}
       {finItems}
     </Panel>
