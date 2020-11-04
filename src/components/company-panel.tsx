@@ -12,6 +12,7 @@ import {
 
 const companyPanelPropTypes = {
   companyData: PropTypes.array,
+  companyPanelOpacity: PropTypes.number,
 };
 
 const Panel = styled.div`
@@ -34,7 +35,9 @@ const CompanyPanel = ({
   companyPanelOpacity,
 }: CompanyPanelProps) => {
   if (!Array.isArray(companyData) || !companyData.length) return null;
-
+  // rec stands for record
+  const id = companyData.filter(rec => rec.key === 'id')[0].value;
+  const name = companyData.filter(rec => rec.key === 'shortName')[0].value;
   const quarter = zecoConfig.getItem(['statements', 'quarter']);
   const year = zecoConfig.getItem(['statements', 'year']);
 
@@ -46,10 +49,6 @@ const CompanyPanel = ({
     zecoConfig.getItem(['showInCompanyPanel', 'finInfo']),
     'finInfo'
   );
-
-  // rec stands for record
-  const nameRec = companyData.filter(rec => rec.key === 'shortName');
-  const name = (nameRec[0] && nameRec[0].value) || '';
 
   // TODO: add logic for displaying млрд грн?
 
