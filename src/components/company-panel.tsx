@@ -9,6 +9,7 @@ import {
   KeyValuePair,
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
+import { TranslationsTypes } from '../translations/translations';
 
 const companyPanelPropTypes = {
   companyData: PropTypes.array,
@@ -28,8 +29,6 @@ const Panel = styled.div`
   will-change: opacity;
 `;
 
-// TODO: add translations.ts
-
 const CompanyPanel = ({
   companyData = [],
   companyPanelOpacity,
@@ -40,7 +39,10 @@ const CompanyPanel = ({
   const name = companyData.filter(rec => rec.key === 'shortName')[0].value;
   const quarter = zecoConfig.getItem(['statements', 'quarter']);
   const year = zecoConfig.getItem(['statements', 'year']);
-
+  const translateConfig: { id: string; type: TranslationsTypes } = {
+    id,
+    type: 'companyKeys',
+  };
   const { regInfo } = deBangAndMemo(
     zecoConfig.getItem(['showInCompanyPanel', 'regInfo']),
     'regInfo'
@@ -55,9 +57,12 @@ const CompanyPanel = ({
   const regInfoToShow = companyData.filter(rec =>
     regInfo.arr.includes(rec.key)
   );
+
   const regItems = regInfoToShow.map((rec: KeyValuePair) => (
     <CompanyInfoItem
       key={rec.key}
+      translateConfig={translateConfig}
+      // @ts-ignore
       name={regInfo.startsWithBang[rec.key] ? '' : rec.key}
       value={rec.value}
     />
@@ -83,6 +88,8 @@ const CompanyPanel = ({
   const finItems = finInfoToShow.map((rec: KeyValuePair) => (
     <CompanyInfoItem
       key={rec.key}
+      translateConfig={translateConfig}
+      // @ts-ignore
       name={finInfo.startsWithBang[rec.key] ? '' : rec.key}
       value={
         quarter === undefined ? rec.value.year : rec.value.quarters[quarter]
