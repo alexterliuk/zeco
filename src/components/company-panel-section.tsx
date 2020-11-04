@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CompanyPanel from './company-panel';
 import companies from '../data/companies/index';
+import { Companies } from '../data/data';
 import extractKeyValuePairs, {
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
@@ -59,19 +60,19 @@ function composeCompanyData(id: string, companies: Companies): KeyValuePairs {
   const company = companies[id];
   if (!company) return [];
 
-  const regularData = extractKeyValuePairs(company, ['financials']);
+  const regularData = extractKeyValuePairs(company, ['statements']);
 
-  const years = Object.keys(company.financials);
+  const years = Object.keys(company.statements);
   const financeData = years.reduce(
     (acc: { [key: string]: KeyValuePairs }, y) => {
-      acc[y] = extractKeyValuePairs(company.financials[+y]);
+      acc[y] = extractKeyValuePairs(company.statements[+y]);
       return acc;
     },
     {}
   );
 
   return regularData.concat({
-    key: 'financials',
+    key: 'statements',
     value: financeData,
   });
 }

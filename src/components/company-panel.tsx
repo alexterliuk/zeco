@@ -34,8 +34,8 @@ const CompanyPanel = ({
 }: CompanyPanelProps) => {
   if (!Array.isArray(companyData) || !companyData.length) return null;
 
-  const quarter = zecoConfig.getItem(['financials', 'quarter']);
-  const year = zecoConfig.getItem(['financials', 'year']);
+  const quarter = zecoConfig.getItem(['statements', 'quarter']);
+  const year = zecoConfig.getItem(['statements', 'year']);
 
   const { regInfo } = deBangAndMemo(
     zecoConfig.getItem(['showInCompanyPanel', 'regInfo']),
@@ -47,7 +47,7 @@ const CompanyPanel = ({
   );
 
   // rec stands for record
-  const nameRec = companyData.filter(rec => rec.key === 'name');
+  const nameRec = companyData.filter(rec => rec.key === 'shortName');
   const name = (nameRec[0] && nameRec[0].value) || '';
 
   // TODO: add logic for displaying млрд грн?
@@ -63,7 +63,7 @@ const CompanyPanel = ({
     />
   ));
 
-  let finInfoToShow = companyData.filter(rec => rec.key === 'financials');
+  let finInfoToShow = companyData.filter(rec => rec.key === 'statements');
   finInfoToShow = (
     finInfoToShow[0].value[year] || []
   ).filter((rec: KeyValuePair) => finInfo.arr.includes(rec.key));

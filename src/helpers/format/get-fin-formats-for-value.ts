@@ -8,7 +8,7 @@ import zecoConfig from '../../../config/zeco-config';
 function getFinFormatsForValue(name: any): string[] {
   if (typeof name !== 'string') return [];
 
-  const finFormatConfig = zecoConfig.getItem(['financials', 'format']);
+  const finFormatConfig = zecoConfig.getItem(['statements', 'format']);
   const finFormatConfigKeys = Object.keys(finFormatConfig);
 
   return finFormatConfigKeys.reduce((acc: string[], k) => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Box from './box';
 import companies, { companiesIds, CompaniesIds } from '../data/companies/index';
+import { CompanyProfile } from '../data/data';
 
 const Container = styled.section`
   border: 1px solid lightgrey;
@@ -14,12 +15,13 @@ const Container = styled.section`
 const BoxSection = ({ updateCompanyPanel }: BoxSectionProps) => {
   const boxes = companiesIds.map((k: CompaniesIds) => {
     const company: CompanyProfile = companies[k];
-    const { name, id } = company;
-    const profit = company.financials[2020].netProfit.quarters[1] > 0;
+    const { shortName, id } = company;
+    const profit =
+      company.statements[2020].financials.netProfit.quarters[1] > 0;
 
     return (
       <Box
-        name={name}
+        name={shortName}
         profit={profit}
         handleClick={updateCompanyPanel}
         id={id}
