@@ -1519,14 +1519,6 @@ const translations = {
 
 export default translations;
 
-export type Translations = keyof typeof translations;
-export type TranslationsItem = {
-  uk: string;
-  en: string;
-};
 export type TranslationsTypes = 'companyKeys' | 'companies';
 export type TranslationsCompanyKeys = keyof typeof translations.companyKeys;
-export type TranslationsCompany = {
-  [key in TranslationsCompanyKeys]: TranslationsItem;
-};
 export type Languages = 'uk' | 'en';

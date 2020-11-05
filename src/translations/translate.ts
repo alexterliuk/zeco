@@ -19,7 +19,7 @@ function translate(
   }
 
   if (entityType === 'companies') {
-    const companies = key && translations.companies;
+    const companies: any = key && translations.companies;
     const item = (companies[id] || {})[key];
     return (item && item[lang]) || item.uk;
   }
