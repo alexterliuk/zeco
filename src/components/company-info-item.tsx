@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { format, getFinFormatsForValue } from '../helpers/format/index';
-
-const companyInfoItemPropTypes = {
-  name: PropTypes.string,
-  value: PropTypes.any,
-  pos: PropTypes.number,
-};
+import translate from '../translations/translate';
+import {
+  TranslationsTypes,
+  TranslationsCompanyKeys,
+} from '../translations/translations';
 
 const Item = styled.p`
   display: flex;
@@ -20,12 +19,19 @@ const Right = styled.span`
   margin-left: auto;
 `;
 
-const CompanyInfoItem = ({ name, value }: companyInfoItemProps) => {
+const CompanyInfoItem = ({
+  translateConfig,
+  name,
+  value,
+}: CompanyInfoItemProps) => {
+  const { id, type } = translateConfig;
+
+  const translatedName = translate(id, type, name);
   const formattedValue = format(value, getFinFormatsForValue(name));
 
   return name ? (
     <Item>
-      <Left>{name}</Left>
+      <Left>{translatedName}</Left>
       <Right>{formattedValue}</Right>
     </Item>
   ) : (
@@ -35,8 +41,24 @@ const CompanyInfoItem = ({ name, value }: companyInfoItemProps) => {
   );
 };
 
-CompanyInfoItem.propTypes = companyInfoItemPropTypes;
+CompanyInfoItem.propTypes = {
+  translateConfig: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.any,
+  pos: PropTypes.number,
+};
 
-type companyInfoItemProps = InferProps<typeof companyInfoItemPropTypes>;
+interface CompanyInfoItemProps {
+  translateConfig: {
+    id: string;
+    type: TranslationsTypes;
+  };
+  name: TranslationsCompanyKeys;
+  value: any;
+  pos?: number;
+}
 
 export default CompanyInfoItem;

@@ -9,9 +9,12 @@ import {
   KeyValuePair,
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
+import { TranslationsTypes } from '../translations/translations';
+import translate from '../translations/translate';
 
 const companyPanelPropTypes = {
   companyData: PropTypes.array,
+  companyPanelOpacity: PropTypes.number,
 };
 
 const Panel = styled.div`
@@ -27,17 +30,19 @@ const Panel = styled.div`
   will-change: opacity;
 `;
 
-// TODO: add translations.ts
-
 const CompanyPanel = ({
   companyData = [],
   companyPanelOpacity,
 }: CompanyPanelProps) => {
   if (!Array.isArray(companyData) || !companyData.length) return null;
-
+  // rec stands for record
+  const id = companyData.filter(rec => rec.key === 'id')[0].value;
   const quarter = zecoConfig.getItem(['statements', 'quarter']);
   const year = zecoConfig.getItem(['statements', 'year']);
-
+  const translateConfig: { id: string; type: TranslationsTypes } = {
+    id,
+    type: 'companyKeys',
+  };
   const { regInfo } = deBangAndMemo(
     zecoConfig.getItem(['showInCompanyPanel', 'regInfo']),
     'regInfo'
@@ -47,18 +52,17 @@ const CompanyPanel = ({
     'finInfo'
   );
 
-  // rec stands for record
-  const nameRec = companyData.filter(rec => rec.key === 'shortName');
-  const name = (nameRec[0] && nameRec[0].value) || '';
-
   // TODO: add logic for displaying млрд грн?
 
   const regInfoToShow = companyData.filter(rec =>
     regInfo.arr.includes(rec.key)
   );
+
   const regItems = regInfoToShow.map((rec: KeyValuePair) => (
     <CompanyInfoItem
       key={rec.key}
+      translateConfig={translateConfig}
+      // @ts-ignore
       name={regInfo.startsWithBang[rec.key] ? '' : rec.key}
       value={rec.value}
     />
@@ -84,6 +88,8 @@ const CompanyPanel = ({
   const finItems = finInfoToShow.map((rec: KeyValuePair) => (
     <CompanyInfoItem
       key={rec.key}
+      translateConfig={translateConfig}
+      // @ts-ignore
       name={finInfo.startsWithBang[rec.key] ? '' : rec.key}
       value={
         quarter === undefined ? rec.value.year : rec.value.quarters[quarter]
@@ -97,7 +103,7 @@ const CompanyPanel = ({
 
   return (
     <Panel style={{ opacity: companyPanelOpacity }}>
-      <h3>{name}</h3>
+      <h3>{translate(id, 'companies', 'shortName')}</h3>
       {regItems}
       {finItems}
     </Panel>
