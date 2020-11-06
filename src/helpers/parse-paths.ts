@@ -5,7 +5,7 @@
  *   name: 'netIncome|assets.fixed',
  *   parsedPath: [['netIncome'], ['assets', 'fixed']],
  *   splitAllPath: ['netIncome', '|', 'assets', '.', 'fixed'],
- *   splitOrPath: ['netIncome, 'assets.fixed'],
+ *   splitOrPath: ['netIncome', 'assets.fixed'],
  * }
  * @param {array} paths - with strings
  */
