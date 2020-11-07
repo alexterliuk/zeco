@@ -1,4 +1,6 @@
 import pickData from '../src/helpers/pick-data';
+import { getStatementsTemplate } from '../src/data/build-company-profile';
+import prependKeysToPathsIfNeeded from '../src/helpers/prepend-keys-to-paths-if-needed';
 
 const zecoConfig: ZecoConfig = {
   lang: 'uk',
@@ -50,6 +52,18 @@ const addItem = (pathSegments: string[], item: any): void => {
     }
   }
 };
+
+const addFinInfoSplitPaths = (finInfo: string[]): void => {
+  if (!finInfo) return;
+  const tpl = getStatementsTemplate();
+  // @ts-ignore
+  const tplKeys = Object.keys(tpl).filter(k => !tpl[k].quarters);
+  const finInfoSplitPaths = prependKeysToPathsIfNeeded(finInfo, tpl, tplKeys);
+  if (finInfoSplitPaths) {
+    addItem(['showInCompanyPanel', 'finInfoSplitPaths'], finInfoSplitPaths);
+  }
+};
+addFinInfoSplitPaths(zecoConfig?.showInCompanyPanel?.finInfo);
 
 type ZecoConfig = {
   [key: string]: any;
