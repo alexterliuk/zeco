@@ -2,7 +2,7 @@ import pickData from '../src/helpers/pick-data';
 
 const zecoConfig: ZecoConfig = {
   lang: 'uk',
-  financials: {
+  statements: {
     year: 2020,
   },
   showInCompanyPanel: {
@@ -19,8 +19,7 @@ const getItem = (pathSegments: string[] = []): any => {
 
 const updateItem = (pathSegments: string[] = [], value: any): void => {
   if (value === undefined) return;
-
-  let lastPathSegm = pathSegments[pathSegments.length - 1];
+  const lastPathSegm = pathSegments[pathSegments.length - 1];
   const configItem =
     pathSegments.length === 1
       ? zecoConfig
@@ -34,6 +33,21 @@ const updateItem = (pathSegments: string[] = [], value: any): void => {
     configItem.hasOwnProperty(lastPathSegm)
   ) {
     configItem[lastPathSegm] = value;
+  }
+};
+
+const addItem = (pathSegments: string[], item: any): void => {
+  const data = pickData(zecoConfig, pathSegments);
+  if (data === undefined) {
+    const lastPathSegm = pathSegments[pathSegments.length - 1];
+    const parent =
+      pathSegments.length === 1
+        ? zecoConfig
+        : pickData(zecoConfig, pathSegments.slice(0, -1));
+
+    if (typeof parent === 'object' && !Array.isArray(parent)) {
+      parent[lastPathSegm] = item;
+    }
   }
 };
 
