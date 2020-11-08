@@ -74,4 +74,15 @@ describe('walkAndDo called with non-empty string', () => {
     // @ts-ignore
     expect(walkAndDo('tap', { doo })).toEqual(res);
   });
+
+  it("and { doo: (a, b, c) => a } as options, and this doo is called and nothing is mutated in walkAndDo's returned string", () => {
+    const res = {
+      composed: 'tap',
+      split: ['t', 'a', 'p'],
+    };
+
+    const doo = (a: any, b: any, c: any): string => a;
+    // @ts-ignore
+    expect(walkAndDo('tap', { doo })).toEqual(res);
+  });
 });
