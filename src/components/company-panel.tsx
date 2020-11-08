@@ -1,9 +1,9 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import zecoConfig from '../../config/zeco-config';
 import deBangAndMemo from '../helpers/de-bang-and-memo';
-import pickData from '../helpers/pick-data';
+import getKeyValCollection from '../helpers/get-key-val-collection';
 import CompanyInfoItem from './company-info-item';
 import {
   KeyValuePair,
@@ -37,7 +37,8 @@ const CompanyPanel = ({
   if (!Array.isArray(companyData) || !companyData.length) return null;
   // rec stands for record
   const id = companyData.filter(rec => rec.key === 'id')[0].value;
-  const quarter = zecoConfig.getItem(['statements', 'quarter']);
+  const quarter: number = zecoConfig.getItem(['statements', 'quarter']);
+  const halfyear: number = zecoConfig.getItem(['statements', 'halfyear']);
   const year = zecoConfig.getItem(['statements', 'year']);
   const translateConfig: { id: string; type: TranslationsTypes } = {
     id,
@@ -51,6 +52,10 @@ const CompanyPanel = ({
     zecoConfig.getItem(['showInCompanyPanel', 'finInfo']),
     'finInfo'
   );
+  const finInfoSplitPaths = zecoConfig.getItem([
+    'showInCompanyPanel',
+    'finInfoSplitPaths',
+  ]);
 
   // TODO: add logic for displaying млрд грн?
 
@@ -69,37 +74,35 @@ const CompanyPanel = ({
   ));
 
   const statements = companyData.filter(r => r.key === 'statements')[0].value;
-  const finInfoToShow = (statements[year] || []).filter((rec: KeyValuePair) =>
-    finInfo.arr.includes(rec.key)
+  const finInfoToShow = getKeyValCollection(
+    statements[year],
+    finInfo.arr,
+    finInfoSplitPaths,
+    { quarter, halfyear }
   );
 
-  for (const categoryName of ['financials', 'assets']) {
-    const category = statements[year].find(
-      (rec: KeyValuePair) => rec.key === categoryName
-    ).value;
-    for (const item of finInfo.arr) {
-      const pathSegments = item.split('.').slice(1); // e.g. item 'assets.fixed'
-      const pickedValue = pickData(category, pathSegments);
-      const value = pickedValue || category[item];
-      if (value) finInfoToShow.push({ key: item, value });
+  const finItems = finInfoToShow.map((rec: KeyValuePair, i: number) => {
+    if (
+      rec.value !== false &&
+      rec.value !== undefined &&
+      rec.value !== '-100.0%'
+    ) {
+      return (
+        <CompanyInfoItem
+          key={rec.key}
+          translateConfig={translateConfig}
+          // @ts-ignore
+          name={finInfo.startsWithBang[rec.key] ? '' : rec.key}
+          value={rec.value}
+          // pos={finInfo.arr.findIndex((f: string) => f === rec.key)}
+          pos={i}
+        />
+      );
     }
-  }
-
-  const finItems = finInfoToShow.map((rec: KeyValuePair) => (
-    <CompanyInfoItem
-      key={rec.key}
-      translateConfig={translateConfig}
-      // @ts-ignore
-      name={finInfo.startsWithBang[rec.key] ? '' : rec.key}
-      value={
-        quarter === undefined ? rec.value.year : rec.value.quarters[quarter]
-      }
-      pos={finInfo.arr.findIndex((f: string) => f === rec.key)}
-    />
-  ));
-  finItems.sort(
-    (a: ReactElement, b: ReactElement) => a.props.pos - b.props.pos
-  );
+  });
+  // finItems.sort(
+  //   (a: ReactElement, b: ReactElement) => a.props.pos - b.props.pos
+  // );
 
   return (
     <Panel style={{ opacity: companyPanelOpacity }}>
