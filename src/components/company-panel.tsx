@@ -20,7 +20,7 @@ const companyPanelPropTypes = {
 const Panel = styled.div`
   max-width: 400px;
   padding: 20px 30px;
-  height: 300px;
+  min-height: 300px;
   margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0px 0px 8px 1px #d4d9dc;
