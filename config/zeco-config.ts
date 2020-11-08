@@ -6,11 +6,22 @@ const zecoConfig: ZecoConfig = {
   lang: 'uk',
   statements: {
     year: 2020,
+    quarter: 1, // 1st q. is 0, 2nd - 1 etc.
+    format: {
+      uah: [/*'netProfit', 'netRevenue'*/],
+      percent: [
+        // 'profitGrowth',
+        // 'incomeGrowth',
+        // 'ebitdaMargin',
+      ],
+      //gap1: ['netProfit', 'revenueGrowth', 'fsf'],
+    },
   },
   showInCompanyPanel: {
     // name not added to regInfo, bec. it is always shown
-    regInfo: ['!location'], // ! - show only value but not key
-    finInfo: ['netProfit', 'profitGrowth', 'netRevenue', 'revenueGrowth'],
+    regInfo: [/*'!location'*/], // ! - show only value but not key
+    /*'financials.netProfit' also works*/
+    finInfo: ['netProfit|netLoss', 'profitGrowth', 'netIncome', 'incomeGrowth', 'assets.totalValue'],
   },
 };
 
