@@ -12,11 +12,6 @@ import {
 import { TranslationsTypes } from '../translations/translations';
 import translate from '../translations/translate';
 
-const companyPanelPropTypes = {
-  companyData: PropTypes.array,
-  companyPanelOpacity: PropTypes.number,
-};
-
 const Panel = styled.div`
   max-width: 400px;
   padding: 20px 30px;
@@ -113,7 +108,10 @@ const CompanyPanel = ({
   );
 };
 
-CompanyPanel.propTypes = companyPanelPropTypes;
+CompanyPanel.propTypes = {
+  companyData: PropTypes.array,
+  companyPanelOpacity: PropTypes.number,
+};
 
 type CompanyPanelProps = {
   companyData: KeyValuePairs;
