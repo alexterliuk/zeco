@@ -22,7 +22,9 @@ function prependKeysToPathsIfNeeded(
     pathsSegmentsSets.push(set);
 
     for (const pathSegments of parsed.parsedPath) {
-      if (pickData(obj, pathSegments)) {
+      const data = pickData(obj, pathSegments);
+
+      if (data !== undefined) {
         set.push(pathSegments);
         break;
       }
