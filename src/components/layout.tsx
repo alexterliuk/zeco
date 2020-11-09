@@ -1,25 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactElement } from 'react';
+import PropTypes, { ReactElementLike } from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Header from './header';
 import './layout.css';
 
+const getLayoutStyles = (maxWidth: number | 'none') => `
+  margin: 0 auto;
+  max-width: ${maxWidth}px;
+  padding: 0 1.0875rem 1.45rem;
+`;
+
+const containers = [
+  styled.div`${getLayoutStyles('none')}`,
+  styled.div`${getLayoutStyles(960)}`,
+  styled.div`${getLayoutStyles(1280)}`,
+  styled.div`${getLayoutStyles(1440)}`,
+  styled.div`${getLayoutStyles(1600)}`,
+];
+
 const Footer = ({ className, children }: any) => (
   <footer className={className}>{children}</footer>
 );
-
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 0 1.0875rem 1.45rem;
-`;
 
 const LayoutFooter = styled(Footer)`
   margin-top: 2rem;
 `;
 
-const Layout = ({ children }: any) => {
+const Layout = ({ children, size }: any) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -29,6 +37,8 @@ const Layout = ({ children }: any) => {
       }
     }
   `);
+
+  const Container = containers[size] || containers[1];
 
   return (
     <>
@@ -47,6 +57,7 @@ const Layout = ({ children }: any) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  size: PropTypes.number,
 };
 
 export default Layout;
