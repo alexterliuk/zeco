@@ -1,4 +1,10 @@
 const translations = {
+  common: {
+    allCompanies: {
+      uk: 'Всі компанії',
+      en: 'All companies',
+    },
+  },
   companyKeys: {
     name: {
       uk: 'Назва',
@@ -94,7 +100,7 @@ const translations = {
       },
       shortName: {
         uk: 'Аеропорт Львів',
-        en: '',
+        en: 'Airport Lviv',
       },
       location: {
         uk: '',
@@ -1519,6 +1525,7 @@ const translations = {
 
 export default translations;
 
-export type TranslationsTypes = 'companyKeys' | 'companies';
+export type TranslationsType = 'common' | 'companyKeys' | 'companies';
+export type TranslationsCommonKey = keyof typeof translations.common;
 export type TranslationsCompanyKey = keyof typeof translations.companyKeys;
 export type Languages = 'uk' | 'en';

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { format, getFinFormatsForValue } from '../helpers/format/index';
-import translate from '../translations/translate';
+import { translate } from '../translations/translate';
 import {
-  TranslationsTypes,
+  TranslationsType,
   TranslationsCompanyKey,
 } from '../translations/translations';
 
@@ -54,7 +54,7 @@ CompanyInfoItem.propTypes = {
 interface CompanyInfoItemProps {
   translateConfig: {
     id: string;
-    type: TranslationsTypes;
+    type: TranslationsType;
   };
   name: TranslationsCompanyKey;
   value: any;
