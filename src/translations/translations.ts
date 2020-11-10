@@ -1520,5 +1520,5 @@ const translations = {
 export default translations;
 
 export type TranslationsTypes = 'companyKeys' | 'companies';
-export type TranslationsCompanyKeys = keyof typeof translations.companyKeys;
+export type TranslationsCompanyKey = keyof typeof translations.companyKeys;
 export type Languages = 'uk' | 'en';

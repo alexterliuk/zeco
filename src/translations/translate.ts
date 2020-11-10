@@ -1,7 +1,7 @@
 import zecoConfig from '../../config/zeco-config';
 import translations, {
   TranslationsTypes,
-  TranslationsCompanyKeys,
+  TranslationsCompanyKey,
   Languages,
 } from './translations';
 import { CompanyId } from '../data/companies';
@@ -9,7 +9,7 @@ import { CompanyId } from '../data/companies';
 function translate(
   id: CompanyId,
   entityType: TranslationsTypes,
-  key: TranslationsCompanyKeys
+  key: TranslationsCompanyKey
 ): string {
   const lang: Languages = zecoConfig.getItem(['lang']);
 

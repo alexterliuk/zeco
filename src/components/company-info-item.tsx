@@ -5,7 +5,7 @@ import { format, getFinFormatsForValue } from '../helpers/format/index';
 import translate from '../translations/translate';
 import {
   TranslationsTypes,
-  TranslationsCompanyKeys,
+  TranslationsCompanyKey,
 } from '../translations/translations';
 
 const Item = styled.p`
@@ -56,7 +56,7 @@ interface CompanyInfoItemProps {
     id: string;
     type: TranslationsTypes;
   };
-  name: TranslationsCompanyKeys;
+  name: TranslationsCompanyKey;
   value: any;
   pos?: number;
 }
