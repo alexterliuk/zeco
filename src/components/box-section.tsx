@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Box from './box';
-import companies, { companiesIds, CompaniesIds } from '../data/companies/index';
+import companies, { companiesIds } from '../data/companies/index';
 import { CompanyProfile } from '../data/data';
 
 const Container = styled.section`
@@ -13,7 +13,7 @@ const Container = styled.section`
 `;
 
 const BoxSection = ({ updateCompanyPanel }: BoxSectionProps) => {
-  const boxes = companiesIds.map((k: CompaniesIds) => {
+  const boxes = companiesIds.map(k => {
     const company: CompanyProfile = companies[k];
     const { shortName, id } = company;
     const profit =

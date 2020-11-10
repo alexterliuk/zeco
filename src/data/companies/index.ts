@@ -205,8 +205,8 @@ const companies: Companies = {
   ztmk,
 };
 
-const companiesIds: CompaniesIds[] = Object.keys(companies);
-export type CompaniesIds = keyof typeof companies;
+const companiesIds: CompanyId[] = Object.keys(companies);
+export type CompanyId = keyof typeof companies;
 
 export default companies;
 export { companiesIds };

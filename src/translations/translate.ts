@@ -4,10 +4,10 @@ import translations, {
   TranslationsCompanyKeys,
   Languages,
 } from './translations';
-import { CompaniesIds } from '../data/companies';
+import { CompanyId } from '../data/companies';
 
 function translate(
-  id: CompaniesIds,
+  id: CompanyId,
   entityType: TranslationsTypes,
   key: TranslationsCompanyKeys
 ): string {
