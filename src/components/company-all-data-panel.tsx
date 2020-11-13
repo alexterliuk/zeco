@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import getCompanyData from '../helpers/get-company-data';
 import wrapInMemoContext from '../helpers/wrap-in-memo-context';
+import { translate } from '../translations/translate';
 import { format, getFinFormatsForValue } from '../helpers/format/index';
 import {
   KeyValuePair,
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
-import { translate } from '../translations/translate';
-import {
-  TranslationsType,
-  TranslationsCompanyKey,
-} from '../translations/translations';
 
 const Subheader = styled.div`
   display: flex;
@@ -25,6 +21,12 @@ const Location = styled.h4`
 const Usreou = styled.h4`
   display: inline-flex;
   margin-left: auto;
+`;
+
+const TableWrapper = styled.div`
+  box-shadow: 0px 0px 10px 1px #d4d9dc;
+  border-radius: 4px;
+  padding: 0.1px 20px;
 `;
 
 const CompanyAllDataPanel = ({
@@ -43,30 +45,34 @@ const CompanyAllDataPanel = ({
           {translate(id, 'companyKeys', 'usreou')} {usreou}
         </Usreou>
       </Subheader>
-      <table>
-        <thead>
-          <tr>
-            <td />
-            {theadRow.cells.map((period: string) => (
-              <th key={period}>{period}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {tbodyRows.map(row => {
-            // @ts-ignore
-            const translatedName = translate(id, 'companyKeys', row.name);
-            return (
-              <tr>
-                <td>{translatedName}</td>
-                {row.cells.map(val => (
-                  <td>{format(val, getFinFormatsForValue(row.name))}</td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <TableWrapper>
+        <table>
+          <thead>
+            <tr>
+              <td />
+              {theadRow.cells.map((period: string) => (
+                <th key={period}>{period}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {tbodyRows.map((row, i) => {
+              // @ts-ignore
+              const translatedName = translate(id, 'companyKeys', row.name);
+              return (
+                <tr key={`tr${i}`}>
+                  <td key={'name'}>{translatedName}</td>
+                  {row.cells.map((val, i) => (
+                    <td key={`td${i}`}>
+                      {format(val, getFinFormatsForValue(row.name))}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </TableWrapper>
     </div>
   );
 };
