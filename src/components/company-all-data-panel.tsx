@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import getCompanyData from '../helpers/get-company-data';
 import wrapInMemoContext from '../helpers/wrap-in-memo-context';
+import { format, getFinFormatsForValue } from '../helpers/format/index';
 import {
   KeyValuePair,
   KeyValuePairs,
@@ -42,6 +43,30 @@ const CompanyAllDataPanel = ({
           {translate(id, 'companyKeys', 'usreou')} {usreou}
         </Usreou>
       </Subheader>
+      <table>
+        <thead>
+          <tr>
+            <td />
+            {theadRow.cells.map((period: string) => (
+              <th key={period}>{period}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {tbodyRows.map(row => {
+            // @ts-ignore
+            const translatedName = translate(id, 'companyKeys', row.name);
+            return (
+              <tr>
+                <td>{translatedName}</td>
+                {row.cells.map(val => (
+                  <td>{format(val, getFinFormatsForValue(row.name))}</td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };
