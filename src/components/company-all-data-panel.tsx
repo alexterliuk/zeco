@@ -26,7 +26,11 @@ const Usreou = styled.h4`
   margin-left: auto;
 `;
 
-const CompanyAllDataPanel = ({ subheader }: CompanyAllDataPanelProps) => {
+const CompanyAllDataPanel = ({
+  subheader,
+  theadRow,
+  tbodyRows,
+}: CompanyAllDataPanelProps) => {
   const { id, usreou } = subheader;
 
   return (
@@ -44,6 +48,8 @@ const CompanyAllDataPanel = ({ subheader }: CompanyAllDataPanelProps) => {
 
 CompanyAllDataPanel.propTypes = {
   subheader: PropTypes.object,
+  theadRow: PropTypes.object,
+  tbodyRows: PropTypes.array,
 };
 
 /**
@@ -68,24 +74,95 @@ _getCompanyAllDataPanel = wrapInMemoContext(_getCompanyAllDataPanel);
  * @param {array} companyData - with {key, value} objects
  */
 function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
-  const { subheader } = companyData.reduce(
+  const statements = companyData.filter(d => d.key === 'statements')[0].value;
+  const statementsBlocksKeys: { assets: string[]; financials: string[] } = {
+    assets: [],
+    financials: [],
+  };
+  let statementsIndicesInTbodyRows: { [key: string]: number } = {};
+  let idx = -1;
+  const { subheader, theadRow, tbodyRows } = companyData.reduce(
     (acc: CompanyAllDataPanelProps, curr: KeyValuePair) => {
       if (curr.key !== 'statements') {
         acc.subheader[curr.key] = curr.value;
-      }
+      } else {
+        acc.theadRow.name = 'timePeriod';
+        acc.theadRow.cells = Object.keys(curr.value);
 
+        const year = acc.theadRow.cells[0];
+        acc.tbodyRows = curr.value[year].reduce(
+          (acc: CompanyAllDataTableRow[], item: KeyValuePair) => {
+            if (item.value.quarters) {
+              acc.push({ name: item.key, cells: [] });
+              statementsIndicesInTbodyRows[item.key] = ++idx;
+            } else {
+              const as = item.key === 'assets' && 'assets';
+              const fi = item.key === 'financials' && 'financials';
+
+              const rows = Object.keys(item.value).map((k: string) => {
+                const name = as ? `${as}.${k}` : k;
+                statementsIndicesInTbodyRows[name] = ++idx;
+
+                if (as) statementsBlocksKeys[as].push(k);
+                if (fi) statementsBlocksKeys[fi].push(k);
+
+                return { name, cells: [] };
+              });
+              acc = acc.concat(rows);
+            }
+            return acc;
+          },
+          []
+        );
+
+        for (const year of acc.theadRow.cells) {
+          for (const statYear of statements[year]) {
+            const key = statYear.key;
+            if (statYear.value.quarters) {
+              const idx = statementsIndicesInTbodyRows[key];
+              acc.tbodyRows[idx].cells.push(statYear.value.year);
+            } else {
+              // assets, financials
+              // @ts-ignore
+              const statBlock = statementsBlocksKeys[key];
+              if (statBlock) {
+                statBlock.forEach((key2: string) => {
+                  const k = key === 'assets' ? `assets.${key2}` : key2;
+                  const idx = statementsIndicesInTbodyRows[k];
+                  acc.tbodyRows[idx].cells.push(statYear.value[key2].year);
+                });
+              }
+            }
+          }
+        }
+      }
       return acc;
     },
     {
       subheader: {},
+      theadRow: { name: '', cells: [] },
+      tbodyRows: [],
     }
   );
 
-  return <CompanyAllDataPanel subheader={subheader} />;
+  return (
+    <CompanyAllDataPanel
+      subheader={subheader}
+      theadRow={theadRow}
+      tbodyRows={tbodyRows}
+    />
+  );
 }
 
 interface CompanyAllDataPanelProps {
   subheader: { [key: string]: string };
+  theadRow: CompanyAllDataTableRow;
+  tbodyRows: CompanyAllDataTableRow[];
+}
+
+interface CompanyAllDataTableRow {
+  name: string;
+  cells: string[];
 }
 
 export default getCompanyAllDataPanel;
