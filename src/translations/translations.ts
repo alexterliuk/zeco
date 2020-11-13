@@ -1,4 +1,22 @@
 const translations = {
+  common: {
+    backToHomepage: {
+      uk: 'Назад на стартову сторінку',
+      en: 'Go back to the homepage',
+    },
+    allCompanies: {
+      uk: 'Всі компанії',
+      en: 'All companies',
+    },
+    clickOnRowForView: {
+      uk: 'Клікніть на рядок для перегляду.',
+      en: 'Click on a row to view.',
+    },
+    dataGivenInMMHryvnias: {
+      uk: 'Дані наведені в мільйонах гривень.',
+      en: 'Data given in millions of hryvnias.',
+    },
+  },
   companyKeys: {
     name: {
       uk: 'Назва',
@@ -11,6 +29,10 @@ const translations = {
     location: {
       uk: 'Місцезнаходження',
       en: 'Location',
+    },
+    usreou: {
+      uk: 'ЄДРПОУ',
+      en: 'USREOU',
     },
     industry: {
       uk: 'Галузь',
@@ -90,15 +112,15 @@ const translations = {
       name: {
         uk:
           'Державне підприємство "Міжнародний аеропорт "Львів" імені Данила Галицького"',
-        en: '',
+        en: 'State-Owned Enterprise "Lviv International Airport"',
       },
       shortName: {
         uk: 'Аеропорт Львів',
-        en: '',
+        en: 'Airport Lviv',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Львів',
+        en: 'Lviv',
       },
     },
     agrarfond: {
@@ -1519,6 +1541,7 @@ const translations = {
 
 export default translations;
 
-export type TranslationsTypes = 'companyKeys' | 'companies';
-export type TranslationsCompanyKeys = keyof typeof translations.companyKeys;
+export type TranslationsType = 'common' | 'companyKeys' | 'companies';
+export type TranslationsCommonKey = keyof typeof translations.common;
+export type TranslationsCompanyKey = keyof typeof translations.companyKeys;
 export type Languages = 'uk' | 'en';

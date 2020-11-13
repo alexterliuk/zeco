@@ -1,30 +1,33 @@
 import zecoConfig from '../../config/zeco-config';
 import translations, {
-  TranslationsTypes,
-  TranslationsCompanyKeys,
+  TranslationsType,
+  TranslationsCommonKey,
+  TranslationsCompanyKey,
   Languages,
 } from './translations';
-import { CompaniesIds } from '../data/companies';
 
-function translate(
-  id: CompaniesIds,
-  entityType: TranslationsTypes,
-  key: TranslationsCompanyKeys
-): string {
+const translate = (
+  id: string,
+  entityType: TranslationsType,
+  companyKey?: TranslationsCompanyKey,
+  commonKey?: TranslationsCommonKey
+): string => {
   const lang: Languages = zecoConfig.getItem(['lang']);
+  let item;
 
-  if (entityType === 'companyKeys') {
-    const item = key && translations.companyKeys[key];
-    return (item && item[lang]) || item.uk;
+  if (companyKey && entityType === 'companyKeys') {
+    item = translations.companyKeys[companyKey];
+  } else if (companyKey && entityType === 'companies') {
+    const companies: any = translations.companies;
+    item = companies[id]?.[companyKey];
+  } else if (commonKey && entityType === 'common') {
+    item = translations.common[commonKey];
   }
 
-  if (entityType === 'companies') {
-    const companies: any = key && translations.companies;
-    const item = (companies[id] || {})[key];
-    return (item && item[lang]) || item.uk;
-  }
+  return (item && (item[lang] || item.uk)) || '';
+};
 
-  return key;
-}
+const translateCommon = (commonKey: TranslationsCommonKey): string =>
+  (commonKey && translate('', 'common', undefined, commonKey)) || '';
 
-export default translate;
+export { translate, translateCommon };

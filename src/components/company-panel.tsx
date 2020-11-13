@@ -9,8 +9,8 @@ import {
   KeyValuePair,
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
-import { TranslationsTypes } from '../translations/translations';
-import translate from '../translations/translate';
+import { TranslationsType } from '../translations/translations';
+import { translate } from '../translations/translate';
 
 const Panel = styled.div`
   max-width: 400px;
@@ -35,7 +35,7 @@ const CompanyPanel = ({
   const quarter: number = zecoConfig.getItem(['statements', 'quarter']);
   const halfyear: number = zecoConfig.getItem(['statements', 'halfyear']);
   const year = zecoConfig.getItem(['statements', 'year']);
-  const translateConfig: { id: string; type: TranslationsTypes } = {
+  const translateConfig: { id: string; type: TranslationsType } = {
     id,
     type: 'companyKeys',
   };
