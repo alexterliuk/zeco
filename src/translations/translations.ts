@@ -18,6 +18,10 @@ const translations = {
       uk: 'Місцезнаходження',
       en: 'Location',
     },
+    usreou: {
+      uk: 'ЄДРПОУ',
+      en: 'USREOU',
+    },
     industry: {
       uk: 'Галузь',
       en: 'Industry',
