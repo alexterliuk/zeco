@@ -106,12 +106,10 @@ _getCompanyAllDataPanel = wrapInMemoContext(_getCompanyAllDataPanel);
  */
 function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
   const statements = companyData.filter(d => d.key === 'statements')[0].value;
-  const statementsBlocksKeys: { assets: string[]; financials: string[] } = {
-    assets: [],
-    financials: [],
-  };
-  let statementsIndicesInTbodyRows: { [key: string]: number } = {};
-  let idx = -1;
+  const statementsBlocksKeys: BlocksKeys = { assets: [], financials: [] };
+  const statementsIndicesInTbodyRows: IndicesInTbodyRows = {};
+  const idx = { val: -1 };
+
   const { subheader, theadRow, tbodyRows } = companyData.reduce(
     (acc: CompanyAllDataPanelProps, curr: KeyValuePair) => {
       if (curr.key !== 'statements') {
@@ -121,29 +119,11 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
         acc.theadRow.cells = Object.keys(curr.value);
 
         const year = acc.theadRow.cells[0];
-        acc.tbodyRows = curr.value[year].reduce(
-          (acc: CompanyAllDataTableRow[], item: KeyValuePair) => {
-            if (item.value.quarters) {
-              acc.push({ name: item.key, cells: [] });
-              statementsIndicesInTbodyRows[item.key] = ++idx;
-            } else {
-              const as = item.key === 'assets' && 'assets';
-              const fi = item.key === 'financials' && 'financials';
-
-              const rows = Object.keys(item.value).map((k: string) => {
-                const name = as ? `${as}.${k}` : k;
-                statementsIndicesInTbodyRows[name] = ++idx;
-
-                if (as) statementsBlocksKeys[as].push(k);
-                if (fi) statementsBlocksKeys[fi].push(k);
-
-                return { name, cells: [] };
-              });
-              acc = acc.concat(rows);
-            }
-            return acc;
-          },
-          []
+        acc.tbodyRows = makeEmptyTbodyRows(
+          curr.value[year],
+          statementsBlocksKeys,
+          statementsIndicesInTbodyRows,
+          idx
         );
 
         for (const year of acc.theadRow.cells) {
@@ -185,6 +165,44 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
   );
 }
 
+/**
+ * @param {array} yearKeyValueStatements - with {key, value} objects
+ * @param {object} statementsBlocksKeys - of {assets: [], financials: []} shape
+ * @param {object} statementsIndicesInTbodyRows - each key points to number
+ * @param {object} idxObj - {val: -1}
+ */
+function makeEmptyTbodyRows(
+  yearKeyValueStatements: KeyValuePairs,
+  statementsBlocksKeys: BlocksKeys,
+  statementsIndicesInTbodyRows: IndicesInTbodyRows,
+  idxObj: { val: number }
+) {
+  return yearKeyValueStatements.reduce(
+    (acc: CompanyAllDataTableRow[], item: KeyValuePair) => {
+      if (item.value.quarters) {
+        acc.push({ name: item.key, cells: [] });
+        statementsIndicesInTbodyRows[item.key] = ++idxObj.val;
+      } else {
+        const as = item.key === 'assets' && 'assets';
+        const fi = item.key === 'financials' && 'financials';
+
+        const rows = Object.keys(item.value).map((k: string) => {
+          const name = as ? `${as}.${k}` : k;
+          statementsIndicesInTbodyRows[name] = ++idxObj.val;
+
+          if (as) statementsBlocksKeys[as].push(k);
+          if (fi) statementsBlocksKeys[fi].push(k);
+
+          return { name, cells: [] };
+        });
+        acc = acc.concat(rows);
+      }
+      return acc;
+    },
+    []
+  );
+}
+
 interface CompanyAllDataPanelProps {
   subheader: { [key: string]: string };
   theadRow: CompanyAllDataTableRow;
@@ -194,6 +212,15 @@ interface CompanyAllDataPanelProps {
 interface CompanyAllDataTableRow {
   name: string;
   cells: string[];
+}
+
+interface BlocksKeys {
+  assets: string[];
+  financials: string[];
+}
+
+interface IndicesInTbodyRows {
+  [key: string]: number;
 }
 
 export default getCompanyAllDataPanel;
