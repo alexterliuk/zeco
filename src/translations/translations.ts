@@ -1,5 +1,9 @@
 const translations = {
   common: {
+    backToHomepage: {
+      uk: 'Назад на стартову сторінку',
+      en: 'Go back to the homepage',
+    },
     allCompanies: {
       uk: 'Всі компанії',
       en: 'All companies',
