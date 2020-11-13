@@ -4,6 +4,14 @@ const translations = {
       uk: 'Всі компанії',
       en: 'All companies',
     },
+    clickOnRowForView: {
+      uk: 'Клікніть на рядок для перегляду.',
+      en: 'Click on a row to view.',
+    },
+    dataGivenInMMHryvnias: {
+      uk: 'Дані наведені в мільйонах гривень.',
+      en: 'Data given in millions of hryvnias.',
+    },
   },
   companyKeys: {
     name: {
@@ -100,15 +108,15 @@ const translations = {
       name: {
         uk:
           'Державне підприємство "Міжнародний аеропорт "Львів" імені Данила Галицького"',
-        en: '',
+        en: 'State-Owned Enterprise "Lviv International Airport"',
       },
       shortName: {
         uk: 'Аеропорт Львів',
         en: 'Airport Lviv',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Львів',
+        en: 'Lviv',
       },
     },
     agrarfond: {
