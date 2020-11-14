@@ -29,6 +29,18 @@ const TableWrapper = styled.div`
   padding: 0.1px 20px;
 `;
 
+const TableScrollWrapper = styled.div`
+  overflow-x: auto;
+`;
+
+const Th = styled.th`
+  min-width: 136px;
+`;
+
+const Td = styled.td`
+  min-width: 136px;
+`;
+
 const CompanyAllDataPanel = ({
   subheader,
   theadRow,
@@ -46,32 +58,34 @@ const CompanyAllDataPanel = ({
         </Usreou>
       </Subheader>
       <TableWrapper>
-        <table>
-          <thead>
-            <tr>
-              <td />
-              {theadRow.cells.map((period: string) => (
-                <th key={period}>{period}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {tbodyRows.map((row, i) => {
-              // @ts-ignore
-              const translatedName = translate(id, 'companyKeys', row.name);
-              return (
-                <tr key={`tr${i}`}>
-                  <td key={'name'}>{translatedName}</td>
-                  {row.cells.map((val, i) => (
-                    <td key={`td${i}`}>
-                      {format(val, getFinFormatsForValue(row.name))}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <TableScrollWrapper>
+          <table>
+            <thead>
+              <tr>
+                <Th />
+                {theadRow.cells.map((period: string) => (
+                  <Th key={period}>{period}</Th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {tbodyRows.map((row, i) => {
+                // @ts-ignore
+                const translatedName = translate(id, 'companyKeys', row.name);
+                return (
+                  <tr key={`tr${i}`}>
+                    <Td key={'name'}>{translatedName}</Td>
+                    {row.cells.map((val, i) => (
+                      <Td key={`td${i}`}>
+                        {format(val, getFinFormatsForValue(row.name))}
+                      </Td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </TableScrollWrapper>
       </TableWrapper>
     </div>
   );
