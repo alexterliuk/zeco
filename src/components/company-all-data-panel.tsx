@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import zecoConfig from '../../config/zeco-config';
 import getCompanyData from '../helpers/get-company-data';
 import wrapInMemoContext from '../helpers/wrap-in-memo-context';
 import { translate } from '../translations/translate';
@@ -45,8 +46,17 @@ const CompanyAllDataPanel = ({
   subheader,
   theadRow,
   tbodyRows,
+  statementsIndicesInTbodyRows,
 }: CompanyAllDataPanelProps) => {
   const { id, usreou } = subheader;
+  const showInTable: string[] = zecoConfig.getItem([
+    'showInCompanyAllDataPanel',
+  ]).table;
+
+  const _tbodyRows: CompanyAllDataTableRow[] = showInTable.map(key => {
+    const idx = statementsIndicesInTbodyRows[key];
+    return tbodyRows[idx];
+  });
 
   return (
     <div>
@@ -69,7 +79,7 @@ const CompanyAllDataPanel = ({
               </tr>
             </thead>
             <tbody>
-              {tbodyRows.map((row, i) => {
+              {_tbodyRows.map((row, i) => {
                 // @ts-ignore
                 const translatedName = translate(id, 'companyKeys', row.name);
                 return (
@@ -121,10 +131,14 @@ _getCompanyAllDataPanel = wrapInMemoContext(_getCompanyAllDataPanel);
 function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
   const statements = companyData.filter(d => d.key === 'statements')[0].value;
   const statementsBlocksKeys: BlocksKeys = { assets: [], financials: [] };
-  const statementsIndicesInTbodyRows: IndicesInTbodyRows = {};
   const idx = { val: -1 };
 
-  const { subheader, theadRow, tbodyRows } = companyData.reduce(
+  const {
+    subheader,
+    theadRow,
+    tbodyRows,
+    statementsIndicesInTbodyRows,
+  } = companyData.reduce(
     (acc: CompanyAllDataPanelProps, curr: KeyValuePair) => {
       if (curr.key !== 'statements') {
         acc.subheader[curr.key] = curr.value;
@@ -136,7 +150,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
         acc.tbodyRows = makeEmptyTbodyRows(
           curr.value[year],
           statementsBlocksKeys,
-          statementsIndicesInTbodyRows,
+          acc.statementsIndicesInTbodyRows,
           idx
         );
 
@@ -144,7 +158,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
           for (const statYear of statements[year]) {
             const key = statYear.key;
             if (statYear.value.quarters) {
-              const idx = statementsIndicesInTbodyRows[key];
+              const idx = acc.statementsIndicesInTbodyRows[key];
               acc.tbodyRows[idx].cells.push(statYear.value.year);
             } else {
               // assets, financials
@@ -153,7 +167,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
               if (statBlock) {
                 statBlock.forEach((key2: string) => {
                   const k = key === 'assets' ? `assets.${key2}` : key2;
-                  const idx = statementsIndicesInTbodyRows[k];
+                  const idx = acc.statementsIndicesInTbodyRows[k];
                   acc.tbodyRows[idx].cells.push(statYear.value[key2].year);
                 });
               }
@@ -167,6 +181,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
       subheader: {},
       theadRow: { name: '', cells: [] },
       tbodyRows: [],
+      statementsIndicesInTbodyRows: {},
     }
   );
 
@@ -175,6 +190,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
       subheader={subheader}
       theadRow={theadRow}
       tbodyRows={tbodyRows}
+      statementsIndicesInTbodyRows={statementsIndicesInTbodyRows}
     />
   );
 }
@@ -221,6 +237,7 @@ interface CompanyAllDataPanelProps {
   subheader: { [key: string]: string };
   theadRow: CompanyAllDataTableRow;
   tbodyRows: CompanyAllDataTableRow[];
+  statementsIndicesInTbodyRows: IndicesInTbodyRows;
 }
 
 interface CompanyAllDataTableRow {

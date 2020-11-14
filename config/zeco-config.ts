@@ -8,7 +8,9 @@ const zecoConfig: ZecoConfig = {
     year: 2020,
     quarter: 1, // 1st q. is 0, 2nd - 1 etc.
     format: {
-      uah: [/*'netProfit', 'netRevenue'*/],
+      uah: [
+        /*'netProfit', 'netIncome'*/
+      ],
       percent: [
         // 'profitGrowth',
         // 'incomeGrowth',
@@ -19,9 +21,36 @@ const zecoConfig: ZecoConfig = {
   },
   showInCompanyPanel: {
     // name not added to regInfo, bec. it is always shown
-    regInfo: [/*'!location'*/], // ! - show only value but not key
+    regInfo: [
+      /*'!location'*/
+    ], // ! - show only value but not key
     /*'financials.netProfit' also works*/
-    finInfo: ['netProfit|netLoss', 'profitGrowth', 'netIncome', 'incomeGrowth', 'assets.totalValue'],
+    finInfo: [
+      'netProfit|netLoss',
+      'profitGrowth',
+      'netIncome',
+      'incomeGrowth',
+      'assets.totalValue',
+    ],
+  },
+  showInCompanyAllDataPanel: {
+    table: [
+      'netProfit',
+      'profitGrowth',
+      'netIncome',
+      'incomeGrowth',
+      'netLoss',
+      'equity',
+      // 'assets.current',
+      // 'assets.fixed',
+      'assets.totalValue',
+      // 'producedCost',
+      // 'salaryExpenses',
+      // 'grossProfit',
+      // 'grossLoss',
+      // 'ebitda',
+      // 'ebitdaMargin',
+    ],
   },
 };
 
