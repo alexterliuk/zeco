@@ -73,8 +73,8 @@ const CompanyAllDataPanel = ({
             <thead>
               <tr>
                 <Th />
-                {theadRow.cells.map((period: string) => (
-                  <Th key={period}>{period}</Th>
+                {theadRow.cells.map((period: string, i) => (
+                  <Th key={`${period}${i}`}>{period}</Th>
                 ))}
               </tr>
             </thead>
@@ -132,6 +132,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
   const statements = companyData.filter(d => d.key === 'statements')[0].value;
   const statementsBlocksKeys: BlocksKeys = { assets: [], financials: [] };
   const idx = { val: -1 };
+  const currYear = '' + new Date().getFullYear();
 
   const {
     subheader,
@@ -140,35 +141,50 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
     statementsIndicesInTbodyRows,
   } = companyData.reduce(
     (acc: CompanyAllDataPanelProps, curr: KeyValuePair) => {
+      const indices = acc.statementsIndicesInTbodyRows;
+
       if (curr.key !== 'statements') {
         acc.subheader[curr.key] = curr.value;
       } else {
         acc.theadRow.name = 'timePeriod';
-        acc.theadRow.cells = Object.keys(curr.value);
-
-        const year = acc.theadRow.cells[0];
+        acc.theadRow = makeTheadRow(curr.value, currYear);
+        // acc.theadRow.cells is ['1q', '2q', '3q', '2016', '1q'...]
+        const years = acc.theadRow.cells
+          .filter(c => c.length === 4)
+          .concat(currYear);
         acc.tbodyRows = makeEmptyTbodyRows(
-          curr.value[year],
+          curr.value[years[0]],
           statementsBlocksKeys,
-          acc.statementsIndicesInTbodyRows,
+          indices,
           idx
         );
 
-        for (const year of acc.theadRow.cells) {
-          for (const statYear of statements[year]) {
-            const key = statYear.key;
-            if (statYear.value.quarters) {
-              const idx = acc.statementsIndicesInTbodyRows[key];
-              acc.tbodyRows[idx].cells.push(statYear.value.year);
+        for (const year of years) {
+          for (const statement of statements[year]) {
+            const key = statement.key;
+            const yearIsCurr = year === currYear;
+            if (statement.value.quarters) {
+              makeTbodyRowsCells(
+                acc.tbodyRows,
+                indices,
+                statement,
+                [key],
+                yearIsCurr
+              );
             } else {
               // assets, financials
               // @ts-ignore
               const statBlock = statementsBlocksKeys[key];
               if (statBlock) {
-                statBlock.forEach((key2: string) => {
-                  const k = key === 'assets' ? `assets.${key2}` : key2;
-                  const idx = acc.statementsIndicesInTbodyRows[k];
-                  acc.tbodyRows[idx].cells.push(statYear.value[key2].year);
+                statBlock.forEach((k2: string) => {
+                  const k = key === 'assets' ? `assets.${k2}` : k2;
+                  makeTbodyRowsCells(
+                    acc.tbodyRows,
+                    indices,
+                    statement,
+                    [k, k2],
+                    yearIsCurr
+                  );
                 });
               }
             }
@@ -193,6 +209,22 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
       statementsIndicesInTbodyRows={statementsIndicesInTbodyRows}
     />
   );
+}
+
+/**
+ * @param {object} yearStatements - {2016: [objects], 2017: [objects]...}
+ * @param {string} currYear
+ */
+function makeTheadRow(
+  yearStatements: { [key: number]: KeyValuePairs },
+  currYear: string
+) {
+  return {
+    name: 'timePeriod',
+    cells: Object.keys(yearStatements).reduce((a: string[], year: string) => {
+      return a.concat(['1q', '2q', '3q']).concat(year === currYear ? [] : year);
+    }, []),
+  };
 }
 
 /**
@@ -231,6 +263,29 @@ function makeEmptyTbodyRows(
     },
     []
   );
+}
+
+/**
+ * @param {array} tbodyRows - with {name, cells} objects
+ * @param {object} statementsIndicesInTbodyRows - each key points to number
+ * @param {object} statement - {name: '', value: { quarters, halfyear, year }}
+ * @param {array} keys
+ * @param {boolean} yearIsCurr
+ */
+function makeTbodyRowsCells(
+  tbodyRows: CompanyAllDataTableRow[],
+  statementsIndicesInTbodyRows: IndicesInTbodyRows,
+  statement: KeyValuePair,
+  keys: string[],
+  yearIsCurr: boolean
+) {
+  const idx = statementsIndicesInTbodyRows[keys[0]];
+  const row = tbodyRows[idx];
+  const v = keys[1] ? statement.value[keys[1]] : statement.value;
+  const cells = [v.quarters[0], v.quarters[1], v.quarters[2]].concat(
+    yearIsCurr ? [] : v.year
+  );
+  row.cells = row.cells.concat(cells);
 }
 
 interface CompanyAllDataPanelProps {
