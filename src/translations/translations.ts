@@ -16,6 +16,10 @@ const translations = {
       uk: 'Дані наведені в тисячах гривень.',
       en: 'Data given in thousands of hryvnias.',
     },
+    qrDot: {
+      uk: 'кв.',
+      en: 'qr.',
+    }
   },
   companyKeys: {
     name: {

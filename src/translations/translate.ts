@@ -30,4 +30,11 @@ const translate = (
 const translateCommon = (commonKey: TranslationsCommonKey): string =>
   (commonKey && translate('', 'common', undefined, commonKey)) || '';
 
-export { translate, translateCommon };
+const translateTimePeriod = (val: string): string => {
+  if (val.match(/^[1-3]q$/)) {
+    return `${val[0]} ${translate('', 'common', undefined, 'qrDot')}`;
+  }
+  return val;
+};
+
+export { translate, translateCommon, translateTimePeriod };

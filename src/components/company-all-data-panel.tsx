@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import zecoConfig from '../../config/zeco-config';
 import getCompanyData from '../helpers/get-company-data';
 import wrapInMemoContext from '../helpers/wrap-in-memo-context';
-import { translate } from '../translations/translate';
+import { translate, translateTimePeriod } from '../translations/translate';
 import { format, getFinFormatsForValue } from '../helpers/format/index';
 import {
   KeyValuePair,
@@ -93,7 +93,7 @@ const CompanyAllDataPanel = ({
               <tr>
                 <Th />
                 {_theadRow.cells.map((period: string, i) => (
-                  <Th key={`${period}${i}`}>{period}</Th>
+                  <Th key={`${period}${i}`}>{translateTimePeriod(period)}</Th>
                 ))}
               </tr>
             </thead>
