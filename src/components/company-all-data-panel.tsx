@@ -47,16 +47,35 @@ const CompanyAllDataPanel = ({
   theadRow,
   tbodyRows,
   statementsIndicesInTbodyRows,
+  currYear,
 }: CompanyAllDataPanelProps) => {
   const { id, usreou } = subheader;
-  const showInTable: string[] = zecoConfig.getItem([
-    'showInCompanyAllDataPanel',
-  ]).table;
+  const {
+    cols,
+    rows,
+  }: {
+    cols: ColsConfig;
+    rows: string[];
+  } = zecoConfig.getItem(['showInCompanyAllDataPanel']).table;
 
-  const _tbodyRows: CompanyAllDataTableRow[] = showInTable.map(key => {
-    const idx = statementsIndicesInTbodyRows[key];
-    return tbodyRows[idx];
-  });
+  const yearIndicesInTheadRow = theadRow.cells.reduce(
+    (acc: Indices, period, i) => {
+      if (cols.years.includes(period)) {
+        acc[period] = i;
+      }
+      return acc;
+    },
+    {}
+  );
+
+  let [_theadRow, _tbodyRows] = filterColumns(
+    cols,
+    yearIndicesInTheadRow,
+    theadRow,
+    tbodyRows,
+    currYear
+  );
+  _tbodyRows = filterRows(_tbodyRows, rows, statementsIndicesInTbodyRows);
 
   return (
     <div>
@@ -73,7 +92,7 @@ const CompanyAllDataPanel = ({
             <thead>
               <tr>
                 <Th />
-                {theadRow.cells.map((period: string, i) => (
+                {_theadRow.cells.map((period: string, i) => (
                   <Th key={`${period}${i}`}>{period}</Th>
                 ))}
               </tr>
@@ -105,6 +124,8 @@ CompanyAllDataPanel.propTypes = {
   subheader: PropTypes.object,
   theadRow: PropTypes.object,
   tbodyRows: PropTypes.array,
+  statementsIndicesInTbodyRows: PropTypes.object,
+  currYear: PropTypes.string,
 };
 
 /**
@@ -140,7 +161,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
     tbodyRows,
     statementsIndicesInTbodyRows,
   } = companyData.reduce(
-    (acc: CompanyAllDataPanelProps, curr: KeyValuePair) => {
+    (acc: Omit<CompanyAllDataPanelProps, 'currYear'>, curr: KeyValuePair) => {
       const indices = acc.statementsIndicesInTbodyRows;
 
       if (curr.key !== 'statements') {
@@ -207,6 +228,7 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
       theadRow={theadRow}
       tbodyRows={tbodyRows}
       statementsIndicesInTbodyRows={statementsIndicesInTbodyRows}
+      currYear={currYear}
     />
   );
 }
@@ -236,7 +258,7 @@ function makeTheadRow(
 function makeEmptyTbodyRows(
   yearKeyValueStatements: KeyValuePairs,
   statementsBlocksKeys: BlocksKeys,
-  statementsIndicesInTbodyRows: IndicesInTbodyRows,
+  statementsIndicesInTbodyRows: Indices,
   idxObj: { val: number }
 ) {
   return yearKeyValueStatements.reduce(
@@ -267,14 +289,14 @@ function makeEmptyTbodyRows(
 
 /**
  * @param {array} tbodyRows - with {name, cells} objects
- * @param {object} statementsIndicesInTbodyRows - each key points to number
+ * @param {object} statementsIndicesInTbodyRows - {netProfit: 3, equity: 14...}
  * @param {object} statement - {name: '', value: { quarters, halfyear, year }}
  * @param {array} keys
  * @param {boolean} yearIsCurr
  */
 function makeTbodyRowsCells(
   tbodyRows: CompanyAllDataTableRow[],
-  statementsIndicesInTbodyRows: IndicesInTbodyRows,
+  statementsIndicesInTbodyRows: Indices,
   statement: KeyValuePair,
   keys: string[],
   yearIsCurr: boolean
@@ -288,11 +310,97 @@ function makeTbodyRowsCells(
   row.cells = row.cells.concat(cells);
 }
 
+/**
+ *
+ * @param {object} colsConfig - zecoConfig.showInCompanyAllDataPanel.table.cols
+ * @param {object} yearIndicesInTheadRow - { 2016: 3, 2017: 7... }
+ * @param {object} theadRow - {name, cells}
+ * @param {array} tbodyRows - with {name, cells} objects
+ * @param {string} currYear
+ */
+function filterColumns(
+  colsConfig: ColsConfig,
+  yearIndicesInTheadRow: Indices,
+  theadRow: CompanyAllDataTableRow,
+  tbodyRows: CompanyAllDataTableRow[],
+  currYear: string
+) {
+  return colsConfig.years.reduce(
+    (acc: [CompanyAllDataTableRow, CompanyAllDataTableRow[]], year, i) => {
+      const idx = yearIndicesInTheadRow[year];
+      const qrs = colsConfig.quarters;
+
+      if (yearIndicesInTheadRow.hasOwnProperty(year)) {
+        const [start, end] = [idx - (qrs ? 3 : 0), idx + 1];
+        const periods = theadRow.cells.slice(start, end);
+        filterCells(acc[0], periods, acc[1], tbodyRows, start, end);
+      }
+
+      // when last val, look if currYear's quarters should be shown
+      if (colsConfig.years[i + 1] === undefined) {
+        if (colsConfig.years[i] === currYear && colsConfig.currYearQuarters) {
+          const currYearQuarters = tbodyRows[0].cells.slice(-3);
+          const qty = currYearQuarters.filter(c => c !== undefined).length;
+          const len = theadRow.cells.length;
+          const [start, end] = [len - 3, len - qty + 1];
+          const periods = theadRow.cells.slice(start, end);
+          filterCells(acc[0], periods, acc[1], tbodyRows, start, end);
+        }
+      }
+
+      return acc;
+    },
+    [
+      { name: 'timePeriod', cells: [] },
+      tbodyRows.map(r => ({ name: r.name, cells: [] })),
+    ]
+  );
+}
+
+/**
+ * @param {object} _theadRow - {name, cells}
+ * @param {array} periods - with strings
+ * @param {array} _tbodyRows - with {name, cells} objects
+ * @param {array} tbodyRows - with {name, cells} objects
+ * @param {number} start
+ * @param {number} end
+ */
+function filterCells(
+  _theadRow: CompanyAllDataTableRow,
+  periods: string[],
+  _tbodyRows: CompanyAllDataTableRow[],
+  tbodyRows: CompanyAllDataTableRow[],
+  start: number,
+  end: number
+) {
+  _theadRow.cells = _theadRow.cells.concat(periods);
+  _tbodyRows.forEach((row, i) => {
+    row.cells = row.cells.concat(tbodyRows[i].cells.slice(start, end));
+  });
+}
+
+/**
+ * @param {array} _tbodyRows - with {name, cells} objects
+ * @param {array} rowsConfig - zecoConfig.showInCompanyAllDataPanel.table.rows
+ * @param {object} statementsIndicesInTbodyRows - {netProfit: 3, equity: 14...}
+ */
+function filterRows(
+  _tbodyRows: CompanyAllDataTableRow[],
+  rowsConfig: string[],
+  statementsIndicesInTbodyRows: Indices
+) {
+  return rowsConfig.map(key => {
+    const idx = statementsIndicesInTbodyRows[key];
+    return _tbodyRows[idx];
+  });
+}
+
 interface CompanyAllDataPanelProps {
   subheader: { [key: string]: string };
   theadRow: CompanyAllDataTableRow;
   tbodyRows: CompanyAllDataTableRow[];
-  statementsIndicesInTbodyRows: IndicesInTbodyRows;
+  statementsIndicesInTbodyRows: Indices;
+  currYear: string;
 }
 
 interface CompanyAllDataTableRow {
@@ -305,8 +413,14 @@ interface BlocksKeys {
   financials: string[];
 }
 
-interface IndicesInTbodyRows {
+interface Indices {
   [key: string]: number;
+}
+
+interface ColsConfig {
+  years: string[];
+  quarters: boolean;
+  currYearQuarters: boolean;
 }
 
 export default getCompanyAllDataPanel;
