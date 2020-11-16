@@ -26,7 +26,7 @@ const CompaniesAllData = () => {
       <h1>{translateCommon('allCompanies')}</h1>
       <p>
         {translateCommon('clickOnRowForView')}{' '}
-        {translateCommon('dataGivenInMMHryvnias')}
+        {translateCommon('dataGivenInKHryvnias')}
       </p>
       <CompaniesAllDataSection />
     </Layout>

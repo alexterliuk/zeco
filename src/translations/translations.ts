@@ -12,9 +12,9 @@ const translations = {
       uk: 'Клікніть на рядок для перегляду.',
       en: 'Click on a row to view.',
     },
-    dataGivenInMMHryvnias: {
-      uk: 'Дані наведені в мільйонах гривень.',
-      en: 'Data given in millions of hryvnias.',
+    dataGivenInKHryvnias: {
+      uk: 'Дані наведені в тисячах гривень.',
+      en: 'Data given in thousands of hryvnias.',
     },
   },
   companyKeys: {
