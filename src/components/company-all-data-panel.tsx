@@ -42,6 +42,10 @@ const Td = styled.td`
   min-width: 136px;
 `;
 
+const Td1 = styled.td`
+  min-width: 190px;
+`;
+
 const CompanyAllDataPanel = ({
   subheader,
   theadRow,
@@ -103,7 +107,7 @@ const CompanyAllDataPanel = ({
                 const translatedName = translate(id, 'companyKeys', row.name);
                 return (
                   <tr key={`tr${i}`}>
-                    <Td key={'name'}>{translatedName}</Td>
+                    <Td1 key={'name'}>{translatedName}</Td1>
                     {row.cells.map((val, i) => (
                       <Td key={`td${i}`}>
                         {format(val, getFinFormatsForValue(row.name))}
