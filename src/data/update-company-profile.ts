@@ -162,7 +162,7 @@ function toUsreou(strOrNum: string | number): string | false {
   return str;
 }
 
-interface ParsedTimePeriod {
+export interface ParsedTimePeriod {
   year: number;
   quarter?: number;
 }
