@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import profits, { Profit } from '../data/profits';
+import profitsOfAllStateCompaniesOfUkr, {
+  Profit,
+} from '../data/profits-all-state-companies';
 import {
   translateCommon,
   translateTimePeriod,
@@ -138,7 +140,7 @@ function makeProfitsPairs(...indices: number[]) {
       const lastIdx = indices[i + 1];
       if (lastIdx !== undefined) {
         acc.push({
-          profitsPair: profits.slice(idx, lastIdx + 1),
+          profitsPair: profitsOfAllStateCompaniesOfUkr.slice(idx, lastIdx + 1),
         });
       }
     }
