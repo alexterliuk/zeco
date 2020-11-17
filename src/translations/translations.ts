@@ -20,6 +20,22 @@ const translations = {
       uk: 'кв.',
       en: 'qr.',
     },
+    profit: {
+      uk: 'Прибуток',
+      en: 'Profit',
+    },
+    loss: {
+      uk: 'Збиток',
+      en: 'Loss',
+    },
+    showMore: {
+      uk: 'Показати більше',
+      en: 'Show more',
+    },
+    hide: {
+      uk: 'Сховати',
+      en: 'Hide',
+    },
   },
   companyKeys: {
     name: {
