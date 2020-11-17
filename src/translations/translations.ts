@@ -36,6 +36,10 @@ const translations = {
       uk: 'Сховати',
       en: 'Hide',
     },
+    blnHryvnias: {
+      uk: 'млрд гривень',
+      en: 'bln hryvnias',
+    },
   },
   companyKeys: {
     name: {

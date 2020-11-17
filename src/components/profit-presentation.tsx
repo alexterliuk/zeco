@@ -51,6 +51,12 @@ const ToggleProfitFigButton = styled.button`
   cursor: pointer;
 `;
 
+const BlnHryvnias = styled.p`
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+`;
+
 // by default show profits pair: 2019 2 qr. - 2020 2 qr.
 // other ones show/hide when user clicks button
 const ProfitPresentation = ({
@@ -71,6 +77,7 @@ const ProfitPresentation = ({
   return (
     <PresentationContainer>
       {getProfitsContainers(profitsPairs.slice(0, 1), [1, 0])}
+      <BlnHryvnias>{translateCommon('blnHryvnias')}</BlnHryvnias>
       <ToggleProfitFigButtonContainer>
         <ToggleProfitFigButton onClick={() => handleClick()}>
           {translateCommon(profitsPairsStore.show ? 'hide' : 'showMore')}
