@@ -102,7 +102,7 @@ const ProfitBlock = ({ data }: { data: Profit }) => {
 
 /**
  * @param {array} profitsPairs - with {profitsPair: [Profit, Profit]} objects
- * @param indices - [number, number] (which of two show 1st, and which - 2nd)
+ * @param {array} indices - [num, num] (which of Profits show first, second)
  */
 function getProfitsContainers(
   profitsPairs: ProfitsPair[],
