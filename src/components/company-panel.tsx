@@ -9,6 +9,7 @@ import {
   KeyValuePair,
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
+import { ParsedTimePeriod } from '../data/update-company-profile';
 import { TranslationsType } from '../translations/translations';
 import { translate } from '../translations/translate';
 
@@ -28,13 +29,12 @@ const Panel = styled.div`
 const CompanyPanel = ({
   companyData = [],
   companyPanelOpacity,
+  timePeriod,
 }: CompanyPanelProps) => {
   if (!Array.isArray(companyData) || !companyData.length) return null;
   // rec stands for record
   const id = companyData.filter(rec => rec.key === 'id')[0].value;
-  const quarter: number = zecoConfig.getItem(['statements', 'quarter']);
-  const halfyear: number = zecoConfig.getItem(['statements', 'halfyear']);
-  const year = zecoConfig.getItem(['statements', 'year']);
+  const { year, quarter } = timePeriod;
   const translateConfig: { id: string; type: TranslationsType } = {
     id,
     type: 'companyKeys',
@@ -73,7 +73,8 @@ const CompanyPanel = ({
     statements[year],
     finInfo.arr,
     finInfoSplitPaths,
-    { quarter, halfyear }
+    // @ts-ignore
+    { quarter /*, halfyear*/ }
   );
 
   const finItems = finInfoToShow.map((rec: KeyValuePair, i: number) => {
@@ -111,11 +112,13 @@ const CompanyPanel = ({
 CompanyPanel.propTypes = {
   companyData: PropTypes.array,
   companyPanelOpacity: PropTypes.number,
+  timePeriod: PropTypes.object,
 };
 
 type CompanyPanelProps = {
   companyData: KeyValuePairs;
   companyPanelOpacity: number;
+  timePeriod: ParsedTimePeriod;
 };
 
 export default CompanyPanel;

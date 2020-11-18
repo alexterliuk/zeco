@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import getCompanyData from '../helpers/get-company-data';
 import CompanyPanel from './company-panel';
+import { ParsedTimePeriod } from '../data/update-company-profile';
 
 const Container = styled.section`
   /*background: #f9f8f8;*/
@@ -12,6 +13,7 @@ const Container = styled.section`
 const CompanyPanelSection = ({
   id,
   companyPanelOpacity,
+  timePeriod,
 }: CompanyPanelSectionProps) => {
   const companyData = getCompanyData(id);
 
@@ -20,6 +22,7 @@ const CompanyPanelSection = ({
       <CompanyPanel
         companyData={companyData}
         companyPanelOpacity={companyPanelOpacity}
+        timePeriod={timePeriod}
       />
     </Container>
   );
@@ -28,11 +31,13 @@ const CompanyPanelSection = ({
 CompanyPanelSection.propTypes = {
   id: PropTypes.string,
   companyPanelOpacity: PropTypes.number,
+  timePeriod: PropTypes.object,
 };
 
 interface CompanyPanelSectionProps {
   id: string;
   companyPanelOpacity: number;
+  timePeriod: ParsedTimePeriod;
 }
 
 export default CompanyPanelSection;
