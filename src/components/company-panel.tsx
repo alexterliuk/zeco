@@ -74,7 +74,7 @@ const CompanyPanel = ({
     finInfo.arr,
     finInfoSplitPaths,
     // @ts-ignore
-    { quarter /*, halfyear*/ }
+    { quarter }
   );
 
   const finItems = finInfoToShow.map((rec: KeyValuePair, i: number) => {

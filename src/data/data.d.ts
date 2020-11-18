@@ -34,7 +34,6 @@ export interface FinancialStatements {
 
 export interface FinancialStatement {
   quarters: (number | string | false)[];
-  halfyear: number[];
   year: number | string | false;
 }
 

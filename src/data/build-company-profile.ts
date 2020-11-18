@@ -68,7 +68,6 @@ function getStatementsTemplate() {
 function getOneStatementTemplate(): FinancialStatement {
   return {
     quarters: [],
-    halfyear: [],
     year: false,
   };
 }

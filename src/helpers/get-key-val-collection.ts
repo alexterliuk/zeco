@@ -6,20 +6,15 @@ function getKeyValCollection(
   statementsOfYear: KeyValuePairs,
   keys: string[],
   splitKeys?: string[][][],
-  period: { quarter: number; halfyear: number } = { quarter: -1, halfyear: -1 }
+  period: { quarter: number } = { quarter: -1 }
 ): KeyValuePairs {
   if (!statementsOfYear) return [];
 
   const getValueByPeriod = (item: FinancialStatement) => {
     if (item.quarters) {
-      const { quarter, halfyear } = period;
+      const { quarter } = period;
       const validQ = [0, 1, 2, 3].includes(quarter);
-      const validH = [0, 1].includes(halfyear);
-      return validQ
-        ? item.quarters[quarter]
-        : validH
-        ? item.halfyear[halfyear]
-        : item.year;
+      return validQ ? item.quarters[quarter] : item.year;
     }
   };
 
