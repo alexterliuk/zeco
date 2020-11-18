@@ -5,30 +5,30 @@ describe('getKeyValCollection', () => {
   const statements = [
     {
       key: 'equity',
-      value: { quarters: [false, 999], halfyear: [], year: false },
+      value: { quarters: [false, 999], year: false },
     },
     {
       key: 'producedCost',
-      value: { quarters: [12345, 54321], halfyear: [], year: false },
+      value: { quarters: [12345, 54321], year: false },
     },
     {
       key: 'salaryExpenses',
-      value: { quarters: [154755, 999777], halfyear: [], year: false },
+      value: { quarters: [154755, 999777], year: false },
     },
     {
       key: 'assets',
       value: {
-        current: { quarters: [], halfyear: [], year: false },
-        fixed: { quarters: [], halfyear: [], year: false },
-        totalValue: { quarters: [7, 11], halfyear: [], year: false },
+        current: { quarters: [], year: false },
+        fixed: { quarters: [], year: false },
+        totalValue: { quarters: [7, 11], year: false },
       },
     },
     {
       key: 'financials',
       value: {
-        netProfit: { quarters: [1000, false], halfyear: [], year: false },
-        netLoss: { quarters: [false, 7000], halfyear: [], year: false },
-        netIncome: { quarters: [false, 33333], halfyear: [], year: false },
+        netProfit: { quarters: [1000, false], year: false },
+        netLoss: { quarters: [false, 7000], year: false },
+        netIncome: { quarters: [false, 33333], year: false },
       },
     },
   ];

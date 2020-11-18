@@ -1,8 +1,8 @@
 import { getStatementsTemplate } from '../build-company-profile';
 
 describe('getStatementsTemplate', () => {
-  it('returns object each key || (assets || financials)[key] of which points to `{ halfyear: [], quarters: [], year: false }`', () => {
-    const item = { halfyear: [], quarters: [], year: false };
+  it('returns object each key || (assets || financials)[key] of which points to `{ quarters: [], year: false }`', () => {
+    const item = { quarters: [], year: false };
     const result = getStatementsTemplate();
     const root = [result, ['equity', 'producedCost', 'salaryExpenses']];
     const assets = [result.assets, ['current', 'fixed', 'totalValue']];

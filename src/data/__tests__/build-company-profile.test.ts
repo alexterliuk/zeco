@@ -8,7 +8,7 @@ describe('buildCompanyProfile if called with', () => {
     expect(buildCompanyProfile('bla', 'wla')).toBe(undefined);
   });
 
-  const item = { quarters: [], halfyear: [], year: false };
+  const item = { quarters: [], year: false };
   const result = {
     id: 'a',
     shortName: 'b',

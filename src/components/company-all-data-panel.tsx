@@ -294,7 +294,7 @@ function makeEmptyTbodyRows(
 /**
  * @param {array} tbodyRows - with {name, cells} objects
  * @param {object} statementsIndicesInTbodyRows - {netProfit: 3, equity: 14...}
- * @param {object} statement - {name: '', value: { quarters, halfyear, year }}
+ * @param {object} statement - {name: '', value: { quarters, year }}
  * @param {array} keys
  * @param {boolean} yearIsCurr
  */
