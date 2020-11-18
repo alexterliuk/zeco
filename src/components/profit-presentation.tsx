@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import profits, { Profit } from '../data/profits';
+import { Button } from './styled-elements';
+import profitsOfAllStateCompaniesOfUkr, {
+  Profit,
+} from '../data/profits-all-state-companies';
 import {
   translateCommon,
   translateTimePeriod,
@@ -45,12 +48,6 @@ const ToggleProfitFigButtonContainer = styled.div`
   justify-content: center;
 `;
 
-const ToggleProfitFigButton = styled.button`
-  min-width: 170px;
-  padding: 5px 10px;
-  cursor: pointer;
-`;
-
 const BlnHryvnias = styled.p`
   text-align: center;
   font-size: 24px;
@@ -79,9 +76,9 @@ const ProfitPresentation = ({
       {getProfitsContainers(profitsPairs.slice(0, 1), [1, 0])}
       <BlnHryvnias>{translateCommon('blnHryvnias')}</BlnHryvnias>
       <ToggleProfitFigButtonContainer>
-        <ToggleProfitFigButton onClick={() => handleClick()}>
+        <Button onClick={() => handleClick()}>
           {translateCommon(profitsPairsStore.show ? 'hide' : 'showMore')}
-        </ToggleProfitFigButton>
+        </Button>
       </ToggleProfitFigButtonContainer>
       {profitsPairsStore.show ? profitsPairsStore.elems : null}
     </PresentationContainer>
@@ -138,7 +135,7 @@ function makeProfitsPairs(...indices: number[]) {
       const lastIdx = indices[i + 1];
       if (lastIdx !== undefined) {
         acc.push({
-          profitsPair: profits.slice(idx, lastIdx + 1),
+          profitsPair: profitsOfAllStateCompaniesOfUkr.slice(idx, lastIdx + 1),
         });
       }
     }

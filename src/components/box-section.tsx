@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Box from './box';
 import companies, { companiesIds } from '../data/companies/index';
 import { CompanyProfile } from '../data/data';
+import { ParsedTimePeriod } from '../data/update-company-profile';
 
 const Container = styled.section`
   border: 1px solid lightgrey;
@@ -12,12 +13,18 @@ const Container = styled.section`
   max-width: 762px;
 `;
 
-const BoxSection = ({ updateCompanyPanel }: BoxSectionProps) => {
+const BoxSection = ({ updateCompanyPanel, timePeriod }: BoxSectionProps) => {
   const boxes = companiesIds.map(k => {
     const company: CompanyProfile = companies[k];
     const { shortName, id } = company;
-    const profit =
-      company.statements[2020].financials.netProfit.quarters[1] > 0;
+    const { year, quarter } = timePeriod;
+
+    const netProfitObj = company.statements[year].financials.netProfit;
+    const netProfitVal =
+      quarter !== undefined
+        ? netProfitObj.quarters[quarter]
+        : netProfitObj.year;
+    const profit = netProfitVal > 0;
 
     return (
       <Box
@@ -35,10 +42,12 @@ const BoxSection = ({ updateCompanyPanel }: BoxSectionProps) => {
 
 BoxSection.propTypes = {
   updateCompanyPanel: PropTypes.func,
+  timePeriod: PropTypes.object,
 };
 
 interface BoxSectionProps {
   updateCompanyPanel: (id: string) => void;
+  timePeriod: ParsedTimePeriod;
 }
 
 export default BoxSection;

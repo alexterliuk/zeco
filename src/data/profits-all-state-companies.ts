@@ -1,4 +1,4 @@
-const profits: Profit[] = [
+const profitsOfAllStateCompaniesOfUkr: Profit[] = [
   {
     key: 'loss',
     timePeriod: { year: 2020, quarter: 1 },
@@ -47,4 +47,4 @@ export interface Profit {
   value: number;
 }
 
-export default profits;
+export default profitsOfAllStateCompaniesOfUkr;
