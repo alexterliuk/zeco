@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button } from './styled-elements';
 import profitsOfAllStateCompaniesOfUkr, {
   Profit,
+  profitsIndicesSets,
 } from '../data/profits-all-state-companies';
 import {
   translateCommon,
@@ -57,11 +58,11 @@ const BlnHryvnias = styled.p`
 // by default show profits pair: 2019 2 qr. - 2020 2 qr.
 // other ones show/hide when user clicks button
 const ProfitPresentation = ({
-  profitsPairs = makeProfitsPairs(0, 1, 2, 3, 4, 5, 5, 6, 6, 7),
+  profitsPairs = makeProfitsPairs(profitsIndicesSets),
 }) => {
   const [profitsPairsStore, toggleProfitsPairs] = useState({
     show: false,
-    elems: getProfitsContainers(profitsPairs.slice(1), [1, 0]),
+    elems: getProfitsContainers(profitsPairs.slice(1)),
   });
 
   const handleClick = () => {
@@ -73,7 +74,7 @@ const ProfitPresentation = ({
 
   return (
     <PresentationContainer>
-      {getProfitsContainers(profitsPairs.slice(0, 1), [1, 0])}
+      {getProfitsContainers(profitsPairs.slice(0, 1))}
       <BlnHryvnias>{translateCommon('blnHryvnias')}</BlnHryvnias>
       <ToggleProfitFigButtonContainer>
         <Button onClick={() => handleClick()}>
@@ -106,20 +107,18 @@ const ProfitBlock = ({ data }: { data: Profit }) => {
 
 /**
  * @param {array} profitsPairs - with {profitsPair: [Profit, Profit]} objects
- * @param {array} indices - [num, num] (which of Profits show first, second)
+ * @param {boolean} order - 'reverse'|void (which of Profits show first, second)
  */
-function getProfitsContainers(
-  profitsPairs: ProfitsPair[],
-  indices: [number, number]
-) {
+function getProfitsContainers(profitsPairs: ProfitsPair[], order?: 'reverse') {
   return profitsPairs.map((item, i) => {
+    const reverseOrder = order === 'reverse';
     return (
       <ProfitsContainer key={`p${i}`}>
         <ProfitBlockContainer style={{ marginRight: 10 }}>
-          <ProfitBlock data={item.profitsPair[indices[0]]} />
+          <ProfitBlock data={item.profitsPair[reverseOrder ? 1 : 0]} />
         </ProfitBlockContainer>
         <ProfitBlockContainer>
-          <ProfitBlock data={item.profitsPair[indices[1]]} />
+          <ProfitBlock data={item.profitsPair[reverseOrder ? 0 : 1]} />
         </ProfitBlockContainer>
       </ProfitsContainer>
     );
@@ -127,17 +126,15 @@ function getProfitsContainers(
 }
 
 /**
- * @param {array} indices
+ * @param {array} indicesSets - array with arrays (each with two numbers)
  */
-function makeProfitsPairs(...indices: number[]) {
-  return indices.reduce((acc: ProfitsPair[], idx, i) => {
-    if (!(i % 2)) {
-      const lastIdx = indices[i + 1];
-      if (lastIdx !== undefined) {
-        acc.push({
-          profitsPair: profitsOfAllStateCompaniesOfUkr.slice(idx, lastIdx + 1),
-        });
-      }
+function makeProfitsPairs(indicesSets: number[][]) {
+  const profits = profitsOfAllStateCompaniesOfUkr;
+  return indicesSets.reduce((acc: ProfitsPair[], set) => {
+    if (set[1] !== undefined) {
+      acc.push({
+        profitsPair: [profits[set[0]], profits[set[1]]],
+      });
     }
     return acc;
   }, []);
