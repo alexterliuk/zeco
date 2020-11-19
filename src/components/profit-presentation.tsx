@@ -107,7 +107,7 @@ const ProfitBlock = ({ data }: { data: Profit }) => {
 
 /**
  * @param {array} profitsPairs - with {profitsPair: [Profit, Profit]} objects
- * @param {boolean} order - 'reverse'|void (which of Profits show first, second)
+ * @param {string} [order] - 'reverse'|void (which of Profits show first, second)
  */
 function getProfitsContainers(profitsPairs: ProfitsPair[], order?: 'reverse') {
   return profitsPairs.map((item, i) => {
