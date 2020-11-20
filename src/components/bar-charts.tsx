@@ -99,6 +99,7 @@ const getBarChart = (
 BarCharts.propTypes = {
   initChartSpec: PropTypes.object,
   chartsSpecs: PropTypes.arrayOf(PropTypes.object),
+  rigidSize: PropTypes.bool,
 };
 
 interface ChartSpec {
