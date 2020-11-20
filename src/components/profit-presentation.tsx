@@ -88,7 +88,7 @@ const ProfitPresentation = ({
 
 const ProfitBlock = ({ data }: { data: Profit }) => {
   const { timePeriod, key, value } = data;
-  const color = value > 0 ? 'green' : value < 0 ? 'red' : 'inherit';
+  const color = value > 0 ? '#0c920c' : value < 0 ? 'red' : 'inherit';
   return (
     <>
       <ProfitFigTitle>

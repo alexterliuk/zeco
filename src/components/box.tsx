@@ -31,8 +31,8 @@ const Box = ({ id, name, profit, handleClick }: BoxProps) => (
         handleClick(id);
       }}
       style={{
-        backgroundColor: profit ? 'green' : 'red',
-        color: profit ? 'green' : 'red',
+        backgroundColor: profit ? '#0c920c' : 'red',
+        color: profit ? '#0c920c' : 'red',
       }}
     />
   </Tooltip>
