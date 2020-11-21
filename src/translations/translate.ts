@@ -5,6 +5,7 @@ import translations, {
   TranslationsCompanyKey,
   Languages,
 } from './translations';
+import { ChartSpec } from '../components/bar-charts';
 
 const translate = (
   id: string,
@@ -37,4 +38,26 @@ const translateTimePeriod = (val: string): string => {
   return val;
 };
 
-export { translate, translateCommon, translateTimePeriod };
+const translateChart = (
+  chartData: ChartSpec,
+  chartTranslations: ChartTranslations,
+  translateOneItem?: string | undefined,
+  lang?: Languages
+) => {
+  let _lang: Languages = lang || zecoConfig.getItem(['lang']);
+  const key = translateOneItem;
+  if (typeof key === 'string') {
+    return key === 'title' || key === 'btnName'
+      ? chartTranslations[_lang][key]
+      : key;
+  }
+
+  return chartTranslations[_lang];
+};
+
+interface ChartTranslations {
+  en: ChartSpec;
+  uk: ChartSpec;
+}
+
+export { translate, translateCommon, translateTimePeriod, translateChart };
