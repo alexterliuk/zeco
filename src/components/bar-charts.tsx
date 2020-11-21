@@ -11,6 +11,38 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { Button } from './styled-elements';
+import zecoConfig from '../../config/zeco-config';
+import { Languages } from '../translations/translations';
+
+// const translateChartItems = (
+//   itemKey: string,
+//   spec: ChartSpec,
+//   specs: ChartSpec[] = []
+// ) => {
+//   return [spec, ...specs].reduce(
+//     (acc: { [key: string]: string }, s) => (
+//       (acc[s.btnName] = s.translate(itemKey) as string), acc
+//     ),
+//     {}
+//   );
+// };
+
+const translateTitle = (shownChart: ChartSpec) => {
+  return shownChart.translate('title', zecoConfig.getItem(['lang']));
+};
+
+const translateButtonName = (spec: ChartSpec) => {
+  // second arg is absent compared to translateTitle because
+  // translateButtonName is called from the loop and correct
+  // current language is used (when standalone call, lang might be stale)
+  return spec.translate('btnName');
+};
+
+const translateShownChart = (shownChart: ChartSpec, rigidSize: boolean) => {
+  return (s => getBarChart(s.data, s.config, rigidSize))(
+    shownChart.translate(undefined, zecoConfig.getItem(['lang'])) as ChartSpec
+  );
+};
 
 const BarCharts = ({
   initChartSpec,
@@ -21,22 +53,20 @@ const BarCharts = ({
   chartsSpecs?: ChartSpec[];
   rigidSize?: boolean;
 }) => {
-  const [chart, updateChart] = useState(
-    getBarChart(initChartSpec.data, initChartSpec.config, rigidSize)
-  );
-  const [title, updateTitle] = useState(initChartSpec.title);
+  // in different places spec.btnName serves as id of the chartData (a.k.a spec)
+  const [shownChart, replaceShownChart] = useState(initChartSpec);
   const [buttonsClasses, updateButtonsClasses] = useState({
     [initChartSpec.btnName]: 'active',
   });
+
   const allChartsSpecs = [initChartSpec, ...chartsSpecs];
   const specs = allChartsSpecs.reduce(
     (acc: { [key: string]: ChartSpec }, s) => ((acc[s.btnName] = s), acc),
     {}
   );
+
   const handleClick = (name: string) => {
-    const spec = specs[name];
-    updateChart(getBarChart(spec.data, spec.config, rigidSize));
-    updateTitle(spec.title);
+    replaceShownChart(specs[name]);
     updateButtonsClasses(
       allChartsSpecs.reduce(
         (acc: { [key: string]: string }, s) => (
@@ -49,7 +79,7 @@ const BarCharts = ({
 
   return (
     <>
-      <h3>{title}</h3>
+      <h3>{translateTitle(shownChart)}</h3>
       {allChartsSpecs.length > 1 &&
         allChartsSpecs.map(s => (
           <Button
@@ -57,10 +87,10 @@ const BarCharts = ({
             onClick={() => handleClick(s.btnName)}
             className={buttonsClasses[s.btnName]}
           >
-            {s.btnName}
+            {translateButtonName(s)}
           </Button>
         ))}
-      {chart}
+      {translateShownChart(shownChart, rigidSize)}
     </>
   );
 };
@@ -102,14 +132,18 @@ BarCharts.propTypes = {
   rigidSize: PropTypes.bool,
 };
 
-interface ChartSpec {
+export interface ChartSpec {
   title: string;
   btnName: string;
   data: { name: string }[];
   config: ChartConfig;
+  translate: (
+    translateOneItem?: string,
+    lang?: Languages
+  ) => ChartSpec | string;
 }
 
-interface ChartConfig {
+export interface ChartConfig {
   barsConfig: { dataKey: string; unit: string; color: string }[];
   width?: number;
   height?: number;
