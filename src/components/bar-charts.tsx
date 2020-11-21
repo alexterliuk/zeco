@@ -53,7 +53,7 @@ const BarCharts = ({
   chartsSpecs?: ChartSpec[];
   rigidSize?: boolean;
 }) => {
-  // in different places spec.btnName serves as id of the chartData (a.k.a spec)
+  // in different places spec.btnName serves as id of the chartData
   const [shownChart, replaceShownChart] = useState(initChartSpec);
   const [buttonsClasses, updateButtonsClasses] = useState({
     [initChartSpec.btnName]: 'active',
