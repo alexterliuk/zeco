@@ -1,3 +1,7 @@
+import { translateChart } from '../translations/translate';
+import { Languages } from '../translations/translations';
+import { ChartSpec } from '../components/bar-charts';
+
 const profitsAllStateCompaniesChartData = {
   title: 'Profits/losses of all state-owned companies of Ukraine',
   btnName: 'All companies profits',
@@ -27,6 +31,42 @@ const profitsAllStateCompaniesChartData = {
       { dataKey: 'loss', unit: ' bln uah', color: 'red' },
     ],
   },
+  translate,
 };
+
+const chartTranslations = {
+  en: profitsAllStateCompaniesChartData,
+  uk: {
+    title: 'Прибутки/збитки всіх державних компаній України',
+    btnName: 'Прибутки всіх компаній',
+    data: [
+      { name: '2016', Прибуток: 35.881 },
+      { name: '2017', Прибуток: 44.781 },
+      { name: '2018', Прибуток: 41.339 },
+      { name: '2019', Прибуток: 1.224 },
+      { name: '2020-1', Збиток: -13.076 },
+      { name: '2020-2', Збиток: -27.032 },
+    ],
+    config: {
+      barsConfig: [
+        { dataKey: 'Прибуток', unit: ' млрд грн', color: '#0c920c' },
+        { dataKey: 'Збиток', unit: ' млрд грн', color: 'red' },
+      ],
+    },
+    translate,
+  },
+};
+
+function translate(
+  translateOneItem: string | undefined,
+  lang: Languages | undefined
+): ChartSpec | string {
+  return translateChart(
+    profitsAllStateCompaniesChartData,
+    chartTranslations,
+    translateOneItem,
+    lang
+  );
+}
 
 export default profitsAllStateCompaniesChartData;
