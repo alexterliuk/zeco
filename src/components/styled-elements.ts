@@ -17,4 +17,24 @@ const Button = styled.button`
   }
 `;
 
-export { Button };
+const ButtonAsRow = styled.button`
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 0 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: #f3f3f3;
+  }
+
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  }
+`;
+
+export { Button, ButtonAsRow };
