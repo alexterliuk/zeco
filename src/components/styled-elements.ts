@@ -20,6 +20,7 @@ const Button = styled.button`
 const ButtonAsRow = styled.button`
   display: block;
   width: 100%;
+  font-family: inherit;
   text-align: left;
   background: transparent;
   border: 0;
@@ -30,7 +31,6 @@ const ButtonAsRow = styled.button`
     background: #f3f3f3;
   }
 
-  &:focus,
   &:active {
     border: none;
     outline: none;
