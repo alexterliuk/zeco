@@ -78,7 +78,7 @@ const Search = ({
             key={item.text}
             ref={buttonsRefs[i]}
             onClick={() => {
-              resetInputState();
+              resetSearchState();
               (item.onClick || onClick || (() => void 0))(item.id, item);
             }}
           >
@@ -106,7 +106,7 @@ const Search = ({
   const [filteredData, filterData] = useState(dataAndButtonsRef);
   const [pristine, setPristine] = useState(true);
 
-  const resetInputState = () => {
+  const resetSearchState = () => {
     const inputEl: unknown = inputRef.current;
     if (inputEl instanceof HTMLInputElement) {
       inputEl.value = '';
@@ -119,7 +119,7 @@ const Search = ({
     elRelated: EventTarget | null
   ) => {
     if (!elCurrent.contains(elRelated as Node)) {
-      resetInputState();
+      resetSearchState();
     }
   };
 
