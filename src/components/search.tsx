@@ -14,6 +14,7 @@ const padding = 5;
 const Container = styled.div`
   border-radius: 8px;
   box-shadow: 0px 0px 8px 1px #d4d9dc;
+  outline: none;
   margin: 10px;
   padding: ${padding}px;
 `;
@@ -134,6 +135,7 @@ const Search = ({
 
   return (
     <Container
+      tabIndex={-1}
       style={{ maxWidth: mw || '' }}
       onBlur={e => handleBlur(e.currentTarget, e.relatedTarget)}
     >
