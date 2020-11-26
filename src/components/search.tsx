@@ -75,6 +75,7 @@ const Search = ({
         button: (
           <ButtonAsRow
             key={item.text}
+            ref={buttonsRefs[i]}
             onClick={() => {
               resetInputState();
               (item.onClick || onClick || (() => void 0))(item.id, item);
