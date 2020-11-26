@@ -1,8 +1,10 @@
 import React, {
   useRef,
   useState,
+  useMemo,
   ReactElement,
   FunctionComponentElement,
+  MutableRefObject,
 } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -31,6 +33,21 @@ const FoundItems = styled.div`
   overflow-y: auto;
 `;
 
+const getButtonHeight = (items: Pick<DataAndButtons, 'ref'>[]) => {
+  const button: unknown = items[0].ref;
+  if (button instanceof HTMLElement) {
+    return button.getBoundingClientRect().height;
+  }
+  return 26; // expected value as a fallback
+};
+
+// mh - maxHeight, bh - buttonHeight, pd - padding
+const getContainerMaxHeight = (mh: number, bh: number, pd: number) =>
+  mh - (bh + pd);
+
+const getMaxItemsInContainer = (mh: number, bh: number, pd: number) =>
+  Math.floor((mh - (bh + 6 + pd)) / bh);
+
 // data consists of pop-down options, for each a button (ButtonAsRow) is created;
 // on a button's click, option.onClick is called (if exists), or Search's onClick
 // (if exists), or noop
@@ -39,8 +56,16 @@ const Search = ({
   onClick,
   labelName,
   maxWidth = 0,
+  maxHeight = 135 /* enough for 4 buttons (selectable options) */,
 }: SearchProps) => {
   const inputRef = useRef(null);
+  const foundItemsRef = useRef(null);
+  const buttonsRefs = data.reduce(
+    (acc: { [k: string]: MutableRefObject<null> }, _, i) => (
+      (acc[i] = useRef(null)), acc
+    ),
+    {}
+  );
 
   const dataAndButtonsRef = useRef(
     data.map(
@@ -57,8 +82,22 @@ const Search = ({
             {item.text}
           </ButtonAsRow>
         ),
+        ref: buttonsRefs[i],
       })
     )
+  );
+
+  const buttonHeight = useMemo(
+    () => getButtonHeight(dataAndButtonsRef.current),
+    [dataAndButtonsRef]
+  );
+  const foundItemsMaxHeight = useMemo(
+    () => getContainerMaxHeight(maxHeight, buttonHeight, padding),
+    [maxHeight, buttonHeight, padding]
+  );
+  const maxItemsInFoundItems = useMemo(
+    () => getMaxItemsInContainer(maxHeight, buttonHeight, padding),
+    [maxHeight, buttonHeight, padding]
   );
 
   const [filteredData, filterData] = useState(dataAndButtonsRef);
@@ -104,7 +143,10 @@ const Search = ({
         style={{ width: mw ? `${mw - padding * 2}px` : '' }}
         onChange={e => handleChange(e.currentTarget.value)}
       />
-      <FoundItems>
+      <FoundItems
+        ref={foundItemsRef}
+        style={{ maxHeight: foundItemsMaxHeight }}
+      >
         {pristine ? [] : filteredData.current.map(item => item.button)}
       </FoundItems>
     </Container>
@@ -122,6 +164,7 @@ Search.propTypes = {
   onClick: PropTypes.func,
   labelName: PropTypes.string,
   maxWidth: PropTypes.number,
+  maxHeight: PropTypes.number,
 };
 
 interface SearchProps {
@@ -129,6 +172,7 @@ interface SearchProps {
   onClick?: SearchOnClick;
   labelName?: string;
   maxWidth?: number;
+  maxHeight?: number;
 }
 
 interface SearchItem {
@@ -141,6 +185,7 @@ type SearchOnClick = (id: string | number, item?: SearchItem) => unknown;
 
 interface DataAndButtons extends SearchItem {
   button: FunctionComponentElement<ReactElement>;
+  ref: MutableRefObject<null>;
 }
 
 export default Search;
