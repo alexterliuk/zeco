@@ -45,6 +45,7 @@ const getButtonHeight = (items: Pick<DataAndButtons, 'ref'>[]) => {
 const getContainerMaxHeight = (mh: number, bh: number, pd: number) =>
   mh - (bh + pd);
 
+// 6 is input's padding-top/bottom + border-width
 const getMaxItemsInContainer = (mh: number, bh: number, pd: number) =>
   Math.floor((mh - (bh + 6 + pd)) / bh);
 
