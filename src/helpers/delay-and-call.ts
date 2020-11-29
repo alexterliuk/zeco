@@ -10,8 +10,8 @@ import { getPositiveIntegerOrZero, isFunction } from './value-checker';
 function delayAndCall(
   willCall: () => void,
   delay: number,
-  preCall: () => void,
-  postCall: () => void
+  preCall?: () => void,
+  postCall?: () => void
 ): void {
   const [main, pre, post] = isFunction(willCall, preCall, postCall);
 

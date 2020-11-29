@@ -5,18 +5,18 @@ import styled from 'styled-components';
 import Header from './header';
 import './layout.css';
 
-const getLayoutStyles = (maxWidth: number | 'none') => `
+const getLayoutStyles = (maxWidth: string) => `
   margin: 0 auto;
-  max-width: ${maxWidth}px;
+  max-width: ${maxWidth};
   padding: 0 1.0875rem 1.45rem;
 `;
 
 const containers = [
   styled.div`${getLayoutStyles('none')}`,
-  styled.div`${getLayoutStyles(960)}`,
-  styled.div`${getLayoutStyles(1280)}`,
-  styled.div`${getLayoutStyles(1440)}`,
-  styled.div`${getLayoutStyles(1600)}`,
+  styled.div`${getLayoutStyles('960px')}`,
+  styled.div`${getLayoutStyles('1280px')}`,
+  styled.div`${getLayoutStyles('1440px')}`,
+  styled.div`${getLayoutStyles('1600px')}`,
 ];
 
 const Footer = ({ className, children }: any) => (
