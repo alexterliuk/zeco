@@ -142,9 +142,9 @@ const Search = ({
     elCurrent: HTMLElement,
     elRelated: EventTarget | null
   ) => {
-    // if (!elCurrent.contains(elRelated as Node)) {
-    //   resetSearchState();
-    // }
+    if (!elCurrent.contains(elRelated as Node)) {
+      resetSearchState();
+    }
   };
 
   const handleChange = (v: string) => {
