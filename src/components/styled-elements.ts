@@ -28,7 +28,7 @@ const ButtonAsRow = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: #f3f3f3;
+    background: ${props => props.theme.background || '#f3f3f3'};
   }
 
   &:active {
