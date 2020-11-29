@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ButtonAsRow } from './styled-elements';
 
-// TODO; move backgroundColorInSearch to zecoConfig
-const backgroundColorInSearch = 'lightblue';
+// TODO; move backgroundColorInSearchFoundItems to zecoConfig
+const backgroundColorInSearchFoundItems = 'lightblue';
 const padding = 5;
 
 const Container = styled.div`
@@ -37,7 +37,7 @@ const FoundItems = styled.div`
   overflow-y: auto;
 `;
 
-const getButtonHeight = (items: Pick<DataAndButtons, 'ref'>[]) => {
+const getButtonHeight = (items: Pick<DataAndButton, 'ref'>[]) => {
   const button: unknown = items[0].ref;
   if (button instanceof HTMLElement) {
     return button.getBoundingClientRect().height;
@@ -65,25 +65,36 @@ const Search = ({
 }: SearchProps) => {
   const inputRef = useRef(null);
   const foundItemsRef = useRef(null);
+  const selItemIdxRef = useRef(-1);
+  const mouseMovedRef = useRef(false);
+  // enter from outside, or when handleChange replaces array with new filtered one
+  const mouseEnterFromOutsideFoundItemsRef = useRef(true);
+
   const buttonsRefs = data.reduce(
     (acc: { [k: string]: MutableRefObject<null> }, _, i) => (
       (acc[i] = useRef(null)), acc
     ),
     {}
   );
-
   const dataAndButtonsRef = useRef(
     data.map(
-      (item, i): DataAndButtons => ({
+      (item, i): DataAndButton => ({
         ...item,
         button: (
           <ButtonAsRow
             key={item.text}
             ref={buttonsRefs[i]}
+            theme={{ background: 'inherit' /* remove color on :hover */ }}
             onClick={() => {
               resetSearchState();
               (item.onClick || onClick || (() => void 0))(item.id, item);
             }}
+            onMouseEnter={e =>
+              handleHover('enter', e.currentTarget, e.relatedTarget)
+            }
+            onMouseLeave={e =>
+              handleHover('leave', e.currentTarget, e.relatedTarget)
+            }
           >
             {item.text}
           </ButtonAsRow>
@@ -94,7 +105,7 @@ const Search = ({
         onClick: () => {
           resetSearchState();
           (item.onClick || onClick || (() => void 0))(item.id, item);
-        }
+        },
       })
     )
   );
@@ -112,16 +123,18 @@ const Search = ({
     [maxHeight, buttonHeight, padding]
   );
 
-  const [filteredData, filterData] = useState(dataAndButtonsRef);
   const [pristine, setPristine] = useState(true);
-  const [selectedItemIdx, setSelectedItemIdx] = useState(-1);
+  const [NOT_USED, filterData] = useState(dataAndButtonsRef.current);
+  const filteredDataRef = useRef(dataAndButtonsRef.current);
 
   const resetSearchState = () => {
     const inputEl: unknown = inputRef.current;
     if (inputEl instanceof HTMLInputElement) {
       inputEl.value = '';
-      setSelectedItemIdx(-1);
+      selItemIdxRef.current = -1;
       setPristine(true);
+      unselectItem();
+      filteredDataRef.current = [];
     }
   };
 
@@ -129,27 +142,61 @@ const Search = ({
     elCurrent: HTMLElement,
     elRelated: EventTarget | null
   ) => {
-    if (!elCurrent.contains(elRelated as Node)) {
-      resetSearchState();
-    }
+    // if (!elCurrent.contains(elRelated as Node)) {
+    //   resetSearchState();
+    // }
   };
 
   const handleChange = (v: string) => {
     if (pristine) setPristine(false);
-    // reset idx - if up/down arrow key pressed,
-    // it'll select last/first item from new found items
-    if (selectedItemIdx !== -1) setSelectedItemIdx(-1);
+    // reset idx, so if up/down arrow key pressed,
+    // it will select last/first item from new found items set,
+    // or if mouse hovers over some button, it will select corresponding item
+    mouseEnterFromOutsideFoundItemsRef.current = true;
+    // some button might be selected, unselect it
+    unselectItem();
     const curr = dataAndButtonsRef.current;
-    filterData({
-      current: !v ? [] : curr.filter(item => item.text.includes(v)),
-    });
+    const _filteredData = !v ? [] : curr.filter(item => item.text.includes(v));
+    // this is used for up/down arrow key navigation and for hovering
+    filteredDataRef.current = _filteredData;
+    // this triggers updating Search, stored value is not used (thus NOT_USED)
+    filterData(_filteredData);
+  };
+
+  const handleMouseMove = () => {
+    mouseMovedRef.current = true;
+  };
+
+  const handleHover = (
+    type: 'enter' | 'leave',
+    elCurrent: EventTarget & HTMLButtonElement,
+    elRelated: EventTarget | null
+  ) => {
+    const enterFromOutside = mouseEnterFromOutsideFoundItemsRef.current;
+    const mouseMoved = mouseMovedRef.current;
+    // prevent cursor interfering when items are navigated by ArrowUp/ArrowDown
+    // i.e. mouse not moved, do nothing
+    if (!enterFromOutside && !mouseMoved) return;
+
+    if (enterFromOutside) mouseEnterFromOutsideFoundItemsRef.current = false;
+
+    const elCurr = elCurrent instanceof HTMLButtonElement && elCurrent;
+    const elRel = elRelated instanceof HTMLButtonElement && elRelated;
+    if (type === 'enter') {
+      // currBtn - elCurr, prevBtn - elRel
+      switchButton('enter', elCurr, elRel);
+    } else {
+      // currBtn - elRel, prevBtn - elCurr
+      switchButton('leave', elRel, elCurr);
+    }
   };
 
   const handleKeyDown = (key: string) => {
+    mouseMovedRef.current = false;
     if (key === 'ArrowDown' || key === 'ArrowUp') {
       const DOWN = key === 'ArrowDown';
-      const filtData = filteredData.current;
-      const selIdx = selectedItemIdx;
+      const filtData = filteredDataRef.current;
+      const selIdx = selItemIdxRef.current;
       let idx: number;
       if (DOWN) {
         idx = selIdx === filtData.length - 1 ? 0 : selIdx + 1;
@@ -166,9 +213,9 @@ const Search = ({
           if (dnb.text === foundItem.text) {
             const el: unknown = dnb.ref.current;
             if (el instanceof HTMLElement) {
-              el.style.background = backgroundColorInSearch;
+              el.style.background = backgroundColorInSearchFoundItems;
               foundItem.selected = true;
-              setSelectedItemIdx(idx);
+              selItemIdxRef.current = idx;
 
               const fi: unknown = foundItemsRef.current;
               if (fi instanceof HTMLElement) {
@@ -202,7 +249,7 @@ const Search = ({
     }
 
     if (key === 'Enter') {
-      const item = filteredData.current.filter(obj => obj.selected)[0];
+      const item = filteredDataRef.current.filter(obj => obj.selected)[0];
       if (item) item.onClick();
       resetSearchState();
     }
@@ -211,6 +258,90 @@ const Search = ({
       resetSearchState();
     }
   };
+
+  // ================= handleHover's helper functions =================
+
+  function switchButton(
+    type: 'enter' | 'leave',
+    currBtn: false | HTMLButtonElement,
+    prevBtn: false | HTMLButtonElement
+  ) {
+    if (currBtn) currBtn.style.background = backgroundColorInSearchFoundItems;
+    if (prevBtn) prevBtn.style.background = '';
+    let selItem = findSelItem();
+    if (!selItem && currBtn) {
+      // nothing is selected (neither up/down key pressed, nor hover occurred before)
+      selectCurrItem(currBtn);
+    } else if (type === 'enter' && selItem && currBtn) {
+      // some button is selected, unselect it and select one being hovered over
+      selectCurrItemAndStyleBtn(currBtn, selItem);
+    } else if (type === 'leave' && selItem && !currBtn) {
+      // cursor left FoundItems area, thus currBtn is false
+      // some button is selected, unselect it
+      unselectItem(selItem);
+    }
+  }
+
+  function selectCurrItem(hovBtn: HTMLButtonElement) {
+    const [hovItem, hovItemIdx] = findHovItem(hovBtn);
+    if (typeof hovItem === 'object' && typeof hovItemIdx === 'number') {
+      hovItem.selected = true;
+      selItemIdxRef.current = hovItemIdx;
+    }
+  }
+
+  function selectCurrItemAndStyleBtn(
+    hovBtn: HTMLButtonElement,
+    selItem: DataAndButton
+  ) {
+    if (hovBtn) {
+      const [hovItem, hovItemIdx] = findHovItem(hovBtn);
+      if (typeof hovItem === 'object' && typeof hovItemIdx === 'number') {
+        const selBtn: unknown = selItem.ref.current;
+        // check for sameness is needed because after handleChange's job, buttons
+        // might happen to be the same if the cursor was left in FoundItems area
+        if (selBtn !== hovBtn) {
+          if (selBtn instanceof HTMLButtonElement) {
+            selBtn.style.background = '';
+            selItem.selected = false;
+            hovItem.selected = true;
+            selItemIdxRef.current = hovItemIdx;
+          }
+        }
+      }
+    }
+  }
+
+  function findHovItem(hovBtn: HTMLButtonElement) {
+    const text = hovBtn.textContent;
+    const filtData = filteredDataRef.current;
+    let i = 0;
+    while (i < filtData.length) {
+      if (filtData[i].text === text) {
+        return [filtData[i], i];
+      }
+      i++;
+    }
+    return [];
+  }
+
+  function findSelItem() {
+    let selItem = dataAndButtonsRef.current.filter(item => item.selected)[0];
+    if (selItem) return selItem;
+  }
+
+  // also is used in handleChange and resetSearchState
+  function unselectItem(selItem?: DataAndButton) {
+    const _selItem = selItem || findSelItem();
+    if (_selItem) {
+      _selItem.selected = false;
+      const selBtn: unknown = _selItem.ref.current;
+      if (selBtn instanceof HTMLButtonElement) {
+        selBtn.style.background = '';
+      }
+      selItemIdxRef.current = -1;
+    }
+  }
 
   const mw = maxWidth > 0 && maxWidth;
 
@@ -232,8 +363,9 @@ const Search = ({
       <FoundItems
         ref={foundItemsRef}
         style={{ maxHeight: foundItemsMaxHeight }}
+        onMouseMove={() => handleMouseMove()}
       >
-        {pristine ? [] : filteredData.current.map(item => item.button)}
+        {pristine ? [] : filteredDataRef.current.map(item => item.button)}
       </FoundItems>
     </Container>
   );
@@ -269,7 +401,7 @@ interface SearchItem {
 
 type SearchOnClick = (id: string | number, item?: SearchItem) => unknown;
 
-interface DataAndButtons extends SearchItem {
+interface DataAndButton extends SearchItem {
   button: FunctionComponentElement<ReactElement>;
   ref: MutableRefObject<null>;
   selected: boolean;
