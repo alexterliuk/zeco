@@ -127,6 +127,19 @@ const Search = ({
   const [NOT_USED, filterData] = useState(dataAndButtonsRef.current);
   const filteredDataRef = useRef(dataAndButtonsRef.current);
 
+  // Why useRef over useState is chosen for implementation:
+  // Many of useRefs above might have been replaced with useState and Search
+  // would work well except for 'switch control between hover and keyboard'
+  // functionality. A user may navigate between pop-down buttons by keyboard, and
+  // then take mouse, and continue selecting from the same place, or conversely.
+  // But as the buttons created once in dataAndButtonsRef (pop-down buttons are
+  // filtered from dataAndButtonsRef), they always have in scope the initial state
+  // of data, and updates in useState are not visible to onMouseEnter/Leave event
+  // listeners. All other listeners which are sitting in Search's return work well
+  // with useState. To enable live updates visible to both parts of the component,
+  // useRefs were chosen. useState's filterData serves as a trigger for updates,
+  // but the result of filtering and other mutable data are used from useRefs.
+
   const resetSearchState = () => {
     const inputEl: unknown = inputRef.current;
     if (inputEl instanceof HTMLInputElement) {
