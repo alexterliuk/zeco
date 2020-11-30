@@ -51,7 +51,7 @@ const getContainerMaxHeight = (mh: number, bh: number, pd: number) =>
 
 // 6 is input's padding-top/bottom + border-width
 const getMaxItemsInContainer = (mh: number, bh: number, pd: number) =>
-  Math.floor((mh - (bh + 6 + pd)) / bh);
+  Math.ceil((mh - (bh + 6 + pd)) / bh);
 
 // data consists of pop-down options, for each a button (ButtonAsRow) is created;
 // on a button's click, option.onClick is called (if exists), or Search's onClick
@@ -236,7 +236,7 @@ const Search = ({
                   if (firstFoundItem) {
                     // scroll to first item
                     fi.scrollBy(0, 0 - foundItemsMaxHeight);
-                  } else if (i > maxItemsInFoundItems) {
+                  } else if (i >= maxItemsInFoundItems) {
                     fi.scrollBy(0, buttonHeight);
                   }
                 } else {
@@ -244,7 +244,7 @@ const Search = ({
                   if (lastFoundItem) {
                     // scroll to last item
                     fi.scrollBy(0, foundItemsMaxHeight);
-                  } else if (i < filtData.length - (maxItemsInFoundItems - 1)) {
+                  } else if (i <= filtData.length - (maxItemsInFoundItems - 1)) {
                     fi.scrollBy(0, 0 - buttonHeight);
                   }
                 }
