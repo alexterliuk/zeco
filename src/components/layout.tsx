@@ -6,6 +6,9 @@ import Header from './header';
 import './layout.css';
 
 const getLayoutStyles = (maxWidth: string) => `
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0 auto;
   max-width: ${maxWidth};
   padding: 0 1.0875rem 1.45rem;
@@ -44,7 +47,7 @@ const Layout = ({ children, size }: any) => {
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <Container>
-        <main>{children}</main>
+        <main style={{ flexGrow: 1 }}>{children}</main>
         <LayoutFooter>
           © {new Date().getFullYear()}, Built with
           {` `}
