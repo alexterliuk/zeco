@@ -26,7 +26,6 @@ import energorynok from './energorynok';
 import expocentrua from './expocentrua';
 import fininpro from './fininpro';
 import gdip from './gdip';
-import index from './index';
 import izmailskyimtp from './izmailskyimtp';
 import kaluskatetsnova from './kaluskatetsnova';
 import kbpivdenne from './kbpivdenne';
