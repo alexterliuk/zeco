@@ -13,22 +13,29 @@ import { ButtonAsRow } from './styled-elements';
 // TODO; move backgroundColorInSearchFoundItems to zecoConfig
 const backgroundColorInSearchFoundItems = 'lightblue';
 const padding = 5;
+const margin = 5;
 
 const Container = styled.div`
   border-radius: 8px;
   box-shadow: 0px 0px 8px 1px #d4d9dc;
   outline: none;
-  margin: 10px;
+  padding: ${padding}px;
+`;
+
+const ContainerNoBorder = styled.div`
+  outline: none;
   padding: ${padding}px;
 `;
 
 const Label = styled.label`
-  margin-right: 10px;
+  display: inline-block;
+  margin: ${margin}px;
 `;
 
 const Input = styled.input`
   font-family: serif;
   padding: 1px 2px;
+  margin: ${margin}px;
 `;
 
 const FoundItems = styled.div`
@@ -62,6 +69,7 @@ const Search = ({
   labelName,
   maxWidth = 0,
   maxHeight = 135 /* enough for 4 buttons (selectable options) */,
+  border = true,
 }: SearchProps) => {
   const inputRef = useRef(null);
   const foundItemsRef = useRef(null);
@@ -356,20 +364,22 @@ const Search = ({
     }
   }
 
-  const mw = maxWidth > 0 && maxWidth;
+  // ================= return block =================
 
-  return (
-    <Container
-      tabIndex={-1}
-      style={{ maxWidth: mw || '' }}
-      onBlur={e => handleBlur(e.currentTarget, e.relatedTarget)}
-    >
+  const mw = maxWidth > 0 && maxWidth;
+  const tabIndex = -1;
+  const style = { maxWidth: mw || '' };
+  const onBlur = (e: any) => handleBlur(e.currentTarget, e.relatedTarget);
+  const props = { tabIndex, style, onBlur };
+
+  const children = (
+    <>
       {labelName ? <Label htmlFor="foundItem">{`${labelName}:`}</Label> : null}
       <Input
         type="text"
         name="foundItem"
         ref={inputRef}
-        style={{ width: mw ? `${mw - padding * 2}px` : '' }}
+        style={{ width: mw ? `${mw - padding * 2 - margin * 2}px` : '' }}
         onChange={e => handleChange(e.currentTarget.value)}
         onKeyDown={e => handleKeyDown(e.key)}
       />
@@ -380,7 +390,13 @@ const Search = ({
       >
         {pristine ? [] : filteredDataRef.current.map(item => item.button)}
       </FoundItems>
-    </Container>
+    </>
+  );
+
+  return border ? (
+    <Container {...props}>{children}</Container>
+  ) : (
+    <ContainerNoBorder {...props}>{children}</ContainerNoBorder>
   );
 };
 
@@ -396,6 +412,7 @@ Search.propTypes = {
   labelName: PropTypes.string,
   maxWidth: PropTypes.number,
   maxHeight: PropTypes.number,
+  border: PropTypes.bool,
 };
 
 interface SearchProps {
@@ -404,6 +421,7 @@ interface SearchProps {
   labelName?: string;
   maxWidth?: number;
   maxHeight?: number;
+  border?: boolean;
 }
 
 interface SearchItem {
