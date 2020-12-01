@@ -8,6 +8,10 @@ const translations = {
       uk: 'Всі компанії',
       en: 'All companies',
     },
+    enterCompanyNameOrUsreou: {
+      uk: 'Введіть назву компанії або її ЄДРПОУ',
+      en: 'Enter a company name or its USREOU',
+    },
     clickOnRowForView: {
       uk: 'Клікніть на рядок для перегляду.',
       en: 'Click on a row to view.',
