@@ -430,7 +430,7 @@ export interface SearchItem {
   onClick?: SearchOnClick;
 }
 
-type SearchOnClick = (id: string | number, item?: SearchItem) => unknown;
+export type SearchOnClick = (id: string | number, item?: SearchItem) => unknown;
 
 interface DataAndButton extends SearchItem {
   button: FunctionComponentElement<ReactElement>;
