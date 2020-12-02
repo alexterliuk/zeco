@@ -1598,3 +1598,4 @@ export type TranslationsType = 'common' | 'companyKeys' | 'companies';
 export type TranslationsCommonKey = keyof typeof translations.common;
 export type TranslationsCompanyKey = keyof typeof translations.companyKeys;
 export type Languages = 'uk' | 'en';
+export type CompanyId = keyof typeof translations.companies;
