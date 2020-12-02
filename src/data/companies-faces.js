@@ -24,7 +24,7 @@ const companiesFaces = [
   {
     id: 'arsenal',
     shortName: 'Арсенал',
-    usreou: '33403498',
+    usreou: '14307357',
   },
   {
     id: 'artemsil',
