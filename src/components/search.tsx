@@ -424,7 +424,7 @@ interface SearchProps {
   border?: boolean;
 }
 
-interface SearchItem {
+export interface SearchItem {
   id: string | number;
   text: string;
   onClick?: SearchOnClick;

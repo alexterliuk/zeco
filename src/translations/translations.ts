@@ -1592,6 +1592,7 @@ const translations = {
 };
 
 export default translations;
+export const languages: Languages[] = ['uk', 'en'];
 
 export type TranslationsType = 'common' | 'companyKeys' | 'companies';
 export type TranslationsCommonKey = keyof typeof translations.common;
