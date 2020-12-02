@@ -8,6 +8,10 @@ const translations = {
       uk: 'Всі компанії',
       en: 'All companies',
     },
+    enterCompanyNameOrUsreou: {
+      uk: 'Введіть назву компанії або її ЄДРПОУ',
+      en: 'Enter a company name or its USREOU',
+    },
     clickOnRowForView: {
       uk: 'Клікніть на рядок для перегляду.',
       en: 'Click on a row to view.',
@@ -178,29 +182,29 @@ const translations = {
     arenalviv: {
       name: {
         uk: 'Державне підприємство "Арена Львів"',
-        en: '',
+        en: 'State-Owned Enterprise "Arena Lviv"',
       },
       shortName: {
         uk: 'Арена Львів',
-        en: '',
+        en: 'Arena Lviv',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Львів',
+        en: 'Lviv',
       },
     },
     arsenal: {
       name: {
         uk: 'Казенне підприємство спеціального приладобудування "Арсенал"',
-        en: '',
+        en: 'Municipal Enterprise of Special Instrument Making "Arsenal"',
       },
       shortName: {
         uk: 'Арсенал',
-        en: '',
+        en: 'Arsenal',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     artemsil: {
@@ -220,15 +224,15 @@ const translations = {
     berdianskiymtp: {
       name: {
         uk: 'Державне підприємство "Бердянський морський торговельний порт"',
-        en: '',
+        en: 'Berdyansk Sea Trade Port',
       },
       shortName: {
         uk: 'Бердянський МТП',
-        en: '',
+        en: 'Berdyansk Sea Trade Port',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Бердянськ, Запорізька область',
+        en: 'Berdyansk, Zaporizhia oblast',
       },
     },
     boryspil: {
@@ -248,15 +252,16 @@ const translations = {
     buddyrektsiia: {
       name: {
         uk: 'Державне підприємство "Дирекція по будівництву об\'єктів"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Directorate for the Construction of Facilities"',
       },
       shortName: {
         uk: 'ДП "Буддирекція"',
-        en: '',
+        en: 'Buddyrektsiya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Червоноград, Львівська область',
+        en: 'Chervonohrad, Lviv oblast',
       },
     },
     centrenergo: {
@@ -306,43 +311,43 @@ const translations = {
     derzhaviappukraina: {
       name: {
         uk: 'Державне авіаційне підприємство "Україна"',
-        en: '',
+        en: 'State Aviation Enterprise "Ukraine"',
       },
       shortName: {
         uk: 'ДАП Україна',
-        en: '',
+        en: 'SAE Ukraine',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Бориспіль, Київська область',
+        en: 'Boryspil, Kyiv oblast',
       },
     },
     derzhgidrographiya: {
       name: {
         uk: 'Державна установа "Держгідрографія"',
-        en: '',
+        en: 'State Hydrographic Service of Ukraine',
       },
       shortName: {
         uk: 'Держгідрографія',
-        en: '',
+        en: 'State Hydrographic Service of Ukraine',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     derzhinvestkompaniya: {
       name: {
         uk: 'Державне підприємство "Державна інвестиційна компанія"',
-        en: '',
+        en: 'State-Owned Enterprise "State Investment Company"',
       },
       shortName: {
         uk: 'Державна інвесткомпанія',
-        en: '',
+        en: 'State Investment Company',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     derzhipotechustanova: {
@@ -362,58 +367,60 @@ const translations = {
     derzhvuglepostach: {
       name: {
         uk: 'Державне підприємство "Держвуглепостач"',
-        en: '',
+        en: 'State-Owned Enterprise "Derzhvuglepostach"',
       },
       shortName: {
         uk: 'Держвуглепостач',
-        en: '',
+        en: 'Derzhvuglepostach',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     devz: {
       name: {
         uk: 'Державне підприємство "Дніпровський електровозобудівний завод"',
-        en: '',
+        en: 'State-Owned Enterprise "Dniprovsky Electric Locomotive Plant"',
       },
       shortName: {
         uk: 'ДЕВЗ',
-        en: '',
+        en: 'DELP',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Дніпро',
+        en: 'Dnipro',
       },
     },
     diprozvjazok: {
       name: {
         uk:
           'ПрАТ "Український інститут із проектування і розвитку інформаційно-комунікаційної інфраструктури "Діпрозв\'язок"',
-        en: '',
+        en:
+          'Public Joint-Stock Company "Ukrainian Institute for Designing and Development of Information and Communication Infrastructure "Diprozvyazok""',
       },
       shortName: {
         uk: "Діпрозв'язок",
-        en: '',
+        en: 'Diprozvyazok',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     dniprovskatets: {
       name: {
         uk: 'Акціонерне товариство "Дніпровська теплоелектроцентраль"',
-        en: '',
+        en:
+          'Private Joint-Stock Company "Dniprovska Central Heating and Power Plant"',
       },
       shortName: {
         uk: 'Дніпровська ТЕЦ',
-        en: '',
+        en: 'Dniprovska teploelektrotsentral',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: "Кам'янське, Дніпропетровська область",
+        en: 'Kamianske, Dnipropetrovska oblast',
       },
     },
     dpzku: {
@@ -435,30 +442,31 @@ const translations = {
     dyrbudaeroportodesa: {
       name: {
         uk:
-          'Державне підприємство "Дирекція з будівництва міжнародного аеропорту "Одеса"',
-        en: '',
+          'Державне підприємство "Дирекція з будівництва міжнародного аеропорту "Одеса""',
+        en:
+          'State-Owned Enterprise "Directorate for the construction of the International Airport "Odesa""',
       },
       shortName: {
         uk: 'Буддирекція аеропорту Одеса',
-        en: '',
+        en: 'Directorate for construction of airport Odesa',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Одеса',
+        en: 'Odesa',
       },
     },
     electrovazhmash: {
       name: {
         uk: 'Державне підприємство "Завод "Електроважмаш"',
-        en: '',
+        en: 'State-Owned Enterprise "Elektrovazhmash Plant"',
       },
       shortName: {
         uk: 'Електроважмаш',
-        en: '',
+        en: 'Elektrovazhmash',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Харків',
+        en: 'Kharkiv',
       },
     },
     energoatom: {
@@ -494,15 +502,15 @@ const translations = {
     expocentrua: {
       name: {
         uk: 'Національний комплекс "Експоцентр України"',
-        en: '',
+        en: '"Expocenter of Ukraine" National Complex',
       },
       shortName: {
         uk: 'Експоцентр України',
-        en: '',
+        en: 'Expocenter of Ukraine',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     fininpro: {
@@ -523,43 +531,44 @@ const translations = {
       name: {
         uk:
           'Державне підприємство "Генеральна дирекція з обслуговування іноземних представництв"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Directorate-General for Rendering Services To Diplomatic Missions"',
       },
       shortName: {
         uk: 'ГДІП',
-        en: '',
+        en: 'GDIP',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     izmailskyimtp: {
       name: {
         uk: 'Державне підприємство "Ізмаїльський морський торговельний порт"',
-        en: '',
+        en: 'State-Owned Enterprise "Izmail Sea Trade Port"',
       },
       shortName: {
         uk: 'Ізмаїльський МТП',
-        en: '',
+        en: 'Izmail Sea Trade Port',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Ізмаїл, Одеська область',
+        en: 'Izmail, Odesa oblast',
       },
     },
     kaluskatetsnova: {
       name: {
         uk: 'Державне підприємство "Калуська теплоелектроцентраль-нова"',
-        en: '',
+        en: 'State-Owned Enterprise "Kalush Heat and Power Plant - New"',
       },
       shortName: {
         uk: 'Калуська ТЕЦ-нова',
-        en: '',
+        en: 'Kalush Heat and Power Plant - New',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Калуш, Івано-Франківська область',
+        en: 'Kalush, Ivano-Frankivsk oblast',
       },
     },
     kbpivdenne: {
@@ -581,15 +590,16 @@ const translations = {
       name: {
         uk:
           'Державне підприємство "Дирекція Криворізького гірничо-збагачувального комбінату окислених руд"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Directorate of the Kryvy Rih Mining and Processing Plant for Oxidized Ores"',
       },
       shortName: {
         uk: 'Дирекція КГЗКОР',
-        en: '',
+        en: 'Directorate KGZKOR',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Долинська, Кіровоградська область',
+        en: 'Dolynska,  Kirovohradska oblast',
       },
     },
     kharkivoblenergo: {
@@ -609,29 +619,30 @@ const translations = {
     khartron: {
       name: {
         uk: 'Акціонерне товариство "Хартрон"',
-        en: '',
+        en: 'Public Joint-Stock Company "Khartron"',
       },
       shortName: {
         uk: 'Хартрон',
-        en: '',
+        en: 'Khartron',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Харків',
+        en: 'Kharkiv',
       },
     },
     khersonskatets: {
       name: {
         uk: 'Акціонерне товариство "Херсонська теплоелектроцентраль"',
-        en: '',
+        en:
+          'Private Joint-Stock Company "Kherson Central Heating and Power Plant"',
       },
       shortName: {
         uk: 'Херсонська теплоелектроцентраль',
-        en: '',
+        en: 'Kherson Teploelektrotsentral',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Херсон',
+        en: 'Kherson',
       },
     },
     khmelnytskoblenergo: {
@@ -651,49 +662,50 @@ const translations = {
     komunar: {
       name: {
         uk: 'Державне науково-виробниче підприємство "Об\'єднання Комунар"',
-        en: '',
+        en: 'State Scientific-Production Enterprise "Association "Komunar""',
       },
       shortName: {
         uk: "Об'єднання Комунар",
-        en: '',
+        en: 'Association "Komunar"',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Харків',
+        en: 'Kharkiv',
       },
     },
     konchazaspa: {
       name: {
         uk: 'Державне підприємство "Санаторій "Конча-Заспа"',
-        en: '',
+        en: 'State-Owned Enterprise "Sanatorium "Koncha-Zaspa""',
       },
       shortName: {
         uk: 'Санаторій Конча-Заспа',
-        en: '',
+        en: 'Sanatorium Koncha-Zaspa',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     konyarstvoua: {
       name: {
         uk: 'Державне підприємство "Конярство України"',
-        en: '',
+        en: 'State-Owned Enterprise "Koniarstvo of Ukraine"',
       },
       shortName: {
         uk: 'Конярство України',
-        en: '',
+        en: 'Koniarstvo of Ukraine',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     krivoryzteplocentral: {
       name: {
         uk: 'Акціонерне товариство "Криворізька теплоцентраль"',
-        en: 'Public Joint-Stock Company "Kryvyi Rih Teplotsentral"',
+        en:
+          'Public Joint-Stock Company "Kryvyi Rih Central Heating and Power Plant"',
       },
       shortName: {
         uk: 'Криворізька ТЕЦ',
@@ -701,64 +713,64 @@ const translations = {
       },
       location: {
         uk: 'Кривий Ріг, Дніпропетровська область',
-        en: 'Kryvyi Rih, Dnipro oblast',
+        en: 'Kryvyi Rih, Dnipropetrovska oblast',
       },
     },
     kryvbaspromvodopostachannia: {
       name: {
         uk: 'Державне промислове підприємство "Кривбаспромводопостачання"',
-        en: '',
+        en: 'State-Owned Enterprise "Kryvbaspromvodoposlection"',
       },
       shortName: {
         uk: 'Кривбаспромводопостачання',
-        en: '',
+        en: 'Kryvbaspromvodopostachannya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Кривий Ріг, Дніпропетровська область',
+        en: 'Kryvyi Rih, Dnipropetrovska oblast',
       },
     },
     kyivdniprovskemppzt: {
       name: {
         uk:
           'Приватне акціонерне товариство "Київ-Дніпровське міжгалузеве підприємство промислового залізничного транспорту"',
-        en: '',
+        en: 'PJSC "Kyiv-Dneprovsky MPPZT"',
       },
       shortName: {
         uk: 'Київ-Дніпровське МППЗТ',
-        en: '',
+        en: 'PJSC "Kyiv-Dneprovsky MPPZT"',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     lisichanskvug: {
       name: {
         uk: 'Акціонерне товариство "Лисичанськвугілля"',
-        en: '',
+        en: 'Public Joint-Stock Company "Lisichanskvugillya"',
       },
       shortName: {
         uk: 'Лисичанськвугілля',
-        en: '',
+        en: 'Lisichanskvugillya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Лисичанськ, Луганська область',
+        en: 'Lysychansk, Lugansk oblast',
       },
     },
     lvivvug: {
       name: {
         uk: 'Державне підприємство "Львіввугілля"',
-        en: '',
+        en: 'State-Owned Enterprise "Lvivvugillya"',
       },
       shortName: {
         uk: 'Львіввугілля',
-        en: '',
+        en: 'Lvivvugillya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Сокаль, Львівська область',
+        en: 'Sokal, Lviv oblast',
       },
     },
     mariupolskiymtp: {
@@ -778,15 +790,15 @@ const translations = {
     molodagvardiya: {
       name: {
         uk: 'Державне підприємство "Український дитячий центр "Молода гвардія"',
-        en: '',
+        en: 'State-Owned Enterprise "UDC "Young Guard""',
       },
       shortName: {
         uk: 'Молода гвардія',
-        en: '',
+        en: 'Young Guard',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Одеса',
+        en: 'Odesa',
       },
     },
     mtpchornomorsk: {
@@ -820,29 +832,29 @@ const translations = {
     mykolaivvug: {
       name: {
         uk: 'Акціонерне товариство "Миколаївобленерго"',
-        en: '',
+        en: 'Public Joint-Stock Company "Mykolayivoblenergo"',
       },
       shortName: {
         uk: 'Миколаївобленерго',
-        en: '',
+        en: 'Mykolayivoblenergo',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Миколаїв',
+        en: 'Mykolayiv',
       },
     },
     myrnogradvug: {
       name: {
         uk: 'Державне підприємство "Мирноградвугілля"',
-        en: '',
+        en: 'State-Owned Enterprise "Myrnogradvugillya"',
       },
       shortName: {
         uk: 'Мирноградвугілля',
-        en: '',
+        en: 'Myrnogradvugillya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Мирноград, Донецька область',
+        en: 'Myrnograd, Donetsk oblast',
       },
     },
     mystetskyiarsenal: {
@@ -865,15 +877,16 @@ const translations = {
       name: {
         uk:
           'Приватне акціонерне товариство "Національна акціонерна компанія "Надра України"',
-        en: '',
+        en:
+          'Public Joint-Stock Company "National Joint-Stock Company "Nadra of Ukraine""',
       },
       shortName: {
         uk: 'Надра України',
-        en: '',
+        en: 'Nadra of Ukraine',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     naftogaz: {
@@ -967,15 +980,15 @@ const translations = {
     palatsukraina: {
       name: {
         uk: 'Державне підприємство "Національний палац мистецтв "Україна"',
-        en: '',
+        en: 'State-Owned Enterprise "National Palace of Arts "Ukraine""',
       },
       shortName: {
         uk: 'Палац мистецтв Україна',
-        en: '',
+        en: 'Palace of Arts Ukraine',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     pavlogradkhimzavod: {
@@ -991,35 +1004,36 @@ const translations = {
       },
       location: {
         uk: 'Павлоград, Дніпропетровська область',
-        en: 'Pavlograd, Dnipro oblast',
+        en: 'Pavlograd, Dnipropetrovska oblast',
       },
     },
     pershyikyivskyimashzavod: {
       name: {
         uk: 'Акціонерне товариство "Перший київський машинобудівний завод"',
-        en: '',
+        en:
+          'Public Joint-Stock Company "Pershyi Kyivskiy Machinery Construction Plant"',
       },
       shortName: {
         uk: 'Перший київський машзавод',
-        en: '',
+        en: 'Pershyi Kyivskiy Machinery Construction Plant',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     pervomaiskvug: {
       name: {
         uk: 'Державне підприємство "Первомайськвугілля"',
-        en: '',
+        en: 'State-Owned Enterprise "Pervomaiskvugillya"',
       },
       shortName: {
         uk: 'Первомайськвугілля',
-        en: '',
+        en: 'Pervomaiskvugillya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Гірське, Луганська область',
+        en: 'Girske, Luhansk oblast',
       },
     },
     pivdenmash: {
@@ -1041,44 +1055,46 @@ const translations = {
     pivdennodonbaske: {
       name: {
         uk: 'Державне підприємство "Шахтоуправління "Південнодонбаське №1"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Yuzhnodonbassskoye Mine Administration No.1"',
       },
       shortName: {
         uk: 'Шахтоуправління "Південнодонбаське №1',
-        en: '',
+        en: 'Yuzhnodonbassskoye Mine Administration No.1',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Вугледар, Донецька область',
+        en: 'Vugledar, Donetsk oblast',
       },
     },
     poligrafkombinatukraina: {
       name: {
         uk:
           'Державне підприємство "Поліграфічний комбінат "Україна" по виготовленню цінних паперів"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Polygraphic Combine "Ukraine" for the Production of Securities"',
       },
       shortName: {
         uk: 'Поліграфкомбінат Україна',
-        en: '',
+        en: 'Polygraphic Combine Ukraine',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     prezidentotel: {
       name: {
         uk: 'Приватне акціонерне товариство "Президент-готель"',
-        en: '',
+        en: 'Private Joint-Stock Company "President-Hotel"',
       },
       shortName: {
         uk: 'Президент-готель',
-        en: '',
+        en: 'President-Hotel',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     regelmerezhi: {
@@ -1098,57 +1114,58 @@ const translations = {
     rrtconcern: {
       name: {
         uk: "Концерн радіомовлення, радіозв'язку та телебачення",
-        en: '',
+        en: 'Concern of Broadcasting, Radio Communication, and Television',
       },
       shortName: {
         uk: 'Концерн РРТ',
-        en: '',
+        en: 'Concern of Broadcasting, Radio, and TV',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     selydivvug: {
       name: {
         uk: 'Державне підприємство "Селидіввугілля"',
-        en: '',
+        en: 'State-Owned Enterprise "Selidivvugillya"',
       },
       shortName: {
         uk: 'Селидіввугілля',
-        en: '',
+        en: 'Selidivvugillya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Селидове, Донецька область',
+        en: 'Selydove, Donetsk oblast',
       },
     },
     severodonetskatets: {
       name: {
         uk: 'Державне підприємство "Сєвєродонецька теплоелектроцентраль"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Severodonetsk Central Heating and Power Plant"',
       },
       shortName: {
         uk: 'Сєвєродонецька ТЕЦ',
-        en: '',
+        en: 'Severodonetsk Teploelektrotsentral',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Сєвєродонецьк, Луганська область',
+        en: 'Severodonetsk, Luhansk oblast',
       },
     },
     shakhtaimsurgaya: {
       name: {
         uk: 'Державне підприємство "Шахта ім. Сургая"',
-        en: '',
+        en: 'State-Owned Enterprise "Mine named after Surgay"',
       },
       shortName: {
         uk: 'Шахта ім. Сургая',
-        en: '',
+        en: 'Mine named after Surgay',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Вугледар, Донецька область',
+        en: 'Vugledar, Donetsk oblast',
       },
     },
     skhidgzk: {
@@ -1162,63 +1179,63 @@ const translations = {
       },
       location: {
         uk: 'Жовті Води, Дніпропетровська область',
-        en: 'Zhovti Vody, Dnipro oblast',
+        en: 'Zhovti Vody, Dnipropetrovska oblast',
       },
     },
     skolviya: {
       name: {
         uk: 'Державне підприємство "Стивідорна компанія "Ольвія"',
-        en: '',
+        en: 'State-Owned Enterprise "Olviya Specialized Sea Port"',
       },
       shortName: {
         uk: 'СК Ольвія',
-        en: '',
+        en: 'Olviya Specialized Sea Port',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Миколаїв',
+        en: 'Mykolayiv',
       },
     },
     sportkompleksatlet: {
       name: {
         uk: 'Державне підприємство "Спортивний комплекс "Атлет"',
-        en: '',
+        en: 'State-Owned Enterprise "Atlet Sport Complex"',
       },
       shortName: {
         uk: 'Спорткомплекс Атлет',
-        en: '',
+        en: 'Atlet Sports Complex',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ternopiloblenergo: {
       name: {
         uk: 'Відкрите акціонерне товариство "Тернопільобленерго"',
-        en: '',
+        en: 'Open Joint-Stock Company "Ternopiloblenergo"',
       },
       shortName: {
         uk: 'Тернопільобленерго',
-        en: '',
+        en: 'Ternopiloblenergo',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Тернопіль',
+        en: 'Ternopil',
       },
     },
     toretskvug: {
       name: {
         uk: 'Державне підприємство "Торецьквугілля"',
-        en: '',
+        en: 'State-Owned Enterprise "Toretskvugillya"',
       },
       shortName: {
         uk: 'Торецьквугілля',
-        en: '',
+        en: 'Toretskvugillya',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Торецьк, Донецька область',
+        en: 'Toretsk, Donetsk oblast',
       },
     },
     turboatom: {
@@ -1239,29 +1256,30 @@ const translations = {
       name: {
         uk:
           'Приватне акціонерне товариство "Українське Дунайське Пароплавство"',
-        en: '',
+        en: 'Private Joint Stock Company "Ukrainian Danube Shipping Company"',
       },
       shortName: {
         uk: 'УДП',
-        en: '',
+        en: 'UDSC',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Ізмаїл, Одеська область',
+        en: 'Izmail, Odesa oblast',
       },
     },
     udtsr: {
       name: {
         uk: 'Державне підприємство "Український державний центр радіочастот"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Ukrainian State Center of Radio Frequencies"',
       },
       shortName: {
         uk: 'УДЦР',
-        en: '',
+        en: 'UCRF',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukraerorukh: {
@@ -1282,30 +1300,30 @@ const translations = {
       name: {
         uk:
           'Державне публічне акціонерне товариство "Національна акціонерна компанія "Украгролізинг"',
-        en: '',
+        en: 'National Joint-Stock Company "Ukragroleasing"',
       },
       shortName: {
         uk: 'Украгролізинг',
-        en: '',
+        en: 'Ukragroleasing',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrbud: {
       name: {
         uk:
           'Державне публічне акціонерне товариство "Будівельна компанія "Укрбуд"',
-        en: '',
+        en: 'National Joint-Stock Company "Construction Company "Ukrbud""',
       },
       shortName: {
         uk: 'Укрбуд',
-        en: '',
+        en: 'Ukrbud',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrenergo: {
@@ -1326,15 +1344,15 @@ const translations = {
     ukrgeofizyka: {
       name: {
         uk: 'Державне геофізичне підприємство "Укргеофізика"',
-        en: '',
+        en: 'State Geophysical Enterprise "Ukrgeophysics"',
       },
       shortName: {
         uk: 'Укргеофізика',
-        en: '',
+        en: 'Ukrgeophysics',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrgidroenergo: {
@@ -1354,15 +1372,15 @@ const translations = {
     ukrkhimtransamiak: {
       name: {
         uk: 'Державне підприємство "Укрхімтрансаміак"',
-        en: '',
+        en: 'Ukrainian State-Owned Enterprise "Ukrchimtransamiak"',
       },
       shortName: {
         uk: 'Укрхімтрансаміак',
-        en: '',
+        en: 'Ukrchimtransamiak',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrkosmos: {
@@ -1383,30 +1401,31 @@ const translations = {
       name: {
         uk:
           'ДП "Всеукраїнський державний НВЦ стандартизації, метрології, сертифікації та захисту прав споживачів"',
-        en: '',
+        en: 'State-Owned Enterprise "Ukrmetrteststandard"',
       },
       shortName: {
         uk: 'Укрметртестстандарт',
-        en: '',
+        en: 'Ukrmetrteststandard',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrpatent: {
       name: {
         uk:
           'Державне підприємство "Український інститут інтелектуальної власності"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Ukrainian Institute of Intellectual Property"',
       },
       shortName: {
         uk: 'Укрпатент',
-        en: '',
+        en: 'Ukrpatent',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrposhta: {
@@ -1426,60 +1445,62 @@ const translations = {
     ukrservismintransu: {
       name: {
         uk: 'Державне підприємство "Укрсервіс Мінтрансу"',
-        en: '',
+        en:
+          'State-Owned Enterprise "Ukrservice under the Ministry of Transport of Ukraine"',
       },
       shortName: {
         uk: 'Укрсервіс Мінтрансу',
-        en: '',
+        en: 'Ukrservice of Mintrans',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrspirt: {
       name: {
         uk:
           'Державне підприємство спиртової та лікеро-горілчаної промисловості "Укрспирт"',
-        en: '',
+        en: 'State-Owned Enterprise of Alcohol and Liquor Industry "Ukrspyrt"',
       },
       shortName: {
         uk: 'ДП Укрспирт',
-        en: '',
+        en: 'SE Ukrspirt',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Бровари, Київська область',
+        en: 'Brovary, Kyiv oblast',
       },
     },
     ukrspirtconcern: {
       name: {
         uk:
           'Державний концерн спиртової та лікеро-горілчаної промисловості (Укрспирт)',
-        en: '',
+        en: 'State-Owned Concern of Alcohol and Liquor Industry "Ukrspyrt"',
       },
       shortName: {
         uk: 'Концерн Укрспирт',
-        en: '',
+        en: 'Concern Ukrspyrt',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrvydavpoligrafiya: {
       name: {
         uk:
           'Акціонерне товариство "Державна акціонерна компанія "Українське видавничо-поліграфічне об\'єднання"',
-        en: '',
+        en:
+          'Public Joint-Stock Company "State Joint-Stock Company "Ukrainian Publishing and Printing Company""',
       },
       shortName: {
         uk: 'Укрвидавполіграфія',
-        en: '',
+        en: 'Ukrainian Publishing and Printing Company',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     ukrzaliznytsia: {
@@ -1499,15 +1520,15 @@ const translations = {
     ukrzhitloservis: {
       name: {
         uk: 'Державне підприємство "Укржитлосервіс"',
-        en: '',
+        en: 'State-Owned Enterprise "Ukrzhitloservis"',
       },
       shortName: {
         uk: 'Укржитлосервіс',
-        en: '',
+        en: 'Ukrzhitloservis',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Київ',
+        en: 'Kyiv',
       },
     },
     vugcompkrasnolymanska: {
@@ -1527,15 +1548,15 @@ const translations = {
     zalofitsdelegatsiy: {
       name: {
         uk: 'Державне підприємство "Зал офіційних делегацій"',
-        en: '',
+        en: 'State-Owned Enterprise "Hall for Official Delegations"',
       },
       shortName: {
         uk: 'Зал офіційних делегацій',
-        en: '',
+        en: 'Hall for Official Delegations',
       },
       location: {
-        uk: '',
-        en: '',
+        uk: 'Аеропорт Бориспіль, Київська область',
+        en: 'Airport Boryspil, Kyiv oblast',
       },
     },
     zaporizhoblenergo: {
@@ -1571,8 +1592,10 @@ const translations = {
 };
 
 export default translations;
+export const languages: Languages[] = ['uk', 'en'];
 
 export type TranslationsType = 'common' | 'companyKeys' | 'companies';
 export type TranslationsCommonKey = keyof typeof translations.common;
 export type TranslationsCompanyKey = keyof typeof translations.companyKeys;
 export type Languages = 'uk' | 'en';
+export type CompanyId = keyof typeof translations.companies;

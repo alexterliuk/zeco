@@ -213,6 +213,9 @@ const Search = ({
   };
 
   const handleKeyDown = (key: string) => {
+    const input: unknown = inputRef.current;
+    if (input instanceof HTMLInputElement && !input.value) return;
+
     mouseMovedRef.current = false;
     if (key === 'ArrowDown' || key === 'ArrowUp') {
       const DOWN = key === 'ArrowDown';
@@ -225,6 +228,7 @@ const Search = ({
         idx = selIdx < 1 ? filtData.length - 1 : selIdx - 1;
       }
       const foundItem = filtData[idx];
+      if (!foundItem) return;
       const firstFoundItem = !idx;
       const lastFoundItem = idx === filtData.length - 1;
 
@@ -424,13 +428,13 @@ interface SearchProps {
   border?: boolean;
 }
 
-interface SearchItem {
+export interface SearchItem {
   id: string | number;
   text: string;
   onClick?: SearchOnClick;
 }
 
-type SearchOnClick = (id: string | number, item?: SearchItem) => unknown;
+export type SearchOnClick = (id: string | number, item?: SearchItem) => unknown;
 
 interface DataAndButton extends SearchItem {
   button: FunctionComponentElement<ReactElement>;

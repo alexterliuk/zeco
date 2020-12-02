@@ -4,7 +4,7 @@ const arsenal: CompanyProfile = {
   id: 'arsenal',
   name: '',
   shortName: 'Арсенал',
-  usreou: '33403498',
+  usreou: '14307357',
   location: '',
   industry: '',
   statements: {
