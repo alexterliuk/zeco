@@ -144,7 +144,9 @@ let getCompanyAllDataPanel = (id: string) => {
  * @param {array} companyData - with {key, value} objects
  */
 let _getCompanyAllDataPanel = (id: string, companyData: KeyValuePairs) => {
-  return composeCompanyAllDataPanel(id, companyData);
+  return companyData.length
+    ? composeCompanyAllDataPanel(id, companyData)
+    : null;
 };
 // furnish _getCompanyAllDataPanel with memoization capabilities
 _getCompanyAllDataPanel = wrapInMemoContext(_getCompanyAllDataPanel);
