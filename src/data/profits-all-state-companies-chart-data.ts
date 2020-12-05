@@ -1,5 +1,5 @@
 import { translateChart } from '../translations/translate';
-import { Languages } from '../translations/translations';
+import { Language } from '../translations/translations';
 import { ChartSpec } from '../components/bar-charts';
 
 const profitsAllStateCompaniesChartData = {
@@ -59,7 +59,7 @@ const chartTranslations = {
 
 function translate(
   translateOneItem: string | undefined,
-  lang: Languages | undefined
+  lang: Language | undefined
 ): ChartSpec | string {
   return translateChart(
     profitsAllStateCompaniesChartData,

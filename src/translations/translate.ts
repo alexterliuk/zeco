@@ -3,7 +3,7 @@ import translations, {
   TranslationsType,
   TranslationsCommonKey,
   TranslationsCompanyKey,
-  Languages,
+  Language,
 } from './translations';
 import { ChartSpec } from '../components/bar-charts';
 
@@ -13,7 +13,7 @@ const translate = (
   companyKey?: TranslationsCompanyKey,
   commonKey?: TranslationsCommonKey
 ): string => {
-  const lang: Languages = zecoConfig.getItem(['lang']);
+  const lang: Language = zecoConfig.getItem(['lang']);
   let item;
 
   if (companyKey && entityType === 'companyKeys') {
@@ -42,9 +42,9 @@ const translateChart = (
   chartData: ChartSpec,
   chartTranslations: ChartTranslations,
   translateOneItem?: string | undefined,
-  lang?: Languages
+  lang?: Language
 ) => {
-  let _lang: Languages = lang || zecoConfig.getItem(['lang']);
+  let _lang: Language = lang || zecoConfig.getItem(['lang']);
   const key = translateOneItem;
   if (typeof key === 'string') {
     return key === 'title' || key === 'btnName'

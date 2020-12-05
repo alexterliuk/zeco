@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import { Button } from './styled-elements';
 import zecoConfig from '../../config/zeco-config';
-import { Languages } from '../translations/translations';
+import { Language } from '../translations/translations';
 
 // const translateChartItems = (
 //   itemKey: string,
@@ -139,7 +139,7 @@ export interface ChartSpec {
   config: ChartConfig;
   translate: (
     translateOneItem?: string,
-    lang?: Languages
+    lang?: Language
   ) => ChartSpec | string;
 }
 
