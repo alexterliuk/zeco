@@ -401,7 +401,7 @@ function filterRows(
   });
 }
 
-interface CompanyAllDataPanelProps {
+export interface CompanyAllDataPanelProps {
   subheader: { [key: string]: string };
   theadRow: CompanyAllDataTableRow;
   tbodyRows: CompanyAllDataTableRow[];
