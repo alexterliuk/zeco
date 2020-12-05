@@ -39,8 +39,7 @@ const translateTimePeriod = (val: string): string => {
 };
 
 const translateChart = (
-  chartData: ChartSpec,
-  chartTranslations: ChartTranslations,
+  chartSpecTranslations: ChartSpecTranslations,
   translateOneItem?: string | undefined,
   lang?: Language
 ) => {
@@ -48,14 +47,14 @@ const translateChart = (
   const key = translateOneItem;
   if (typeof key === 'string') {
     return key === 'title' || key === 'btnName'
-      ? chartTranslations[_lang][key]
+      ? chartSpecTranslations[_lang][key]
       : key;
   }
 
-  return chartTranslations[_lang];
+  return chartSpecTranslations[_lang];
 };
 
-interface ChartTranslations {
+interface ChartSpecTranslations {
   en: ChartSpec;
   uk: ChartSpec;
 }

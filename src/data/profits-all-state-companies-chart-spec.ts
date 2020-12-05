@@ -2,7 +2,7 @@ import { translateChart } from '../translations/translate';
 import { Language } from '../translations/translations';
 import { ChartSpec } from '../components/bar-charts';
 
-const profitsAllStateCompaniesChartData = {
+const profitsAllStateCompaniesChartSpec = {
   title: 'Profits/losses of all state-owned companies of Ukraine',
   btnName: 'All companies profits',
   data: [
@@ -34,8 +34,8 @@ const profitsAllStateCompaniesChartData = {
   translate,
 };
 
-const chartTranslations = {
-  en: profitsAllStateCompaniesChartData,
+const chartSpecTranslations = {
+  en: profitsAllStateCompaniesChartSpec,
   uk: {
     title: 'Прибутки/збитки всіх державних компаній України',
     btnName: 'Прибутки всіх компаній',
@@ -62,11 +62,10 @@ function translate(
   lang: Language | undefined
 ): ChartSpec | string {
   return translateChart(
-    profitsAllStateCompaniesChartData,
-    chartTranslations,
+    chartSpecTranslations,
     translateOneItem,
     lang
   );
 }
 
-export default profitsAllStateCompaniesChartData;
+export default profitsAllStateCompaniesChartSpec;
