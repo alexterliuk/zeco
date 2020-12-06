@@ -409,7 +409,7 @@ export interface CompanyAllDataPanelProps {
   currYear: string;
 }
 
-interface CompanyAllDataTableRow {
+export interface CompanyAllDataTableRow {
   name: string;
   cells: string[];
 }
