@@ -54,7 +54,7 @@ const translateChart = (
   return chartSpecTranslations[_lang];
 };
 
-interface ChartSpecTranslations {
+export interface ChartSpecTranslations {
   en: ChartSpec;
   uk: ChartSpec;
 }
