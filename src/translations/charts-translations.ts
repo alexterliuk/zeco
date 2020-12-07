@@ -4,30 +4,6 @@ import translations, {
   TranslationsCompanyKey,
 } from './translations';
 
-const chartsTranslations = {};
-// if there's need to use non default values for charts,
-// add translations to chartsTranslations, e.g:
-// const chartsTranslations = {
-//   netProfit: {
-//     title: {
-//       uk: 'Динаміка чистого прибутку',
-//       en: 'Changes in net profit',
-//     },
-//     btnName: {
-//       uk: 'Чистий прибуток',
-//       en: 'Net Profit',
-//     },
-//     dataKey: {
-//       uk: 'Чистий Прибуток',
-//       en: 'Net Profit',
-//     },
-//     unit: {
-//       uk: ' млн грн',
-//       en: ' m uah',
-//     },
-//   },
-// };
-
 // these are all keys to FinancialStatements in company.statements[year]
 // e.g. in (../data/companies/ampu).statements['2016']
 export const statementsKeys: Exclude<
@@ -56,6 +32,47 @@ export const statementsKeys: Exclude<
   'ebitda',
   'ebitdaMargin',
 ];
+
+const unit = { uk: ' млн грн', en: ' m uah' };
+
+const chartsTranslations: ChartSpecsPartialTranslations = {
+  netProfit: { unit },
+  profitGrowth: { unit: { uk: '%', en: '%' } },
+  netIncome: { unit },
+  incomeGrowth: { unit: { uk: '%', en: '%' } },
+  netLoss: { unit },
+  equity: { unit },
+  'assets.current': { unit },
+  'assets.fixed': { unit },
+  'assets.totalValue': { unit },
+  producedCost: { unit },
+  salaryExpenses: { unit },
+  grossProfit: { unit },
+  grossLoss: { unit },
+  ebitda: { unit },
+  ebitdaMargin: { unit },
+};
+
+// if there's need to use non default values for charts,
+// below is an example of full translation for chartsTranslations:
+// chartsTranslations.netProfit = {
+//   title: {
+//     uk: 'Динаміка чистого прибутку',
+//     en: 'Changes in net profit',
+//   },
+//   btnName: {
+//     uk: 'Чистий прибуток',
+//     en: 'Net Profit',
+//   },
+//   dataKey: {
+//     uk: 'Чистий Прибуток',
+//     en: 'Net Profit',
+//   },
+//   unit: {
+//     uk: ' млн грн',
+//     en: ' m uah',
+//   },
+// };
 
 const statementsKeysTranslations = statementsKeys.reduce(
   (acc: { [k: string]: any }, key) => (
@@ -87,6 +104,24 @@ function makeTranslationItem(str = '') {
 }
 
 export type ChartSpecName = keyof typeof chartsTranslations;
+export interface ChartSpecsPartialTranslations {
+  netProfit: Partial<OneChartTranslations>;
+  profitGrowth: Partial<OneChartTranslations>;
+  netIncome: Partial<OneChartTranslations>;
+  incomeGrowth: Partial<OneChartTranslations>;
+  netLoss: Partial<OneChartTranslations>;
+  equity: Partial<OneChartTranslations>;
+  'assets.current': Partial<OneChartTranslations>;
+  'assets.fixed': Partial<OneChartTranslations>;
+  'assets.totalValue': Partial<OneChartTranslations>;
+  producedCost: Partial<OneChartTranslations>;
+  salaryExpenses: Partial<OneChartTranslations>;
+  grossProfit: Partial<OneChartTranslations>;
+  grossLoss: Partial<OneChartTranslations>;
+  ebitda: Partial<OneChartTranslations>;
+  ebitdaMargin: Partial<OneChartTranslations>;
+}
+
 type ChartTranslationsItem = {
   [key in Language]: string;
 };
