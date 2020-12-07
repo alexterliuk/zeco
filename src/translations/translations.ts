@@ -17,7 +17,7 @@ const translations = {
       en: 'Click on a row to view.',
     },
     dataGivenInKHryvnias: {
-      uk: 'Дані наведені в тисячах гривень.',
+      uk: 'Дані наведено в тисячах гривень.',
       en: 'Data given in thousands of hryvnias.',
     },
     qrDot: {
