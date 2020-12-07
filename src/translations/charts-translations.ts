@@ -90,7 +90,7 @@ export function getChartTranslationsFor(
   const title =
     givenTrs?.title || stKeysTrs[specName] || makeTranslationItem(specName);
   const btnName = title;
-  const dataKey = givenTrs?.dataKey || makeTranslationItem(specName);
+  const dataKey = givenTrs?.dataKey || btnName;
   const unit = givenTrs?.unit || makeTranslationItem('');
 
   return { title, btnName, dataKey, unit };
