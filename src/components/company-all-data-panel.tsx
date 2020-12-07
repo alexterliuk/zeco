@@ -96,7 +96,7 @@ const CompanyAllDataPanel = ({
             <thead>
               <tr>
                 <Th />
-                {_theadRow.cells.map((period: string, i) => (
+                {_theadRow.cells.map((period, i) => (
                   <Th key={`${period}${i}`}>{translateTimePeriod(period)}</Th>
                 ))}
               </tr>
@@ -327,12 +327,12 @@ function makeTbodyRowsCells(
 function filterColumns(
   colsConfig: ColsConfig,
   yearIndicesInTheadRow: Indices,
-  theadRow: CompanyAllDataTableRow,
+  theadRow: CompanyAllDataTableTheadRow,
   tbodyRows: CompanyAllDataTableRow[],
   currYear: string
 ) {
   return colsConfig.years.reduce(
-    (acc: [CompanyAllDataTableRow, CompanyAllDataTableRow[]], year, i) => {
+    (acc: [CompanyAllDataTableTheadRow, CompanyAllDataTableRow[]], year, i) => {
       const idx = yearIndicesInTheadRow[year];
       const qrs = colsConfig.quarters;
 
@@ -372,7 +372,7 @@ function filterColumns(
  * @param {number} end
  */
 function filterCells(
-  _theadRow: CompanyAllDataTableRow,
+  _theadRow: CompanyAllDataTableTheadRow,
   periods: string[],
   _tbodyRows: CompanyAllDataTableRow[],
   tbodyRows: CompanyAllDataTableRow[],
@@ -403,15 +403,20 @@ function filterRows(
 
 export interface CompanyAllDataPanelProps {
   subheader: { [key: string]: string };
-  theadRow: CompanyAllDataTableRow;
+  theadRow: CompanyAllDataTableTheadRow;
   tbodyRows: CompanyAllDataTableRow[];
   statementsIndicesInTbodyRows: Indices;
   currYear: string;
 }
 
-export interface CompanyAllDataTableRow {
+export interface CompanyAllDataTableTheadRow {
   name: string;
   cells: string[];
+}
+
+export interface CompanyAllDataTableRow {
+  name: string;
+  cells: (number | string | false | undefined)[];
 }
 
 interface BlocksKeys {
