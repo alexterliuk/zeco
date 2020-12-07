@@ -10,6 +10,7 @@ import {
   ChartSpecTranslations,
   translateChart,
 } from '../translations/translate';
+import { isNumber } from './value-checker';
 
 const getChartsData = (
   propsOfComposedCompanyAllDataPanel: CompanyAllDataPanelProps
@@ -53,10 +54,16 @@ function makeChartSpec(
   return {
     title: specTrs.title[lang],
     btnName: specTrs.btnName[lang],
-    data: tbodyRow.cells.map((cellVal, i) => ({
-      name: theadRow.cells[i],
-      [specTrs.dataKey[lang]]: cellVal,
-    })),
+    data: tbodyRow.cells.map((val, i) => {
+      const n = isNumber(val) && val;
+      // convert figure from thousands to millions
+      let v = (n && (n as number) / 1000) || val;
+      if (v === false) v = undefined;
+      return {
+        name: theadRow.cells[i],
+        [specTrs.dataKey[lang]]: v,
+      };
+    }),
     config: {
       barsConfig: [
         {
