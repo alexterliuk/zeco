@@ -4,6 +4,16 @@ import translations, {
   TranslationsCompanyKey,
 } from './translations';
 
+export const theadRowTranslations: {
+  '1q': ChartTranslationsItem;
+  '2q': ChartTranslationsItem;
+  '3q': ChartTranslationsItem;
+} = {
+  '1q': { uk: '1к', en: '1q' },
+  '2q': { uk: '2к', en: '2q' },
+  '3q': { uk: '3к', en: '3q' },
+};
+
 // these are all keys to FinancialStatements in company.statements[year]
 // e.g. in (../data/companies/ampu).statements['2016']
 export const statementsKeys: Exclude<

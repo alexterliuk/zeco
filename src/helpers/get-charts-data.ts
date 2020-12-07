@@ -5,7 +5,10 @@ import {
 import { languages, Language } from '../translations/translations';
 import chartsPartDataSpecs from '../data/charts-part-data-specs';
 import { ChartSpec } from '../components/bar-charts';
-import { OneChartTranslations } from '../translations/charts-translations';
+import {
+  OneChartTranslations,
+  theadRowTranslations,
+} from '../translations/charts-translations';
 import {
   ChartSpecTranslations,
   translateChart,
@@ -59,8 +62,13 @@ function makeChartSpec(
       // convert figure from thousands to millions
       let v = (n && (n as number) / 1000) || val;
       if (v === false) v = undefined;
+
+      let name = theadRow.cells[i];
+      if (name === '1q' || name === '2q' || name === '3q') {
+        name = theadRowTranslations[name][lang];
+      }
       return {
-        name: theadRow.cells[i],
+        name,
         [specTrs.dataKey[lang]]: v,
       };
     }),
