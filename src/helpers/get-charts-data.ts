@@ -61,8 +61,12 @@ function makeChartSpec(
       const n = isNumber(val) && val;
       // convert figure from thousands to millions
       let v = (n && (n as number) / 1000) || val;
+      // chart throws error if bumps into false
       if (v === false) v = undefined;
 
+      if (typeof v === 'string' && v[v.length - 1] === '%') {
+        v = v.slice(0, -1);
+      }
       let name = theadRow.cells[i];
       if (name === '1q' || name === '2q' || name === '3q') {
         name = theadRowTranslations[name][lang];
