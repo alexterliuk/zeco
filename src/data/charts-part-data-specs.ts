@@ -2,18 +2,17 @@ import {
   statementsKeys,
   OneChartTranslations,
   getChartTranslationsFor,
-  ChartSpecName,
 } from '../translations/charts-translations';
 
 // TODO: move to zecoConfig
 const defaultColor = 'blue';
 
 const chartsColors = {
-  netProfit: 'cyan',
-  profitGrowth: 'orange',
+  netProfit: '',
+  profitGrowth: '',
   netIncome: '',
   incomeGrowth: '',
-  netLoss: '',
+  netLoss: 'red',
   equity: '',
   'assets.current': '',
   'assets.fixed': '',
@@ -21,7 +20,7 @@ const chartsColors = {
   producedCost: '',
   salaryExpenses: '',
   grossProfit: '',
-  grossLoss: '',
+  grossLoss: 'red',
   ebitda: '',
   ebitdaMargin: '',
 };
@@ -33,12 +32,7 @@ const chartsPartDataSpecs = statementsKeys.reduce(
   ) => {
     acc[key] = {
       color: chartsColors[key] || defaultColor,
-      // chartsTranslations might not have a key from statementsKeys
-      // (if it's chosen to have default values for this key (i.e. for chart))
-      // but let TS think the key exists, because an unknown key
-      // is handled in getChartTranslationsFor; if remove 'as ChartSpecName',
-      // chartsTranslations need to have {} for each key of statementsKey
-      translations: getChartTranslationsFor(key as ChartSpecName),
+      translations: getChartTranslationsFor(key),
     };
     return acc;
   },
