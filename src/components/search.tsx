@@ -177,7 +177,11 @@ const Search = ({
     // some button might be selected, unselect it
     unselectItem();
     const curr = dataAndButtonsRef.current;
-    const _filteredData = !v ? [] : curr.filter(item => item.text.includes(v));
+    const _filteredData = !v ? [] : curr.filter(item => {
+      const uppCased = `${v[0].toUpperCase()}${v.slice(1)}`;
+      const lowCased = `${v[0].toLowerCase()}${v.slice(1)}`;
+      return item.text.includes(uppCased || lowCased);
+    });
     // this is used for up/down arrow key navigation and for hovering
     filteredDataRef.current = _filteredData;
     // this triggers updating Search, stored value is not used (thus NOT_USED)
