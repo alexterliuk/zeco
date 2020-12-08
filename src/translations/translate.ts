@@ -31,6 +31,9 @@ const translate = (
 const translateCommon = (commonKey: TranslationsCommonKey): string =>
   (commonKey && translate('', 'common', undefined, commonKey)) || '';
 
+const translateCompanyKey = (companyKey: TranslationsCompanyKey): string =>
+  (companyKey && translate('', 'companyKeys', companyKey)) || '';
+
 const translateTimePeriod = (val: string): string => {
   if (val.match(/^[1-3]q$/)) {
     return `${val[0]} ${translate('', 'common', undefined, 'qrDot')}`;
@@ -59,4 +62,10 @@ export interface ChartSpecTranslations {
   uk: ChartSpec;
 }
 
-export { translate, translateCommon, translateTimePeriod, translateChart };
+export {
+  translate,
+  translateCommon,
+  translateCompanyKey,
+  translateTimePeriod,
+  translateChart,
+};
