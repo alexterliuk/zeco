@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import zecoConfig from '../../config/zeco-config';
@@ -31,18 +31,24 @@ const CompanyAllDataAndCharts = ({
   if (!companyId) return null;
   const composedCompanyAllDataPanel = getCompanyAllDataPanel(companyId);
   const data = composedCompanyAllDataPanel?.props;
-  const chartsData = data && getChartsData(data);
-  const charts =
-    chartsData &&
-    ((keysPairs: [string, number][]) =>
-      keysPairs.reduce(
-        (acc: { [key: string]: ChartSpecTranslations }, keysPair) => {
-          const [k1, k2] = [keysPair[0], keysPair[1]];
-          acc[k1] = (chartsData[k2][k1] as unknown) as ChartSpecTranslations;
-          return acc;
-        },
-        {}
-      ))(Object.entries(data.statementsIndicesInTbodyRows));
+  const chartsData = useMemo(() => getChartsData(data), [data]);
+  const charts = useMemo(
+    () =>
+      ((keysPairs: [string, number][]) =>
+        keysPairs.reduce(
+          (acc: { [key: string]: ChartSpecTranslations }, keysPair) => {
+            const [k1, k2] = [keysPair[0], keysPair[1]];
+            acc[k1] = (chartsData[k2][k1] as unknown) as ChartSpecTranslations;
+            return acc;
+          },
+          {}
+        ))(
+        chartsData.length
+          ? Object.entries(data.statementsIndicesInTbodyRows)
+          : []
+      ),
+    chartsData
+  );
 
   return (
     <>
@@ -50,7 +56,7 @@ const CompanyAllDataAndCharts = ({
         <Message>{translateCommon('dataGivenInKHryvnias')}</Message>
       </Preamble>
       <PanelWrapper>{composedCompanyAllDataPanel}</PanelWrapper>
-      {chartsData ? (
+      {chartsData.length ? (
         <>
           <BarCharts
             initChartSpec={charts.netProfit[getLang()]}
