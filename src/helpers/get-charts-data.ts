@@ -18,6 +18,7 @@ import { isNumber } from './value-checker';
 const getChartsData = (
   propsOfComposedCompanyAllDataPanel: CompanyAllDataPanelProps
 ) => {
+  if (!propsOfComposedCompanyAllDataPanel) return [];
   const { theadRow, tbodyRows } = propsOfComposedCompanyAllDataPanel;
   return makeChartsSpecs(theadRow, tbodyRows);
 };
