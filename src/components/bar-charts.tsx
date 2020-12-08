@@ -146,7 +146,7 @@ BarCharts.propTypes = {
 export interface ChartSpec {
   title: string;
   btnName: string;
-  data: { name: string }[];
+  data: { name: string; [key: string]: any }[];
   config: ChartConfig;
   translate: (translateOneItem?: string, lang?: Language) => ChartSpec | string;
 }
