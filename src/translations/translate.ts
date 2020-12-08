@@ -3,7 +3,7 @@ import translations, {
   TranslationsType,
   TranslationsCommonKey,
   TranslationsCompanyKey,
-  Languages,
+  Language,
 } from './translations';
 import { ChartSpec } from '../components/bar-charts';
 
@@ -13,7 +13,7 @@ const translate = (
   companyKey?: TranslationsCompanyKey,
   commonKey?: TranslationsCommonKey
 ): string => {
-  const lang: Languages = zecoConfig.getItem(['lang']);
+  const lang: Language = zecoConfig.getItem(['lang']);
   let item;
 
   if (companyKey && entityType === 'companyKeys') {
@@ -31,6 +31,9 @@ const translate = (
 const translateCommon = (commonKey: TranslationsCommonKey): string =>
   (commonKey && translate('', 'common', undefined, commonKey)) || '';
 
+const translateCompanyKey = (companyKey: TranslationsCompanyKey): string =>
+  (companyKey && translate('', 'companyKeys', companyKey)) || '';
+
 const translateTimePeriod = (val: string): string => {
   if (val.match(/^[1-3]q$/)) {
     return `${val[0]} ${translate('', 'common', undefined, 'qrDot')}`;
@@ -39,25 +42,30 @@ const translateTimePeriod = (val: string): string => {
 };
 
 const translateChart = (
-  chartData: ChartSpec,
-  chartTranslations: ChartTranslations,
+  chartSpecTranslations: ChartSpecTranslations,
   translateOneItem?: string | undefined,
-  lang?: Languages
+  lang?: Language
 ) => {
-  let _lang: Languages = lang || zecoConfig.getItem(['lang']);
+  let _lang: Language = lang || zecoConfig.getItem(['lang']);
   const key = translateOneItem;
   if (typeof key === 'string') {
     return key === 'title' || key === 'btnName'
-      ? chartTranslations[_lang][key]
+      ? chartSpecTranslations[_lang][key]
       : key;
   }
 
-  return chartTranslations[_lang];
+  return chartSpecTranslations[_lang];
 };
 
-interface ChartTranslations {
+export interface ChartSpecTranslations {
   en: ChartSpec;
   uk: ChartSpec;
 }
 
-export { translate, translateCommon, translateTimePeriod, translateChart };
+export {
+  translate,
+  translateCommon,
+  translateCompanyKey,
+  translateTimePeriod,
+  translateChart,
+};

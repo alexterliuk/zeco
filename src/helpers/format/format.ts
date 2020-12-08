@@ -3,15 +3,15 @@ import formatStr from './format-str';
 
 /**
  *
- * @param {number|string} numOrStr
+ * @param {number | string | boolean | undefined} val
  * @param {...string} formats
  */
 function format(
-  numOrStr: number | string,
+  val: number | string | boolean | undefined,
   ...formats: string[] | string[][]
-): string | number {
-  const num = typeof numOrStr === 'number' && numOrStr;
-  const str = typeof numOrStr === 'string' && numOrStr;
+) {
+  const num = typeof val === 'number' && val;
+  const str = typeof val === 'string' && val;
 
   // @ts-ignore
   // TS raises not-existing-type error if tsconfig.json has 'target: es5'
@@ -20,7 +20,7 @@ function format(
   return (
     (num && formatNum(num, _formats)) ||
     (str && formatStr(str, _formats)) ||
-    numOrStr
+    val
   );
 }
 

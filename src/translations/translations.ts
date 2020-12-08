@@ -17,7 +17,7 @@ const translations = {
       en: 'Click on a row to view.',
     },
     dataGivenInKHryvnias: {
-      uk: 'Дані наведені в тисячах гривень.',
+      uk: 'Дані наведено в тисячах гривень.',
       en: 'Data given in thousands of hryvnias.',
     },
     qrDot: {
@@ -1592,10 +1592,10 @@ const translations = {
 };
 
 export default translations;
-export const languages: Languages[] = ['uk', 'en'];
+export const languages: Language[] = ['uk', 'en'];
 
 export type TranslationsType = 'common' | 'companyKeys' | 'companies';
 export type TranslationsCommonKey = keyof typeof translations.common;
 export type TranslationsCompanyKey = keyof typeof translations.companyKeys;
-export type Languages = 'uk' | 'en';
+export type Language = 'uk' | 'en';
 export type CompanyId = keyof typeof translations.companies;
