@@ -65,7 +65,7 @@ function makeChartSpec(
       if (v === false) v = undefined;
 
       if (typeof v === 'string' && v[v.length - 1] === '%') {
-        v = v.slice(0, -1);
+        v = +v.slice(0, -1);
       }
       let name = theadRow.cells[i];
       if (name === '1q' || name === '2q' || name === '3q') {
