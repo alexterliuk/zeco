@@ -28,17 +28,17 @@ export const statementsKeys: Exclude<
 >[] = [
   'netProfit',
   'profitGrowth',
+  'grossProfit',
+  'netLoss',
+  'grossLoss',
   'netIncome',
   'incomeGrowth',
-  'netLoss',
-  'equity',
   'assets.current',
   'assets.fixed',
   'assets.totalValue',
+  'equity',
   'producedCost',
   'salaryExpenses',
-  'grossProfit',
-  'grossLoss',
   'ebitda',
   'ebitdaMargin',
 ];
@@ -48,17 +48,17 @@ const unit = { uk: ' млн грн', en: ' m uah' };
 const chartsTranslations: ChartSpecsPartialTranslations = {
   netProfit: { unit },
   profitGrowth: { unit: { uk: '%', en: '%' } },
+  grossProfit: { unit },
+  netLoss: { unit },
+  grossLoss: { unit },
   netIncome: { unit },
   incomeGrowth: { unit: { uk: '%', en: '%' } },
-  netLoss: { unit },
-  equity: { unit },
   'assets.current': { unit },
   'assets.fixed': { unit },
   'assets.totalValue': { unit },
+  equity: { unit },
   producedCost: { unit },
   salaryExpenses: { unit },
-  grossProfit: { unit },
-  grossLoss: { unit },
   ebitda: { unit },
   ebitdaMargin: { unit },
 };
@@ -117,17 +117,17 @@ export type ChartSpecName = keyof typeof chartsTranslations;
 export interface ChartSpecsPartialTranslations {
   netProfit: Partial<OneChartTranslations>;
   profitGrowth: Partial<OneChartTranslations>;
+  grossProfit: Partial<OneChartTranslations>;
+  netLoss: Partial<OneChartTranslations>;
+  grossLoss: Partial<OneChartTranslations>;
   netIncome: Partial<OneChartTranslations>;
   incomeGrowth: Partial<OneChartTranslations>;
-  netLoss: Partial<OneChartTranslations>;
-  equity: Partial<OneChartTranslations>;
   'assets.current': Partial<OneChartTranslations>;
   'assets.fixed': Partial<OneChartTranslations>;
   'assets.totalValue': Partial<OneChartTranslations>;
+  equity: Partial<OneChartTranslations>;
   producedCost: Partial<OneChartTranslations>;
   salaryExpenses: Partial<OneChartTranslations>;
-  grossProfit: Partial<OneChartTranslations>;
-  grossLoss: Partial<OneChartTranslations>;
   ebitda: Partial<OneChartTranslations>;
   ebitdaMargin: Partial<OneChartTranslations>;
 }
