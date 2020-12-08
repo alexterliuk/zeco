@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import {
   BarChart,
@@ -38,11 +38,10 @@ const translateButtonName = (spec: ChartSpec) => {
   return spec.translate('btnName');
 };
 
-const translateShownChart = (shownChart: ChartSpec, rigidSize: boolean) => {
-  return (s => getBarChart(s.data, s.config, rigidSize))(
+const translateShownChart = (shownChart: ChartSpec, rigidSize: boolean) =>
+  (s => getBarChart(s.data, s.config, rigidSize))(
     shownChart.translate(undefined, zecoConfig.getItem(['lang'])) as ChartSpec
   );
-};
 
 const BarCharts = ({
   initChartSpec,
@@ -64,6 +63,18 @@ const BarCharts = ({
     (acc: { [key: string]: ChartSpec }, s) => ((acc[s.btnName] = s), acc),
     {}
   );
+
+  const updateWhenNewSpec = useMemo(() => {
+    // if BarCharts includes a few charts, find what one is shown
+    const shownChartIdx = (ent =>
+      // if ent has only one chart, buttonsClasses is init value of useState
+      // i.e. only one chart exists, or more exist but no button was clicked -
+      // thus the first chart is shown
+      ent.length === 1 ? 0 : ent.findIndex(ent => ent[1] === 'active'))(
+      Object.entries(buttonsClasses)
+    );
+    replaceShownChart(allChartsSpecs[shownChartIdx]);
+  }, [initChartSpec]);
 
   const handleClick = (name: string) => {
     replaceShownChart(specs[name]);
@@ -137,10 +148,7 @@ export interface ChartSpec {
   btnName: string;
   data: { name: string }[];
   config: ChartConfig;
-  translate: (
-    translateOneItem?: string,
-    lang?: Language
-  ) => ChartSpec | string;
+  translate: (translateOneItem?: string, lang?: Language) => ChartSpec | string;
 }
 
 export interface ChartConfig {
