@@ -177,11 +177,13 @@ const Search = ({
     // some button might be selected, unselect it
     unselectItem();
     const curr = dataAndButtonsRef.current;
-    const _filteredData = !v ? [] : curr.filter(item => {
-      const uppCased = `${v[0].toUpperCase()}${v.slice(1)}`;
-      const lowCased = `${v[0].toLowerCase()}${v.slice(1)}`;
-      return item.text.includes(uppCased || lowCased);
-    });
+    const _filteredData = !v
+      ? []
+      : curr.filter(item => {
+          const uppCased = `${v[0].toUpperCase()}${v.slice(1)}`;
+          const lowCased = `${v[0].toLowerCase()}${v.slice(1)}`;
+          return item.text.includes(uppCased || lowCased);
+        });
     // this is used for up/down arrow key navigation and for hovering
     filteredDataRef.current = _filteredData;
     // this triggers updating Search, stored value is not used (thus NOT_USED)
@@ -236,45 +238,49 @@ const Search = ({
       const firstFoundItem = !idx;
       const lastFoundItem = idx === filtData.length - 1;
 
-      const el: unknown = foundItem.ref.current;
-      if (el instanceof HTMLElement) {
-        dataAndButtonsRef.current.map((dnb, i) => {
+      void dataAndButtonsRef.current.map(dnb => {
+        const btn: unknown = dnb.ref.current;
+        if (btn instanceof HTMLElement) {
           if (dnb.text === foundItem.text) {
-            const el: unknown = dnb.ref.current;
-            if (el instanceof HTMLElement) {
-              el.style.background = backgroundColorInSearchFoundItems;
-              foundItem.selected = true;
-              selItemIdxRef.current = idx;
+            btn.style.background = backgroundColorInSearchFoundItems;
+            foundItem.selected = true;
+            selItemIdxRef.current = idx;
 
-              const fi: unknown = foundItemsRef.current;
-              if (fi instanceof HTMLElement) {
-                if (DOWN) {
-                  if (firstFoundItem) {
-                    // scroll to first item
-                    fi.scrollBy(0, 0 - foundItemsMaxHeight);
-                  } else if (i >= maxItemsInFoundItems) {
-                    fi.scrollBy(0, buttonHeight);
-                  }
-                } else {
-                  // UP
-                  if (lastFoundItem) {
-                    // scroll to last item
-                    fi.scrollBy(0, foundItemsMaxHeight);
-                  } else if (i <= filtData.length - (maxItemsInFoundItems - 1)) {
-                    fi.scrollBy(0, 0 - buttonHeight);
-                  }
+            const fis: unknown = foundItemsRef.current;
+            if (fis instanceof HTMLElement) {
+              const fisTop = fis.getBoundingClientRect().top;
+              const btnTop = btn.getBoundingClientRect().top;
+              if (DOWN) {
+                if (firstFoundItem) {
+                  // scroll to first item
+                  fis.scrollBy(0, 0 - filtData.length * buttonHeight);
+                } else if (
+                  // scroll if button is one to last (penultimate);
+                  // if need to scroll at last, remove: - 1
+                  btnTop - fisTop >= buttonHeight * (maxItemsInFoundItems - 1)
+                ) {
+                  fis.scrollBy(0, buttonHeight);
+                }
+              } else {
+                // UP
+                if (lastFoundItem) {
+                  // scroll to last item
+                  fis.scrollBy(0, filtData.length * buttonHeight);
+                } else if (
+                  // scroll if button is one to last (penultimate);
+                  // if need to scroll at last, make: btnTop < fisTop
+                  btnTop < fisTop + buttonHeight
+                ) {
+                  fis.scrollBy(0, 0 - buttonHeight);
                 }
               }
             }
           } else {
             dnb.selected = false;
-            const el: unknown = dnb.ref.current;
-            if (el instanceof HTMLElement) {
-              el.style.background = '';
-            }
+            btn.style.background = '';
           }
-        });
-      }
+        }
+      });
     }
 
     if (key === 'Enter') {
