@@ -10,12 +10,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ButtonAsRow } from './styled-elements';
 
-// TODO; move backgroundColorInSearchFoundItems to zecoConfig
+// TODO: move backgroundColorInSearchFoundItems to zecoConfig
 const backgroundColorInSearchFoundItems = 'lightblue';
 const padding = 5;
 const margin = 5;
 
 const Container = styled.div`
+  position: relative;
   border-radius: 8px;
   box-shadow: 0px 0px 8px 1px #d4d9dc;
   outline: none;
@@ -23,6 +24,7 @@ const Container = styled.div`
 `;
 
 const ContainerNoBorder = styled.div`
+  position: relative;
   outline: none;
   padding: ${padding}px;
 `;
@@ -39,26 +41,14 @@ const Input = styled.input`
 `;
 
 const FoundItems = styled.div`
+  width: 99%;
+  position: absolute;
+  margin-top: 15px;
+  box-shadow: 0px 0px 10px 1px #d4d9dc;
   font-family: serif;
   background: #f9f9f9;
   overflow-y: auto;
 `;
-
-const getButtonHeight = (items: Pick<DataAndButton, 'ref'>[]) => {
-  const button: unknown = items[0].ref;
-  if (button instanceof HTMLElement) {
-    return button.getBoundingClientRect().height;
-  }
-  return 26; // expected value as a fallback
-};
-
-// mh - maxHeight, bh - buttonHeight, pd - padding
-const getContainerMaxHeight = (mh: number, bh: number, pd: number) =>
-  mh - (bh + pd);
-
-// 6 is input's padding-top/bottom + border-width
-const getMaxItemsInContainer = (mh: number, bh: number, pd: number) =>
-  Math.ceil((mh - (bh + 6 + pd)) / bh);
 
 // data consists of pop-down options, for each a button (ButtonAsRow) is created;
 // on a button's click, option.onClick is called (if exists), or Search's onClick
@@ -68,7 +58,7 @@ const Search = ({
   onClick,
   labelName,
   maxWidth = 0,
-  maxHeight = 135 /* enough for 4 buttons (selectable options) */,
+  qtyOfFoundItemsToShow = 4,
   border = true,
 }: SearchProps) => {
   const inputRef = useRef(null);
@@ -119,16 +109,17 @@ const Search = ({
   );
 
   const buttonHeight = useMemo(
-    () => getButtonHeight(dataAndButtonsRef.current),
-    [dataAndButtonsRef]
-  );
-  const foundItemsMaxHeight = useMemo(
-    () => getContainerMaxHeight(maxHeight, buttonHeight, padding),
-    [maxHeight, buttonHeight, padding]
-  );
-  const maxItemsInFoundItems = useMemo(
-    () => getMaxItemsInContainer(maxHeight, buttonHeight, padding),
-    [maxHeight, buttonHeight, padding]
+    () => {
+      const items: Pick<DataAndButton, 'ref'>[] = dataAndButtonsRef.current;
+      const button: unknown = items[0].ref;
+      if (button instanceof HTMLElement) {
+        return button.getBoundingClientRect().height;
+      }
+      return 26; // expected value as a fallback
+    },
+    // since buttons styles are changed, watch last one, because
+    // it is less likely to be hovered over or pressed than first one
+    [dataAndButtonsRef.current[dataAndButtonsRef.current.length - 1]]
   );
 
   const [pristine, setPristine] = useState(true);
@@ -177,11 +168,13 @@ const Search = ({
     // some button might be selected, unselect it
     unselectItem();
     const curr = dataAndButtonsRef.current;
-    const _filteredData = !v ? [] : curr.filter(item => {
-      const uppCased = `${v[0].toUpperCase()}${v.slice(1)}`;
-      const lowCased = `${v[0].toLowerCase()}${v.slice(1)}`;
-      return item.text.includes(uppCased || lowCased);
-    });
+    const _filteredData = !v
+      ? []
+      : curr.filter(item => {
+          const uppCased = `${v[0].toUpperCase()}${v.slice(1)}`;
+          const lowCased = `${v[0].toLowerCase()}${v.slice(1)}`;
+          return item.text.includes(uppCased || lowCased);
+        });
     // this is used for up/down arrow key navigation and for hovering
     filteredDataRef.current = _filteredData;
     // this triggers updating Search, stored value is not used (thus NOT_USED)
@@ -236,45 +229,49 @@ const Search = ({
       const firstFoundItem = !idx;
       const lastFoundItem = idx === filtData.length - 1;
 
-      const el: unknown = foundItem.ref.current;
-      if (el instanceof HTMLElement) {
-        dataAndButtonsRef.current.map((dnb, i) => {
+      void dataAndButtonsRef.current.map(dnb => {
+        const btn: unknown = dnb.ref.current;
+        if (btn instanceof HTMLElement) {
           if (dnb.text === foundItem.text) {
-            const el: unknown = dnb.ref.current;
-            if (el instanceof HTMLElement) {
-              el.style.background = backgroundColorInSearchFoundItems;
-              foundItem.selected = true;
-              selItemIdxRef.current = idx;
+            btn.style.background = backgroundColorInSearchFoundItems;
+            foundItem.selected = true;
+            selItemIdxRef.current = idx;
 
-              const fi: unknown = foundItemsRef.current;
-              if (fi instanceof HTMLElement) {
-                if (DOWN) {
-                  if (firstFoundItem) {
-                    // scroll to first item
-                    fi.scrollBy(0, 0 - foundItemsMaxHeight);
-                  } else if (i >= maxItemsInFoundItems) {
-                    fi.scrollBy(0, buttonHeight);
-                  }
-                } else {
-                  // UP
-                  if (lastFoundItem) {
-                    // scroll to last item
-                    fi.scrollBy(0, foundItemsMaxHeight);
-                  } else if (i <= filtData.length - (maxItemsInFoundItems - 1)) {
-                    fi.scrollBy(0, 0 - buttonHeight);
-                  }
+            const fis: unknown = foundItemsRef.current;
+            if (fis instanceof HTMLElement) {
+              const fisTop = fis.getBoundingClientRect().top;
+              const btnTop = btn.getBoundingClientRect().top;
+              if (DOWN) {
+                if (firstFoundItem) {
+                  // scroll to first item
+                  fis.scrollBy(0, 0 - filtData.length * buttonHeight);
+                } else if (
+                  // scroll if button is one to last (penultimate);
+                  // if need to scroll at last, remove: - 1
+                  btnTop - fisTop >= buttonHeight * (qtyOfFoundItemsToShow - 1)
+                ) {
+                  fis.scrollBy(0, buttonHeight);
+                }
+              } else {
+                // UP
+                if (lastFoundItem) {
+                  // scroll to last item
+                  fis.scrollBy(0, filtData.length * buttonHeight);
+                } else if (
+                  // scroll if button is one to last (penultimate);
+                  // if need to scroll at last, make: btnTop < fisTop
+                  btnTop < fisTop + buttonHeight
+                ) {
+                  fis.scrollBy(0, 0 - buttonHeight);
                 }
               }
             }
           } else {
             dnb.selected = false;
-            const el: unknown = dnb.ref.current;
-            if (el instanceof HTMLElement) {
-              el.style.background = '';
-            }
+            btn.style.background = '';
           }
-        });
-      }
+        }
+      });
     }
 
     if (key === 'Enter') {
@@ -393,7 +390,7 @@ const Search = ({
       />
       <FoundItems
         ref={foundItemsRef}
-        style={{ maxHeight: foundItemsMaxHeight }}
+        style={{ maxHeight: qtyOfFoundItemsToShow * buttonHeight }}
         onMouseMove={() => handleMouseMove()}
       >
         {pristine ? [] : filteredDataRef.current.map(item => item.button)}
@@ -419,7 +416,7 @@ Search.propTypes = {
   onClick: PropTypes.func,
   labelName: PropTypes.string,
   maxWidth: PropTypes.number,
-  maxHeight: PropTypes.number,
+  qtyOfFoundItemsToShow: PropTypes.number,
   border: PropTypes.bool,
 };
 
@@ -428,7 +425,7 @@ interface SearchProps {
   onClick?: SearchOnClick;
   labelName?: string;
   maxWidth?: number;
-  maxHeight?: number;
+  qtyOfFoundItemsToShow?: number;
   border?: boolean;
 }
 
