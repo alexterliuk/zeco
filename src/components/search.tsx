@@ -16,6 +16,7 @@ const padding = 5;
 const margin = 5;
 
 const Container = styled.div`
+  position: relative;
   border-radius: 8px;
   box-shadow: 0px 0px 8px 1px #d4d9dc;
   outline: none;
@@ -23,6 +24,7 @@ const Container = styled.div`
 `;
 
 const ContainerNoBorder = styled.div`
+  position: relative;
   outline: none;
   padding: ${padding}px;
 `;
@@ -39,6 +41,10 @@ const Input = styled.input`
 `;
 
 const FoundItems = styled.div`
+  width: 99%;
+  position: absolute;
+  margin-top: 15px;
+  box-shadow: 0px 0px 10px 1px #d4d9dc;
   font-family: serif;
   background: #f9f9f9;
   overflow-y: auto;
