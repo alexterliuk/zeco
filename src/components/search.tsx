@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ButtonAsRow } from './styled-elements';
 
-// TODO; move backgroundColorInSearchFoundItems to zecoConfig
+// TODO: move backgroundColorInSearchFoundItems to zecoConfig
 const backgroundColorInSearchFoundItems = 'lightblue';
 const padding = 5;
 const margin = 5;
@@ -50,22 +50,6 @@ const FoundItems = styled.div`
   overflow-y: auto;
 `;
 
-const getButtonHeight = (items: Pick<DataAndButton, 'ref'>[]) => {
-  const button: unknown = items[0].ref;
-  if (button instanceof HTMLElement) {
-    return button.getBoundingClientRect().height;
-  }
-  return 26; // expected value as a fallback
-};
-
-// mh - maxHeight, bh - buttonHeight, pd - padding
-const getContainerMaxHeight = (mh: number, bh: number, pd: number) =>
-  mh - (bh + pd);
-
-// 6 is input's padding-top/bottom + border-width
-const getMaxItemsInContainer = (mh: number, bh: number, pd: number) =>
-  Math.ceil((mh - (bh + 6 + pd)) / bh);
-
 // data consists of pop-down options, for each a button (ButtonAsRow) is created;
 // on a button's click, option.onClick is called (if exists), or Search's onClick
 // (if exists), or noop
@@ -74,7 +58,7 @@ const Search = ({
   onClick,
   labelName,
   maxWidth = 0,
-  maxHeight = 135 /* enough for 4 buttons (selectable options) */,
+  qtyOfFoundItemsToShow = 4,
   border = true,
 }: SearchProps) => {
   const inputRef = useRef(null);
@@ -125,16 +109,17 @@ const Search = ({
   );
 
   const buttonHeight = useMemo(
-    () => getButtonHeight(dataAndButtonsRef.current),
-    [dataAndButtonsRef]
-  );
-  const foundItemsMaxHeight = useMemo(
-    () => getContainerMaxHeight(maxHeight, buttonHeight, padding),
-    [maxHeight, buttonHeight, padding]
-  );
-  const maxItemsInFoundItems = useMemo(
-    () => getMaxItemsInContainer(maxHeight, buttonHeight, padding),
-    [maxHeight, buttonHeight, padding]
+    () => {
+      const items: Pick<DataAndButton, 'ref'>[] = dataAndButtonsRef.current;
+      const button: unknown = items[0].ref;
+      if (button instanceof HTMLElement) {
+        return button.getBoundingClientRect().height;
+      }
+      return 26; // expected value as a fallback
+    },
+    // since buttons styles are changed, watch last one, because
+    // it is less likely to be hovered over or pressed than first one
+    [dataAndButtonsRef.current[dataAndButtonsRef.current.length - 1]]
   );
 
   const [pristine, setPristine] = useState(true);
@@ -263,7 +248,7 @@ const Search = ({
                 } else if (
                   // scroll if button is one to last (penultimate);
                   // if need to scroll at last, remove: - 1
-                  btnTop - fisTop >= buttonHeight * (maxItemsInFoundItems - 1)
+                  btnTop - fisTop >= buttonHeight * (qtyOfFoundItemsToShow - 1)
                 ) {
                   fis.scrollBy(0, buttonHeight);
                 }
@@ -405,7 +390,7 @@ const Search = ({
       />
       <FoundItems
         ref={foundItemsRef}
-        style={{ maxHeight: foundItemsMaxHeight }}
+        style={{ maxHeight: qtyOfFoundItemsToShow * buttonHeight }}
         onMouseMove={() => handleMouseMove()}
       >
         {pristine ? [] : filteredDataRef.current.map(item => item.button)}
@@ -431,7 +416,7 @@ Search.propTypes = {
   onClick: PropTypes.func,
   labelName: PropTypes.string,
   maxWidth: PropTypes.number,
-  maxHeight: PropTypes.number,
+  qtyOfFoundItemsToShow: PropTypes.number,
   border: PropTypes.bool,
 };
 
@@ -440,7 +425,7 @@ interface SearchProps {
   onClick?: SearchOnClick;
   labelName?: string;
   maxWidth?: number;
-  maxHeight?: number;
+  qtyOfFoundItemsToShow?: number;
   border?: boolean;
 }
 
