@@ -7,7 +7,7 @@ import SEO from '../components/seo';
 import ProfitPresentation from '../components/profit-presentation';
 import FinResPresentation from '../components/fin-res-presentation';
 import { BarCharts } from '../components/bar-charts';
-import profitsAllStateCompaniesChartData from '../data/profits-all-state-companies-chart-data';
+import profitsAllStateCompaniesChartSpec from '../data/profits-all-state-companies-chart-spec';
 
 const ImageContainer = styled.div`
   max-width: 300px;
@@ -28,7 +28,7 @@ const IndexPage = () => (
     <Link to="/page-2/">Go to page 2</Link> <br />
     {/*<Link to="/companies-all-data/">Show All Companies</Link> <br />*/}
     <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    <BarCharts initChartSpec={profitsAllStateCompaniesChartData} />
+    <BarCharts initChartSpec={profitsAllStateCompaniesChartSpec} />
   </Layout>
 );
 
