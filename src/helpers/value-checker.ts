@@ -13,4 +13,12 @@ const isFunction = (...maybeFuncs: any[]) => {
   return !result.length ? false : result.length === 1 ? result[0] : result;
 };
 
-export { getPositiveIntegerOrZero, isNumber, isFunction };
+const isStringifiedNumberEndingWithPercent = (val: any) =>
+  typeof val === 'string' && /^-?(\d+\.?)?\d+%$/.test(val);
+
+export {
+  getPositiveIntegerOrZero,
+  isNumber,
+  isFunction,
+  isStringifiedNumberEndingWithPercent,
+};
