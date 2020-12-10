@@ -33,6 +33,25 @@ describe('getPositiveIntegerOrZero', () => {
   });
 });
 
+describe('isNumber', () => {
+  it('returns true if value is a number (but not NaN, not Infinity)', () => {
+    const args = [0, -0, 1, -1, 0.5, -0.5, -0.2355, 12548.7];
+    const results = args.map(v => isNumber(v));
+    expect(results).toEqual(Array(8).fill(true));
+  });
+
+  it('returns false if value is NaN or Infinity', () => {
+    const results = [isNumber(NaN), isNumber(Infinity)];
+    expect(results).toEqual([false, false]);
+  });
+
+  it('returns false if value is not a number', () => {
+    const args = ['1', null, {}, [], true, false, () => {}, undefined];
+    const results = args.map(v => isNumber(v));
+    expect(results).toEqual(Array(8).fill(false));
+  });
+});
+
 describe('isFunction', () => {
   it('returns false if called with -4 || -4.73 || 0 || `a` || null || {} || /ff/ || [] || Infinity || NaN', () => {
     const args = [-4, -4.73, 0, `a`, null, {}, /ff/, [], Infinity, NaN];
