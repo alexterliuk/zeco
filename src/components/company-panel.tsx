@@ -20,8 +20,6 @@ const Panel = styled.div`
   margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0px 0px 8px 1px #d4d9dc;
-  /*background: #efefef;*/
-  margin-top: 2.5rem;
   transition: opacity 200ms;
   will-change: opacity;
 `;
