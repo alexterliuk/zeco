@@ -1,5 +1,6 @@
 import formatNum from './format-num';
 import formatStr from './format-str';
+import { isStringifiedNumberEndingWithPercent } from '../value-checker';
 
 /**
  *
@@ -10,6 +11,7 @@ function format(
   val: number | string | boolean | undefined,
   ...formats: string[] | string[][]
 ) {
+  const strNumPercent = isStringifiedNumberEndingWithPercent(val);
   const num = typeof val === 'number' && val;
   const str = typeof val === 'string' && val;
 
@@ -18,10 +20,16 @@ function format(
   const _formats = formats.flat();
 
   return (
+    (strNumPercent && formatNumThenAddPercent(val, _formats)) ||
     (num && formatNum(num, _formats)) ||
     (str && formatStr(str, _formats)) ||
     val
   );
+}
+
+function formatNumThenAddPercent(val: any, formats: string[]) {
+  const formattedVal = formatNum(+val.slice(0, -1), formats);
+  return `${formattedVal}%`;
 }
 
 export default format;
