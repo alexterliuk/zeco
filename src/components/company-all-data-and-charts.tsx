@@ -53,7 +53,17 @@ const CompanyAllDataAndCharts = ({
     null,
     composedCompanyAllDataPanel,
   ]);
-
+  // dataTuple is needed due to CheckboxControl usage in Companies page (where
+  // CompanyAllDataAndCharts is used as content). When CompanyAllDataPanel is
+  // mounted, it subscribes via showSettings to getting updates of inputs' values
+  // of CheckboxControl. Thus, live show/hide cols and rows behavior is achieved.
+  // But when you found a new company in Search, it is not possible to utilize
+  // already shown CompanyAllDataPanel (i.e. passing new data there), because
+  // showSettings hook has in scope the first version of CompanyAllDataPanel and
+  // it doesn't track changes in state. If omit this and use shown component,
+  // then when you click on a checkbox, the data rolls back to the first version.
+  // dataTuple solves this by switching between first and second <PanelWrapper>
+  // with null or data, and a completely new CompanyAllDataPanel is always used.
   if (prevCompanyId !== companyId) {
     prevCompanyId = companyId;
     refreshData(() => {
