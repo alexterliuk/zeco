@@ -9,6 +9,8 @@ import CompanyAllDataAndCharts from '../components/company-all-data-and-charts';
 import { CompanyId } from '../translations/translations';
 import { toUsreou } from '../data/update-company-profile';
 import companies, { companiesIds } from '../data/companies';
+import CheckboxControl from '../components/checkbox-control';
+import showSettings from '../hooks/use-company-all-data-panel-show-settings';
 
 const SearchWrapper = styled.section`
   border-radius: 8px;
@@ -67,6 +69,7 @@ const Companies = () => {
       <SearchWrapper>
         <SearchCompanies onClick={searchOnClick} />
       </SearchWrapper>
+      {companyId ? <CheckboxControl checkboxSettings={showSettings} /> : null}
       <CompanyAllDataAndCharts companyId={companyId} />
     </Layout>
   );
