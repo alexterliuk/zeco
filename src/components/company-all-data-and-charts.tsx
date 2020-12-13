@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import zecoConfig from '../../config/zeco-config';
@@ -37,13 +37,34 @@ const chartsSets = [
   ['ebitda', 'ebitdaMargin'],
 ];
 
+let prevCompanyId = '';
+
 const CompanyAllDataAndCharts = ({
   companyId,
 }: {
   companyId: CompanyId | string;
 }) => {
   if (!companyId) return null;
-  const composedCompanyAllDataPanel = getCompanyAllDataPanel(companyId);
+
+  const [composedCompanyAllDataPanel, refreshData] = useState(
+    getCompanyAllDataPanel(companyId)
+  );
+  const [dataTuple, refreshDataTuple] = useState([
+    null,
+    composedCompanyAllDataPanel,
+  ]);
+
+  if (prevCompanyId !== companyId) {
+    prevCompanyId = companyId;
+    refreshData(() => {
+      const composedPanel = getCompanyAllDataPanel(companyId);
+      refreshDataTuple(() => {
+        return dataTuple[0] ? [null, composedPanel] : [composedPanel, null];
+      });
+      return composedPanel;
+    });
+  }
+
   const data = composedCompanyAllDataPanel?.props;
   const chartsData = useMemo(() => getChartsData(data), [data]);
   const charts = useMemo(() => {
@@ -79,7 +100,8 @@ const CompanyAllDataAndCharts = ({
       <Preamble>
         <Message>{translateCommon('dataGivenInKHryvnias')}</Message>
       </Preamble>
-      <PanelWrapper>{composedCompanyAllDataPanel}</PanelWrapper>
+      {dataTuple[0] ? <PanelWrapper>{dataTuple[0]}</PanelWrapper> : null}
+      {dataTuple[1] ? <PanelWrapper>{dataTuple[1]}</PanelWrapper> : null}
       {charts.length
         ? charts.map((c, i) => (
             <BarCharts
