@@ -28,7 +28,7 @@ const CheckboxControl = ({
   checkboxSettings,
   blockNameMinWidth = 80,
 }: CheckboxControlProps) => {
-  const { inpBlocks, updateInpBlocks }: CheckboxSettings = checkboxSettings;
+  const { inpBlocks, invokeUpdaters }: CheckboxSettings = checkboxSettings;
   const handleChange = (
     inp: HTMLInputElement,
     idx: number,
@@ -36,7 +36,7 @@ const CheckboxControl = ({
   ) => {
     inp.value = inp.checked ? 'on' : 'off';
     inpBlocks[blockIdx].inputs[idx].value = inp.checked;
-    updateInpBlocks(inpBlocks);
+    invokeUpdaters(inpBlocks);
   };
 
   return (
@@ -91,7 +91,7 @@ CheckboxControl.propTypes = {
         ).isRequired,
       })
     ).isRequired,
-    updateInpBlocks: PropTypes.func.isRequired,
+    invokeUpdaters: PropTypes.func.isRequired,
   }).isRequired,
   blockNameMinWidth: PropTypes.number,
 };
@@ -103,7 +103,7 @@ interface CheckboxControlProps {
 
 interface CheckboxSettings {
   inpBlocks: InpBlock[];
-  updateInpBlocks: (inpBlocks: InpBlock[]) => void;
+  invokeUpdaters: (inpBlocks: InpBlock[]) => void;
 }
 
 export interface InpBlock {
