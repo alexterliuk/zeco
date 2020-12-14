@@ -44,6 +44,22 @@ const translations = {
       uk: 'млрд гривень',
       en: 'bln hryvnias',
     },
+    currYearQuarters: {
+      uk: 'Квартали поточного року',
+      en: 'Current year quarters',
+    },
+    quarters: {
+      uk: 'Квартали',
+      en: 'Quarters',
+    },
+    cols: {
+      uk: 'Колонки',
+      en: 'Columns',
+    },
+    rows: {
+      uk: 'Рядки',
+      en: 'Rows',
+    },
   },
   companyKeys: {
     name: {

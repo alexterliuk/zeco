@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { companiesIds } from '../data/companies';
 import CompanyAllDataRow from './company-all-data-row';
+import CheckboxControl from '../components/checkbox-control';
+import showSettings from '../hooks/use-company-all-data-panel-show-settings';
 
 const Container = styled.section`
   padding: 20px 30px;
@@ -18,7 +20,12 @@ const CompaniesAllDataSection = () => {
     <CompanyAllDataRow key={id} id={id} />
   ));
 
-  return <Container>{companiesRows}</Container>;
+  return (
+    <>
+      <CheckboxControl checkboxSettings={showSettings} />
+      <Container>{companiesRows}</Container>)
+    </>
+  );
 };
 
 export default CompaniesAllDataSection;

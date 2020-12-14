@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import zecoConfig from '../../config/zeco-config';
 import getCompanyData from '../helpers/get-company-data';
 import wrapInMemoContext from '../helpers/wrap-in-memo-context';
 import { translate, translateTimePeriod } from '../translations/translate';
@@ -10,6 +9,7 @@ import {
   KeyValuePair,
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
+import showSettings from '../hooks/use-company-all-data-panel-show-settings';
 
 const Subheader = styled.div`
   display: flex;
@@ -54,32 +54,56 @@ const CompanyAllDataPanel = ({
   currYear,
 }: CompanyAllDataPanelProps) => {
   const { id, usreou } = subheader;
-  const {
-    cols,
-    rows,
-  }: {
-    cols: ColsConfig;
-    rows: string[];
-  } = zecoConfig.getItem(['showInCompanyAllDataPanel']).table;
 
-  const yearIndicesInTheadRow = theadRow.cells.reduce(
-    (acc: Indices, period, i) => {
-      if (cols.years.includes(period)) {
+  const [tableData, updateTableData] = useState(
+    getFilteredTableData(id, showSettings.settings)
+  );
+
+  useEffect(() => {
+    const updaters = {
+      id,
+      setStateFunc: updateTableData,
+      getFilteredTableData,
+    };
+    showSettings.subscribe(updaters);
+    return () => {
+      showSettings.unsubscribe(updaters);
+    };
+  }, []);
+
+  function getFilteredTableData(
+    id: string,
+    settings: {
+      cols: ColsConfig;
+      rows: string[];
+    }
+  ): CompanyAllDataTableData {
+    let [_theadRow, _tbodyRows] = filterColumns(
+      settings.cols,
+      getYearIndicesInTheadRow(settings.cols),
+      theadRow,
+      tbodyRows,
+      currYear
+    );
+    _tbodyRows = filterRows(
+      _tbodyRows,
+      settings.rows,
+      statementsIndicesInTbodyRows
+    );
+    return {
+      theadRow: _theadRow,
+      tbodyRows: _tbodyRows,
+    };
+  }
+
+  function getYearIndicesInTheadRow(settingsCols: { years: string[] }) {
+    return theadRow.cells.reduce((acc: Indices, period, i) => {
+      if (settingsCols.years.includes(period)) {
         acc[period] = i;
       }
       return acc;
-    },
-    {}
-  );
-
-  let [_theadRow, _tbodyRows] = filterColumns(
-    cols,
-    yearIndicesInTheadRow,
-    theadRow,
-    tbodyRows,
-    currYear
-  );
-  _tbodyRows = filterRows(_tbodyRows, rows, statementsIndicesInTbodyRows);
+    }, {});
+  }
 
   return (
     <div>
@@ -96,13 +120,13 @@ const CompanyAllDataPanel = ({
             <thead>
               <tr>
                 <Th />
-                {_theadRow.cells.map((period, i) => (
+                {tableData.theadRow.cells.map((period, i) => (
                   <Th key={`${period}${i}`}>{translateTimePeriod(period)}</Th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {_tbodyRows.map((row, i) => {
+              {tableData.tbodyRows.map((row, i) => {
                 // @ts-ignore
                 const translatedName = translate(id, 'companyKeys', row.name);
                 return (
@@ -148,6 +172,8 @@ let _getCompanyAllDataPanel = (id: string, companyData: KeyValuePairs) => {
     ? composeCompanyAllDataPanel(id, companyData)
     : null;
 };
+
+// TODO: do I still need this?
 // furnish _getCompanyAllDataPanel with memoization capabilities
 _getCompanyAllDataPanel = wrapInMemoContext(_getCompanyAllDataPanel);
 
@@ -318,7 +344,7 @@ function makeTbodyRowsCells(
 
 /**
  *
- * @param {object} colsConfig - zecoConfig.showInCompanyAllDataPanel.table.cols
+ * @param {object} colsConfig - showSettings.settings.cols
  * @param {object} yearIndicesInTheadRow - { 2016: 3, 2017: 7... }
  * @param {object} theadRow - {name, cells}
  * @param {array} tbodyRows - with {name, cells} objects
@@ -387,7 +413,7 @@ function filterCells(
 
 /**
  * @param {array} _tbodyRows - with {name, cells} objects
- * @param {array} rowsConfig - zecoConfig.showInCompanyAllDataPanel.table.rows
+ * @param {array} rowsConfig - showSettings.settings.rows
  * @param {object} statementsIndicesInTbodyRows - {netProfit: 3, equity: 14...}
  */
 function filterRows(
@@ -419,6 +445,25 @@ export interface CompanyAllDataTableRow {
   cells: (number | string | false | undefined)[];
 }
 
+interface ColsConfig {
+  years: string[];
+  quarters: boolean;
+  currYearQuarters: boolean;
+}
+
+export type GetFilteredTableData = (
+  id: string,
+  settings: {
+    cols: ColsConfig;
+    rows: string[];
+  },
+) => CompanyAllDataTableData;
+
+export interface CompanyAllDataTableData {
+  theadRow: CompanyAllDataTableTheadRow;
+  tbodyRows: CompanyAllDataTableRow[];
+}
+
 interface BlocksKeys {
   assets: string[];
   financials: string[];
@@ -426,12 +471,6 @@ interface BlocksKeys {
 
 interface Indices {
   [key: string]: number;
-}
-
-interface ColsConfig {
-  years: string[];
-  quarters: boolean;
-  currYearQuarters: boolean;
 }
 
 export default getCompanyAllDataPanel;

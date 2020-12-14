@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import zecoConfig from '../../config/zeco-config';
@@ -37,13 +37,44 @@ const chartsSets = [
   ['ebitda', 'ebitdaMargin'],
 ];
 
+let prevCompanyId = '';
+
 const CompanyAllDataAndCharts = ({
   companyId,
 }: {
   companyId: CompanyId | string;
 }) => {
   if (!companyId) return null;
-  const composedCompanyAllDataPanel = getCompanyAllDataPanel(companyId);
+
+  const [composedCompanyAllDataPanel, refreshData] = useState(
+    getCompanyAllDataPanel(companyId)
+  );
+  const [dataTuple, refreshDataTuple] = useState([
+    null,
+    composedCompanyAllDataPanel,
+  ]);
+  // dataTuple is needed due to CheckboxControl usage on Companies page (where
+  // CompanyAllDataAndCharts is used as content). When CompanyAllDataPanel is
+  // mounted, it subscribes via showSettings to getting updates of inputs' values
+  // of CheckboxControl. Thus, live show/hide cols and rows behavior is achieved.
+  // But when you found a new company in Search, it is not possible to utilize
+  // already shown CompanyAllDataPanel (i.e. passing new data there), because
+  // showSettings hook has in scope the first version of CompanyAllDataPanel and
+  // it doesn't track changes in state. If omit this and use shown component,
+  // then when you click on a checkbox, the data rolls back to the first version.
+  // dataTuple solves this by switching between first and second <PanelWrapper>
+  // with null or data, and a completely new CompanyAllDataPanel is always used.
+  if (prevCompanyId !== companyId) {
+    prevCompanyId = companyId;
+    refreshData(() => {
+      const composedPanel = getCompanyAllDataPanel(companyId);
+      refreshDataTuple(() => {
+        return dataTuple[0] ? [null, composedPanel] : [composedPanel, null];
+      });
+      return composedPanel;
+    });
+  }
+
   const data = composedCompanyAllDataPanel?.props;
   const chartsData = useMemo(() => getChartsData(data), [data]);
   const charts = useMemo(() => {
@@ -79,7 +110,8 @@ const CompanyAllDataAndCharts = ({
       <Preamble>
         <Message>{translateCommon('dataGivenInKHryvnias')}</Message>
       </Preamble>
-      <PanelWrapper>{composedCompanyAllDataPanel}</PanelWrapper>
+      {dataTuple[0] ? <PanelWrapper>{dataTuple[0]}</PanelWrapper> : null}
+      {dataTuple[1] ? <PanelWrapper>{dataTuple[1]}</PanelWrapper> : null}
       {charts.length
         ? charts.map((c, i) => (
             <BarCharts

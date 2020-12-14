@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import getCompanyData from '../helpers/get-company-data';
 import CompanyPanel from './company-panel';
 import { ParsedTimePeriod } from '../data/update-company-profile';
-
-const Container = styled.section`
-  /*background: #f9f8f8;*/
-  margin-top: 2.5rem;
-`;
+import { translateCommon } from '../translations/translate';
 
 const CompanyPanelSection = ({
   id,
@@ -18,13 +13,18 @@ const CompanyPanelSection = ({
   const companyData = getCompanyData(id);
 
   return (
-    <Container>
+    <section>
+      {companyData.length ? (
+        <p style={{ textAlign: 'center', marginTop: '1rem' }}>
+          {translateCommon('dataGivenInKHryvnias')}
+        </p>
+      ) : null}
       <CompanyPanel
         companyData={companyData}
         companyPanelOpacity={companyPanelOpacity}
         timePeriod={timePeriod}
       />
-    </Container>
+    </section>
   );
 };
 

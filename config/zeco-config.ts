@@ -5,8 +5,6 @@ import prependKeysToPathsIfNeeded from '../src/helpers/prepend-keys-to-paths-if-
 const zecoConfig: ZecoConfig = {
   lang: 'uk',
   statements: {
-    year: 2020,
-    quarter: 1, // 1st q. is 0, 2nd - 1 etc.
     format: {
       uah: [
         /*'netProfit', 'netIncome'*/
@@ -16,7 +14,7 @@ const zecoConfig: ZecoConfig = {
         // 'incomeGrowth',
         // 'ebitdaMargin',
       ],
-      //gap1: ['netProfit', 'revenueGrowth', 'fsf'],
+      //gap1: ['netProfit', 'incomeGrowth'],
     },
   },
   showInCompanyPanel: {
