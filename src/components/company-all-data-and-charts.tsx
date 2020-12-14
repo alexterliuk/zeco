@@ -53,7 +53,7 @@ const CompanyAllDataAndCharts = ({
     null,
     composedCompanyAllDataPanel,
   ]);
-  // dataTuple is needed due to CheckboxControl usage in Companies page (where
+  // dataTuple is needed due to CheckboxControl usage on Companies page (where
   // CompanyAllDataAndCharts is used as content). When CompanyAllDataPanel is
   // mounted, it subscribes via showSettings to getting updates of inputs' values
   // of CheckboxControl. Thus, live show/hide cols and rows behavior is achieved.
