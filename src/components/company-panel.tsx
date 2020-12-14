@@ -11,7 +11,8 @@ import {
 } from '../helpers/extract-key-value-pairs';
 import { ParsedTimePeriod } from '../data/update-company-profile';
 import { TranslationsType } from '../translations/translations';
-import { translate } from '../translations/translate';
+import { translate, translateCommon } from '../translations/translate';
+import { Link } from 'gatsby';
 
 const Panel = styled.div`
   max-width: 400px;
@@ -32,6 +33,7 @@ const CompanyPanel = ({
   if (!Array.isArray(companyData) || !companyData.length) return null;
   // rec stands for record
   const id = companyData.filter(rec => rec.key === 'id')[0].value;
+  const usreou = companyData.filter(rec => rec.key === 'usreou')[0].value;
   const { year, quarter } = timePeriod;
   const translateConfig: { id: string; type: TranslationsType } = {
     id,
@@ -49,8 +51,6 @@ const CompanyPanel = ({
     'showInCompanyPanel',
     'finInfoSplitPaths',
   ]);
-
-  // TODO: add logic for displaying млрд грн?
 
   const regInfoToShow = companyData.filter(rec =>
     regInfo.arr.includes(rec.key)
@@ -103,6 +103,7 @@ const CompanyPanel = ({
       <h3>{translate(id, 'companies', 'shortName')}</h3>
       {regItems}
       {finItems}
+      <Link to={`/companies?${usreou}`}>{translateCommon('showMore')}</Link>
     </Panel>
   );
 };
@@ -113,10 +114,10 @@ CompanyPanel.propTypes = {
   timePeriod: PropTypes.object,
 };
 
-type CompanyPanelProps = {
+interface CompanyPanelProps {
   companyData: KeyValuePairs;
   companyPanelOpacity: number;
   timePeriod: ParsedTimePeriod;
-};
+}
 
 export default CompanyPanel;
