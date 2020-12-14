@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { translateCommon } from '../translations/translate';
-import { TranslationsCommonKey } from '../translations/translations';
+import {
+  translateCommon,
+  translateCompanyKey,
+} from '../translations/translate';
+import {
+  TranslationsCommonKey,
+  TranslationsCompanyKey,
+} from '../translations/translations';
 
 const CheckboxControlWrapper = styled.div``;
 const InputsBlockWrapper = styled.div`
@@ -52,9 +58,9 @@ const CheckboxControl = ({
             ) : null}
             <Inputs>
               {bl.inputs.map((inp: InpSpec, i) => {
-                const inputName = translateCommon(
-                  inp.name as TranslationsCommonKey
-                );
+                const inputName =
+                  translateCommon(inp.name as TranslationsCommonKey) ||
+                  translateCompanyKey(inp.name as TranslationsCompanyKey);
                 return (
                   <InputWrapper key={inp.name}>
                     <Input
