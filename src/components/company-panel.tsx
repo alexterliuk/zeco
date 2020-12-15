@@ -103,7 +103,9 @@ const CompanyPanel = ({
       <h3>{translate(id, 'companies', 'shortName')}</h3>
       {regItems}
       {finItems}
-      <Link to={`/companies?${usreou}`}>{translateCommon('showMore')}</Link>
+      <Link to={`/companies-and-charts?${usreou}`}>
+        {translateCommon('showMore')}
+      </Link>
     </Panel>
   );
 };
