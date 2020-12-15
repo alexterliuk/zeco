@@ -5,10 +5,12 @@ import styled from 'styled-components';
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
+  size: PropTypes.number,
 };
 
 const headerDefaultProps = {
   siteTitle: ``,
+  size: 1,
 };
 
 const Container = styled.div`
@@ -16,11 +18,19 @@ const Container = styled.div`
   margin-bottom: 1.45rem;
 `;
 
-const Inner = styled.div`
+const getInnerStyles = (maxWidth: string) => `
   margin: 0 auto;
-  max-width: 960px;
   padding: .7rem 1rem 1rem;
+  max-width: ${maxWidth};
 `;
+
+const innerDivs = [
+  styled.div`${getInnerStyles('none')}`,
+  styled.div`${getInnerStyles('960px')}`,
+  styled.div`${getInnerStyles('1280px')}`,
+  styled.div`${getInnerStyles('1440px')}`,
+  styled.div`${getInnerStyles('1600px')}`,
+];
 
 const Heading = styled.h1`
   margin: 0;
@@ -31,15 +41,19 @@ const HeadingLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Header = ({ siteTitle }: HeaderProps) => (
-  <Container>
+const Header = ({ siteTitle, size }: HeaderProps) => {
+  const Inner = innerDivs[size || 1];
+
+  return (
+    <Container>
     <Inner>
       <Heading>
         <HeadingLink to="/">{siteTitle}</HeadingLink>
       </Heading>
-    </Inner>
+     </Inner>
   </Container>
-);
+  )
+};
 
 Header.propTypes = headerPropTypes;
 

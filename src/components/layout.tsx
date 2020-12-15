@@ -41,11 +41,14 @@ const Layout = ({ children, size }: any) => {
     }
   `);
 
-  const Container = containers[size] || containers[1];
+  const Container = containers[size || 1];
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header
+        siteTitle={data.site.siteMetadata?.title || `Title`}
+        size={size}
+      />
       <Container>
         <main style={{ flexGrow: 1 }}>{children}</main>
         <LayoutFooter>
