@@ -12,14 +12,14 @@ const headerDefaultProps = {
 };
 
 const Container = styled.div`
-  background: rebeccapurple;
+  background-color: #212121;
   margin-bottom: 1.45rem;
 `;
 
 const Inner = styled.div`
   margin: 0 auto;
   max-width: 960px;
-  padding: 1.45rem 1.0875rem;,
+  padding: .7rem 1rem 1rem;
 `;
 
 const Heading = styled.h1`
