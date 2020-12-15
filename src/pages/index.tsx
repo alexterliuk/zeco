@@ -25,9 +25,6 @@ const IndexPage = () => (
     </ImageContainer>
     <ProfitPresentation />
     <FinResPresentation />
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    {/*<Link to="/companies-all-data/">Show All Companies</Link> <br />*/}
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
     <BarCharts initChartSpec={profitsAllStateCompaniesChartSpec} />
   </Layout>
 );
