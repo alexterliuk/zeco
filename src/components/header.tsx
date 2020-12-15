@@ -82,10 +82,10 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
         </Logo>
         <PageButtons>
           <PageBtn role="button" style={companies ? pageBtnShownStyle : {}}>
-            <PageBtnLink to="/companies-all-data/">Companies</PageBtnLink>
+            <PageBtnLink to="/companies/">Companies</PageBtnLink>
           </PageBtn>
           <PageBtn role="button" style={charts ? pageBtnShownStyle : {}}>
-            <PageBtnLink to="/companies/">Charts</PageBtnLink>
+            <PageBtnLink to="/companies-and-charts/">Charts</PageBtnLink>
           </PageBtn>
         </PageButtons>
       </Inner>

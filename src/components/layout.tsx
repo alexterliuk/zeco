@@ -65,12 +65,13 @@ const Layout = ({ children, size, shownPage }: LayoutProps) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.number,
+  shownPage: PropTypes.string,
 };
 
 interface LayoutProps {
   children: (ReactElementLike | null)[];
-  size: number;
-  shownPage: ShownPage;
+  size?: number;
+  shownPage?: ShownPage;
 }
 
 export default Layout;
