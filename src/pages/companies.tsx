@@ -63,8 +63,8 @@ const Companies = () => {
   };
 
   return (
-    <Layout size={3}>
-      <SEO title="Companies" />
+    <Layout size={3} shownPage="Companies And Charts">
+      <SEO title="Companies And Charts" />
       <LinkToHomepage />
       <SearchWrapper>
         <SearchCompanies onClick={searchOnClick} />

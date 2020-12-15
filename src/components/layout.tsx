@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import PropTypes, { ReactElementLike } from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
-import Header from './header';
+import Header, { ShownPage } from './header';
 import './layout.css';
 
 const getLayoutStyles = (maxWidth: string) => `
@@ -30,7 +30,7 @@ const LayoutFooter = styled(Footer)`
   margin-top: 2rem;
 `;
 
-const Layout = ({ children, size }: any) => {
+const Layout = ({ children, size, shownPage }: LayoutProps) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -48,6 +48,7 @@ const Layout = ({ children, size }: any) => {
       <Header
         siteTitle={data.site.siteMetadata?.title || `Title`}
         size={size}
+        shownPage={shownPage}
       />
       <Container>
         <main style={{ flexGrow: 1 }}>{children}</main>
@@ -65,5 +66,11 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.number,
 };
+
+interface LayoutProps {
+  children: (ReactElementLike | null)[];
+  size: number;
+  shownPage: ShownPage;
+}
 
 export default Layout;

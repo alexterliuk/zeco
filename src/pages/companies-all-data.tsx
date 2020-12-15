@@ -6,8 +6,8 @@ import LinkToHomepage from '../components/link-to-homepage';
 import CompaniesAllDataSection from '../components/companies-all-data-section';
 
 const CompaniesAllData = () => (
-  <Layout size={3}>
-    <SEO title="Show all companies" />
+  <Layout size={3} shownPage="Show All Companies">
+    <SEO title="Show All Companies" />
     <LinkToHomepage />
     <h1>{translateCommon('allCompanies')}</h1>
     <p>
