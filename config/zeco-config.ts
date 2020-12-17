@@ -5,7 +5,7 @@ import prependKeysToPathsIfNeeded from '../src/helpers/prepend-keys-to-paths-if-
 const zecoConfig: ZecoConfig = {
   lang: 'uk',
   statements: {
-    format: {
+    format: { // format affects both CompanyAllDataPanel and CompanyPanel
       uah: [
         /*'netProfit', 'netIncome'*/
       ],
@@ -15,6 +15,7 @@ const zecoConfig: ZecoConfig = {
         // 'ebitdaMargin',
       ],
       //gap1: ['netProfit', 'incomeGrowth'],
+      //dot: ['incomeGrowth', 'profitGrowth'], // e.g. 23,9 becomes 23.9
     },
   },
   showInCompanyPanel: {
