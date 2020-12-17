@@ -147,7 +147,7 @@ const translations = {
       en: 'EBITDA',
     },
     ebitdaMargin: {
-      uk: 'Рентабельність EBITDA',
+      uk: 'Рентабельність за EBITDA',
       en: 'EBITDA margin',
     },
   },
