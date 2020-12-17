@@ -11,131 +11,131 @@ const ukrbud: CompanyProfile = {
     '2016': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [628609, 633855, false],
           year: 702502,
         },
         fixed: {
-          quarters: [],
+          quarters: [98145, 97759, false],
           year: 97142,
         },
         totalValue: {
-          quarters: [],
+          quarters: [808895, 813388, false],
           year: 881546,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [207953, 207927, false],
         year: 211196,
       },
       producedCost: {
-        quarters: [],
+        quarters: [25624, 76591, false],
         year: 251649,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [1833, 3977, false],
         year: 8688,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [447, 2804, false],
           year: 5951,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [5696, 15027, false],
           year: 28494,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [31320, 91618, false],
           year: 280143,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-9.3%', '389.4%', false],
           year: '80.8%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['208.8%', '464.2%', false],
           year: '112.8%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [1467, 4795, false],
+          year: 9279,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['4.7%', '5.2%', false],
+          year: '3.3%',
         },
       },
     },
     '2017': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [713332, 541835, false],
           year: false,
         },
         fixed: {
-          quarters: [],
+          quarters: [96765, 63860, false],
           year: false,
         },
         totalValue: {
-          quarters: [],
+          quarters: [891876, 717739, false],
           year: false,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [211873, 212680, false],
         year: false,
       },
       producedCost: {
-        quarters: [],
+        quarters: [19549, 129903, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [2078, 4418, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [677, 4399, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [4321, 18614, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [23870, 148517, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['51.5%', '56.9%', false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['-23.8%', '62.1%', false],
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [1398, 9069, false],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: ['5.9%', '6.1%', false],
           year: false,
         },
       },
@@ -143,132 +143,132 @@ const ukrbud: CompanyProfile = {
     '2018': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, 163177],
           year: 163177,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, 34247],
           year: 34247,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, 317734],
           year: 317734,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, 255832],
         year: 255832,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, 167934],
         year: 167934,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, 34589],
         year: 34589,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, 32712],
           year: 32712,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, 76484],
           year: 76484,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, 244418],
           year: 244418,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, '381.4%'],
           year: '381.4%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, '-45.1%'],
           year: '-45.1%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [false, false, 51848],
+          year: 51848,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: [false, false, '21.2%'],
+          year: '21.2%',
         },
       },
     },
     '2019': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [174918, 145498, 61477],
           year: 61477,
         },
         fixed: {
-          quarters: [],
+          quarters: [33962, 33719, 5189],
           year: 5189,
         },
         totalValue: {
-          quarters: [],
+          quarters: [328812, 324521, 301460],
           year: 301460,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [259783, 250379, 260346],
         year: 260346,
       },
       producedCost: {
-        quarters: [],
+        quarters: [20646, 42450, 115031],
         year: 115031,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [7811, 16068, 40458],
         year: 40458,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [3951, 10903, 20868],
           year: 20868,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [6727, 18639, 37523],
           year: 37523,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [27373, 61089, 152554],
           year: 152554,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-38.7%', '-66.3%', '-36.2%'],
           year: '-36.2%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['-42.2%', '-62.2%', '-37.6%'],
           year: '-37.6%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [5483, 14795, 29492],
+          year: 29492,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['20.0%', '24.2%', '19.3%'],
+          year: '19.3%',
         },
       },
     },
@@ -329,11 +329,11 @@ const ukrbud: CompanyProfile = {
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [11120, 19923],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: ['52.7%', '49.5%'],
           year: false,
         },
       },

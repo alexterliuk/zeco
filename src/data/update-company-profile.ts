@@ -125,7 +125,7 @@ function parsePeriod(period: string): ParsedTimePeriod {
 }
 
 /**
- * Expected string formats: '2548', '2 584', '25.8% or such a like negative.
+ * Expected string formats: '2548', '2 584', '25.8%', '25,8' or such negative.
  * If number is NaN, or Infinity, 'INVALID' is returned.
  * @param {string | number} v
  */
@@ -134,7 +134,9 @@ function strToNum(v: string | number) {
 
   if (typeof v === 'string') {
     if (v.includes('%')) return v;
-    const num = Number(v.split(/\s/).join(''));
+    // sometimes stringified number may include comma, fix it
+    v = v.replace(',', '.');
+    const num = +Number(v.split(/\s/).join('')).toFixed();
     if (!Number.isFinite(num)) {
       if (v === '-') return false;
     }

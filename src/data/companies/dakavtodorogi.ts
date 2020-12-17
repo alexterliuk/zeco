@@ -11,65 +11,65 @@ const dakavtodorogi: CompanyProfile = {
     '2016': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 3649,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 148,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 1269920,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, false],
         year: 1263894,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: 7179,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 1645,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: '208.6%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [false, false, false],
+          year: 2094,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -77,65 +77,65 @@ const dakavtodorogi: CompanyProfile = {
     '2017': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -143,65 +143,65 @@ const dakavtodorogi: CompanyProfile = {
     '2018': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -209,66 +209,66 @@ const dakavtodorogi: CompanyProfile = {
     '2019': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [1480339, 1562238, 1283219],
           year: 1283219,
         },
         fixed: {
-          quarters: [],
+          quarters: [1422516, 1409591, 1647345],
           year: 1647345,
         },
         totalValue: {
-          quarters: [],
+          quarters: [6539760, 6607054, 5582048],
           year: 5582048,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [3271265, 3220412, 2359248],
         year: 2359248,
       },
       producedCost: {
-        quarters: [],
+        quarters: [1105110, 2782160, 5710981],
         year: 5710981,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [396733, 823011, 1637326],
         year: 1637326,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [69912, 138148, 1165491],
           year: 1165491,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [45484, 90183, 116096],
           year: 116096,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [1150594, 2872343, 5827077],
           year: 5827077,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['10.1%', '0.7%', '-11.3%'],
           year: '-11.3%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-37350, -70583, -313301],
+          year: -313301,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['-3.2%', '-2.5%', '-5.4%'],
+          year: '-5.4%',
         },
       },
     },
@@ -329,11 +329,11 @@ const dakavtodorogi: CompanyProfile = {
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [19201, 2592],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: ['2.3%', '0.1%'],
           year: false,
         },
       },

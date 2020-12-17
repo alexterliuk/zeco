@@ -1,4 +1,9 @@
 const requiredRows = {
+  zaginfo: [
+    { i: 0, name: 'colNames' },
+    { i: 4, name: 'ebitda' },
+    { i: 5, name: 'ebitdaMargin' },
+  ],
   zvit: [
     { i: 0, name: 'colNames' },
     { i: 1, name: 'netIncome' },

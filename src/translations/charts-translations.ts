@@ -44,15 +44,16 @@ export const statementsKeys: Exclude<
 ];
 
 const unit = { uk: ' млн грн', en: ' m uah' };
+const percent = { uk: '%', en: '%' };
 
 const chartsTranslations: ChartSpecsPartialTranslations = {
   netProfit: { unit },
-  profitGrowth: { unit: { uk: '%', en: '%' } },
+  profitGrowth: { unit: percent },
   grossProfit: { unit },
   netLoss: { unit },
   grossLoss: { unit },
   netIncome: { unit },
-  incomeGrowth: { unit: { uk: '%', en: '%' } },
+  incomeGrowth: { unit: percent },
   'assets.current': { unit },
   'assets.fixed': { unit },
   'assets.totalValue': { unit },
@@ -60,7 +61,7 @@ const chartsTranslations: ChartSpecsPartialTranslations = {
   producedCost: { unit },
   salaryExpenses: { unit },
   ebitda: { unit },
-  ebitdaMargin: { unit },
+  ebitdaMargin: { unit: percent },
 };
 
 // if there's need to use non default values for charts,

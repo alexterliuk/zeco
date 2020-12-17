@@ -11,65 +11,65 @@ const poligrafkombinatukraina: CompanyProfile = {
     '2016': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -77,65 +77,65 @@ const poligrafkombinatukraina: CompanyProfile = {
     '2017': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [465645, 490827, 653268],
           year: false,
         },
         fixed: {
-          quarters: [],
+          quarters: [793028, 773781, 739644],
           year: false,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1318455, 1327069, 1511266],
           year: false,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [1075030, 1089858, 1216962],
         year: false,
       },
       producedCost: {
-        quarters: [],
+        quarters: [270025, 565512, 1213400],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [47625, 100117, 215833],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [51566, 125588, 340901],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [82433, 197868, 524411],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [352458, 763380, 1737811],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-23.3%', '-18.1%', '5.3%'],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['1.6%', '4.8%', '17.7%'],
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [82312, 192210, 494208],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: ['23.4%', '25.2%', '28.4%'],
           year: false,
         },
       },
@@ -143,132 +143,132 @@ const poligrafkombinatukraina: CompanyProfile = {
     '2018': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [740352, 800696, 808905],
           year: 808905,
         },
         fixed: {
-          quarters: [],
+          quarters: [782649, 787659, 820663],
           year: 820663,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1585099, 1636878, 1808144],
           year: 1808144,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [1299853, 1372695, 1508038],
         year: 1508038,
       },
       producedCost: {
-        quarters: [],
+        quarters: [416075, 908881, 1693176],
         year: 1693176,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [74726, 163718, 322615],
         year: 322615,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [145760, 273508, 512897],
           year: 512897,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [214112, 411228, 784621],
           year: 784621,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [630187, 1320109, 2477797],
           year: 2477797,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['182.7%', '117.8%', '50.5%'],
           year: '50.5%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['78.8%', '72.9%', '42.6%'],
           year: '42.6%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [194937, 368755, 700189],
+          year: 700189,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['30.9%', '27.9%', '28.3%'],
+          year: '28.3%',
         },
       },
     },
     '2019': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [915606, 828975, 836405],
           year: 836405,
         },
         fixed: {
-          quarters: [],
+          quarters: [916084, 994394, 985368],
           year: 985368,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1900436, 1876174, 1905133],
           year: 1905133,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [1559725, 1628060, 1604299],
         year: 1604299,
       },
       producedCost: {
-        quarters: [],
+        quarters: [459107, 826187, 1756480],
         year: 1756480,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [96734, 193295, 429383],
         year: 429383,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [93891, 214381, 315329],
           year: 315329,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [158048, 355617, 680763],
           year: 680763,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [617155, 1181804, 2437243],
           year: 2437243,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-35.6%', '-21.6%', '-38.5%'],
           year: '-38.5%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['-2.1%', '-10.5%', '-1.6%'],
           year: '-1.6%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [135611, 305750, 543754],
+          year: 543754,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['22.0%', '25.9%', '22.3%'],
+          year: '22.3%',
         },
       },
     },
@@ -329,11 +329,11 @@ const poligrafkombinatukraina: CompanyProfile = {
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [195793, 270786],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: ['37.0%', '34.7%'],
           year: false,
         },
       },

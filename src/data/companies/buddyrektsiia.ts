@@ -11,65 +11,65 @@ const buddyrektsiia: CompanyProfile = {
     '2016': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [25177, 25096, false],
           year: 27540,
         },
         fixed: {
-          quarters: [],
+          quarters: [98108, 98103, false],
           year: 99867,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1389544, 1389745, false],
           year: 1439002,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [79298, 79298, false],
         year: 79002,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [442, 849, false],
         year: 1857,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-452, -930, false],
+          year: 1537,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -77,65 +77,65 @@ const buddyrektsiia: CompanyProfile = {
     '2017': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [27325, 27739, false],
           year: 29734,
         },
         fixed: {
-          quarters: [],
+          quarters: [100661, 100748, false],
           year: 102271,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1439084, 1453920, false],
           year: 1508458,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [79002, 79002, false],
         year: 72823,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [458, 1033, false],
         year: 2194,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 1100,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-84, 433, false],
+          year: 1892,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -143,65 +143,65 @@ const buddyrektsiia: CompanyProfile = {
     '2018': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [30138, 30342, 31379],
           year: 31379,
         },
         fixed: {
-          quarters: [],
+          quarters: [105035, 104775, 103251],
           year: 103251,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1514590, 1518335, 1542862],
           year: 1542862,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [72823, 72823, 72823],
         year: 72823,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [532, 1033, 2207],
         year: 2207,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-119, -376, 1869],
+          year: 1869,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -209,65 +209,65 @@ const buddyrektsiia: CompanyProfile = {
     '2019': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [32674, 33107, false],
           year: 34860,
         },
         fixed: {
-          quarters: [],
+          quarters: [102249, 101592, false],
           year: 99934,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1553155, 1567954, false],
           year: 1604922,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [72823, 72823, false],
         year: 72823,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [644, 1176, false],
         year: 2341,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-156, 174, false],
+          year: 1053,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -329,11 +329,11 @@ const buddyrektsiia: CompanyProfile = {
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [-401, 1127],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false],
           year: false,
         },
       },

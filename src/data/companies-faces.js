@@ -1,4 +1,4 @@
-const excelDataTypes = ['balance', 'fincoeff', 'zvit'];
+const excelDataTypes = ['zaginfo', 'zvit', 'fincoeff', 'balance'];
 
 const companiesFaces = [
   {
