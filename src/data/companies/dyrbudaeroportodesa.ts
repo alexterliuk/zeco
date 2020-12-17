@@ -11,65 +11,65 @@ const dyrbudaeroportodesa: CompanyProfile = {
     '2016': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -77,65 +77,65 @@ const dyrbudaeroportodesa: CompanyProfile = {
     '2017': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -143,65 +143,65 @@ const dyrbudaeroportodesa: CompanyProfile = {
     '2018': {
       assets: {
         current: {
-          quarters: [],
-          year: 'INVALID',
+          quarters: [412741, 280871, 267365],
+          year: 267365,
         },
         fixed: {
-          quarters: [],
-          year: 'INVALID',
+          quarters: [668581, 668580, 668584],
+          year: 668584,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1151900, 1201415, 1500581],
           year: 1500581,
         },
       },
       equity: {
-        quarters: [],
-        year: 'INVALID',
+        quarters: [659902, 663042, 665923],
+        year: 665923,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
-          year: 'INVALID',
+          quarters: [5736, 8877, 3460],
+          year: 3460,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-30291.1%', '-23097.2%', '-150.9%'],
           year: '-150.9%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-1110, -2816, -8603],
+          year: -8603,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -209,65 +209,65 @@ const dyrbudaeroportodesa: CompanyProfile = {
     '2019': {
       assets: {
         current: {
-          quarters: [],
-          year: 'INVALID',
+          quarters: [305995, 439431, 474797],
+          year: 474797,
         },
         fixed: {
-          quarters: [],
+          quarters: [668584, 668584, false],
           year: false,
         },
         totalValue: {
-          quarters: [],
-          year: 'INVALID',
+          quarters: [1739039, 1897633, 2732334],
+          year: 2732334,
         },
       },
       equity: {
-        quarters: [],
-        year: 'INVALID',
+        quarters: [665575, 662380, 662692],
+        year: 662692,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: false,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [-348, -3543, -1222],
           year: -1222,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-106.1%', '-139.9%', '-135.3%'],
           year: '-135.3%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-3437, -6671, -15763],
+          year: -15763,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
       },
@@ -275,7 +275,7 @@ const dyrbudaeroportodesa: CompanyProfile = {
     '2020': {
       assets: {
         current: {
-          quarters: ['INVALID', 'INVALID'],
+          quarters: [460470, 461544],
           year: false,
         },
         fixed: {
@@ -283,12 +283,12 @@ const dyrbudaeroportodesa: CompanyProfile = {
           year: false,
         },
         totalValue: {
-          quarters: ['INVALID', 'INVALID'],
+          quarters: [3034106, 3232462],
           year: false,
         },
       },
       equity: {
-        quarters: ['INVALID', 'INVALID'],
+        quarters: [811690, 810386],
         year: false,
       },
       producedCost: {
@@ -301,7 +301,7 @@ const dyrbudaeroportodesa: CompanyProfile = {
       },
       financials: {
         netProfit: {
-          quarters: [-1690, 'INVALID'],
+          quarters: [-1690, -2994],
           year: false,
         },
         netLoss: {
@@ -317,7 +317,7 @@ const dyrbudaeroportodesa: CompanyProfile = {
           year: false,
         },
         netIncome: {
-          quarters: [false, 'INVALID'],
+          quarters: [false, 156],
           year: false,
         },
         profitGrowth: {
@@ -329,11 +329,11 @@ const dyrbudaeroportodesa: CompanyProfile = {
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [-3483, -7245],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: [false, '-4649.9%'],
           year: false,
         },
       },

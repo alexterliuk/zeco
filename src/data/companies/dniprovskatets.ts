@@ -11,264 +11,264 @@ const dniprovskatets: CompanyProfile = {
     '2016': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 868818,
         },
         fixed: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 45981,
         },
         totalValue: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 947616,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [false, false, false],
         year: -74386,
       },
       producedCost: {
-        quarters: [],
+        quarters: [false, false, false],
         year: 348058,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [false, false, false],
         year: 33499,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 1437,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 11387,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 359445,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: [false, false, false],
           year: '33.8%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [false, false, false],
+          year: -704,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: [false, false, false],
+          year: '-0.2%',
         },
       },
     },
     '2017': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [1057898, 1021980, false],
           year: 1130297,
         },
         fixed: {
-          quarters: [],
+          quarters: [45474, 45325, false],
           year: 54247,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1136188, 1100120, false],
           year: 1216930,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [-65453, -78525, false],
         year: -72848,
       },
       producedCost: {
-        quarters: [],
+        quarters: [231984, 242089, false],
         year: 399754,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [11390, 20429, false],
         year: 41187,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [8933, false, false],
           year: 2003,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, 3663, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [14342, 4614, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: 14322,
         },
         netIncome: {
-          quarters: [],
+          quarters: [246326, 246703, false],
           year: 385432,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-64.1%', false, false],
           year: '21.0%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['42.1%', '42.1%', false],
           year: '7.2%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [9458, -2579, false],
+          year: 4515,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['3.8%', '-1.0%', false],
+          year: '1.2%',
         },
       },
     },
     '2018': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [1568754, 1483747, 424614],
           year: 424614,
         },
         fixed: {
-          quarters: [],
+          quarters: [53686, 53857, 60628],
           year: 60628,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1654825, 1569988, 1605754],
           year: 1605754,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [-86037, -102350, -71548],
         year: -71548,
       },
       producedCost: {
-        quarters: [],
+        quarters: [271980, 284533, 449535],
         year: 449535,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [12672, 22654, 48951],
         year: 48951,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [false, false, 2802],
           year: 2802,
         },
         netLoss: {
-          quarters: [],
+          quarters: [13189, 28000, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [34845, 22683, 6370],
           year: 6370,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         netIncome: {
-          quarters: [],
+          quarters: [306825, 307216, 455905],
           year: 455905,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: ['-100.0%', false, '39.9%'],
           year: '39.9%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['24.6%', '24.5%', '18.3%'],
           year: '18.3%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [-12616, -26840, 5119],
+          year: 5119,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['-4.1%', '-8.7%', '1.1%'],
+          year: '1.1%',
         },
       },
     },
     '2019': {
       assets: {
         current: {
-          quarters: [],
+          quarters: [604869, 508769, 1698754],
           year: 1698754,
         },
         fixed: {
-          quarters: [],
+          quarters: [60346, 62124, 298078],
           year: 298078,
         },
         totalValue: {
-          quarters: [],
+          quarters: [1784926, 1690490, 2003641],
           year: 2003641,
         },
       },
       equity: {
-        quarters: [],
+        quarters: [-37030, -58743, 112729],
         year: 112729,
       },
       producedCost: {
-        quarters: [],
+        quarters: [238721, 256267, 396186],
         year: 396186,
       },
       salaryExpenses: {
-        quarters: [],
+        quarters: [18186, 32122, 66853],
         year: 66853,
       },
       financials: {
         netProfit: {
-          quarters: [],
+          quarters: [34518, 14205, 429],
           year: 429,
         },
         netLoss: {
-          quarters: [],
+          quarters: [false, false, false],
           year: false,
         },
         grossProfit: {
-          quarters: [],
+          quarters: [17111, 90, false],
           year: false,
         },
         grossLoss: {
-          quarters: [],
+          quarters: [false, false, 839],
           year: 839,
         },
         netIncome: {
-          quarters: [],
+          quarters: [255832, 256357, 395347],
           year: 395347,
         },
         profitGrowth: {
-          quarters: [],
+          quarters: [false, false, '-84.7%'],
           year: '-84.7%',
         },
         incomeGrowth: {
-          quarters: [],
+          quarters: ['-16.6%', '-16.6%', '-13.3%'],
           year: '-13.3%',
         },
         ebitda: {
-          quarters: [],
-          year: false,
+          quarters: [35413, 15930, 2169],
+          year: 2169,
         },
         ebitdaMargin: {
-          quarters: [],
-          year: false,
+          quarters: ['13.8%', '6.2%', '0.5%'],
+          year: '0.5%',
         },
       },
     },
@@ -329,11 +329,11 @@ const dniprovskatets: CompanyProfile = {
           year: false,
         },
         ebitda: {
-          quarters: [],
+          quarters: [71280, 70150],
           year: false,
         },
         ebitdaMargin: {
-          quarters: [],
+          quarters: ['30.5%', '30.0%'],
           year: false,
         },
       },
