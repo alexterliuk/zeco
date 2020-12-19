@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes, { InferProps } from 'prop-types';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import SwitchLanguage from '../components/switch-language';
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
@@ -23,7 +24,7 @@ const Container = styled.div`
 const getInnerStyles = (maxWidth: string) => `
   display: flex;
   margin: 0 auto;
-  padding: .7rem 1rem 1rem;
+  padding: 1rem;
   max-width: ${maxWidth};
 `;
 
@@ -36,7 +37,9 @@ const innerDivs = [
 ];
 
 const Logo = styled.h1`
+  line-height: 1;
   margin: 0;
+  padding-bottom: 4px;
 `;
 
 const LogoLink = styled(Link)`
@@ -46,7 +49,7 @@ const LogoLink = styled(Link)`
 
 const PageButtons = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin-left: auto;
 `;
 
@@ -56,12 +59,13 @@ const PageBtn = styled.div`
   border-radius: 8px;
   background-color: #4682b4b0;
   border: 2px solid #212121;
-`;
+  cursor: pointer;
 
-const pageBtnShownStyle = {
-  border: '2px solid aliceblue',
-  backgroundColor: 'steelblue',
-};
+  &.active {
+    border: 2px solid aliceblue;
+    background-color: steelblue;
+  }
+`;
 
 const PageBtnLink = styled(Link)`
   color: white;
@@ -81,13 +85,14 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
           <LogoLink to="/">{siteTitle}</LogoLink>
         </Logo>
         <PageButtons>
-          <PageBtn role="button" style={companies ? pageBtnShownStyle : {}}>
+          <PageBtn role="button" className={companies ? 'active' : ''}>
             <PageBtnLink to="/companies/">Companies</PageBtnLink>
           </PageBtn>
-          <PageBtn role="button" style={charts ? pageBtnShownStyle : {}}>
+          <PageBtn role="button" className={charts ? 'active' : ''}>
             <PageBtnLink to="/companies-and-charts/">Charts</PageBtnLink>
           </PageBtn>
         </PageButtons>
+        <SwitchLanguage />
       </Inner>
     </Container>
   );
