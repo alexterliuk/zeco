@@ -1,16 +1,31 @@
 /**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
+ * SEO component that queries for data with Gatsby's useStaticQuery React hook.
+ * It also uses hook for updating lang attr in html tag.
  *
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+import useLangContext from '../hooks/use-lang-context';
 
-function SEO({ description, lang, meta, title }: SEOProps) {
+function SEO({ description, meta, title }: SEOProps) {
+  const [lang, setLang] = useState(useLangContext.getLang());
+  useEffect(() => {
+    const langUpdater = {
+      id: 'SEO',
+      updateLangAttr: () => {
+        setLang(() => useLangContext.getLang());
+      },
+    };
+    useLangContext.subscribe(langUpdater);
+    return () => {
+      useLangContext.unsubscribe(langUpdater);
+    };
+  }, []);
+
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -75,22 +90,20 @@ function SEO({ description, lang, meta, title }: SEOProps) {
 
 SEO.proptypes = {
   description: PropTypes.string,
-  lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 };
 
 SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
   description: ``,
+  meta: [],
+  title: ``,
 };
 
-type SEOProps = {
+interface SEOProps {
   description: string;
-  lang: string;
   meta: Array<{ name: string; content: any }>;
   title: string;
-};
+}
 
 export default SEO;
