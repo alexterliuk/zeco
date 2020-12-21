@@ -11,6 +11,7 @@ import { toUsreou } from '../data/update-company-profile';
 import companies, { companiesIds } from '../data/companies';
 import CheckboxControl from '../components/checkbox-control';
 import useShowSettings from '../hooks/use-company-all-data-panel-show-settings';
+import useLangContext from '../hooks/use-lang-context';
 
 const SearchWrapper = styled.section`
   border-radius: 8px;
@@ -30,6 +31,7 @@ const usreousAndIds = mapUsreousToCompaniesIds();
 const CompaniesAndCharts = () => {
   const [initLoad, setInitLoad] = useState(true);
   const [companyId, setCompanyId] = useState('');
+  const [NOT_USED, triggerTranslating] = useState('');
 
   const updateCompanyId = () => {
     const query = window.location.search.slice(1);
@@ -46,8 +48,17 @@ const CompaniesAndCharts = () => {
 
   useEffect(() => {
     window.onpopstate = updateCompanyId;
+    const translatingUpdater = {
+      id: 'Charts Page',
+      triggerTranslating: () => {
+        triggerTranslating(() => useLangContext.getLang());
+      },
+    };
+    useLangContext.subscribe(translatingUpdater);
+
     return () => {
       window.onpopstate = null;
+      useLangContext.unsubscribe(translatingUpdater);
     };
   }, []);
 
