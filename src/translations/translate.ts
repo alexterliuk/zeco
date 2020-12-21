@@ -1,4 +1,3 @@
-import zecoConfig from '../../config/zeco-config';
 import translations, {
   TranslationsType,
   TranslationsCommonKey,
@@ -47,7 +46,7 @@ const translateChart = (
   translateOneItem?: string | undefined,
   lang?: Language
 ) => {
-  let _lang: Language = lang || zecoConfig.getItem(['lang']);
+  const _lang: Language = lang || useLangContext.getLang();
   const key = translateOneItem;
   if (typeof key === 'string') {
     return key === 'title' || key === 'btnName'

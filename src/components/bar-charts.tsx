@@ -11,7 +11,6 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { Button } from './styled-elements';
-import zecoConfig from '../../config/zeco-config';
 import { Language } from '../translations/translations';
 
 // const translateChartItems = (
@@ -27,20 +26,11 @@ import { Language } from '../translations/translations';
 //   );
 // };
 
-const translateTitle = (shownChart: ChartSpec) => {
-  return shownChart.translate('title', zecoConfig.getItem(['lang']));
-};
-
-const translateButtonName = (spec: ChartSpec) => {
-  // second arg is absent compared to translateTitle because
-  // translateButtonName is called from the loop and correct
-  // current language is used (when standalone call, lang might be stale)
-  return spec.translate('btnName');
-};
-
+const translateTitle = (shownChart: ChartSpec) => shownChart.translate('title');
+const translateButtonName = (spec: ChartSpec) => spec.translate('btnName');
 const translateShownChart = (shownChart: ChartSpec, rigidSize: boolean) =>
   (s => getBarChart(s.data, s.config, rigidSize))(
-    shownChart.translate(undefined, zecoConfig.getItem(['lang'])) as ChartSpec
+    shownChart.translate() as ChartSpec
   );
 
 const BarCharts = ({

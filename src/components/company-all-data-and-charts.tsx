@@ -15,6 +15,7 @@ import {
   translateCommon,
 } from '../translations/translate';
 import { translateCompanyKey } from '../translations/translate';
+import useLangContext from '../hooks/use-lang-context';
 
 const Preamble = styled.p`
   display: flex;
@@ -36,6 +37,8 @@ const chartsSets = [
   ['equity', 'producedCost', 'salaryExpenses'],
   ['ebitda', 'ebitdaMargin'],
 ];
+
+const getLang = () => useLangContext.getLang() as Language;
 
 let prevCompanyId = '';
 
@@ -124,8 +127,6 @@ const CompanyAllDataAndCharts = ({
     </>
   );
 };
-
-const getLang = () => zecoConfig.getItem(['lang']) as Language;
 
 CompanyAllDataAndCharts.propTypes = {
   companyId: PropTypes.string,
