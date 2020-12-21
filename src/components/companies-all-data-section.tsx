@@ -23,7 +23,7 @@ const CompaniesAllDataSection = () => {
   return (
     <>
       <CheckboxControl checkboxSettings={useShowSettings} />
-      <Container>{companiesRows}</Container>)
+      <Container>{companiesRows}</Container>
     </>
   );
 };
