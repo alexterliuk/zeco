@@ -10,6 +10,7 @@ import {
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
 import showSettings from '../hooks/use-company-all-data-panel-show-settings';
+import useLangContext from '../hooks/use-lang-context';
 
 const Subheader = styled.div`
   display: flex;
@@ -53,6 +54,7 @@ const CompanyAllDataPanel = ({
   statementsIndicesInTbodyRows,
   currYear,
 }: CompanyAllDataPanelProps) => {
+  const [NOT_USED, triggerTranslating] = useState('');
   const { id, usreou } = subheader;
 
   const [tableData, updateTableData] = useState(
@@ -60,14 +62,26 @@ const CompanyAllDataPanel = ({
   );
 
   useEffect(() => {
-    const updaters = {
+    // for show/hide cols and rows acc. to selected checkboxes
+    const tableDataUpdaters = {
       id,
       setStateFunc: updateTableData,
       getFilteredTableData,
     };
-    showSettings.subscribe(updaters);
+    showSettings.subscribe(tableDataUpdaters);
+
+    // for translating when lang button is clicked
+    const translatingUpdater = {
+      id,
+      triggerTranslating: () => {
+        triggerTranslating(() => useLangContext.getLang());
+      },
+    };
+    useLangContext.subscribe(translatingUpdater);
+
     return () => {
-      showSettings.unsubscribe(updaters);
+      showSettings.unsubscribe(tableDataUpdaters);
+      useLangContext.unsubscribe(translatingUpdater);
     };
   }, []);
 
@@ -456,7 +470,7 @@ export type GetFilteredTableData = (
   settings: {
     cols: ColsConfig;
     rows: string[];
-  },
+  }
 ) => CompanyAllDataTableData;
 
 export interface CompanyAllDataTableData {
