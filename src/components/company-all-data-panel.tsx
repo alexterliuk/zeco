@@ -9,7 +9,7 @@ import {
   KeyValuePair,
   KeyValuePairs,
 } from '../helpers/extract-key-value-pairs';
-import showSettings from '../hooks/use-company-all-data-panel-show-settings';
+import useShowSettings from '../hooks/use-company-all-data-panel-show-settings';
 import useLangContext from '../hooks/use-lang-context';
 
 const Subheader = styled.div`
@@ -58,7 +58,7 @@ const CompanyAllDataPanel = ({
   const { id, usreou } = subheader;
 
   const [tableData, updateTableData] = useState(
-    getFilteredTableData(id, showSettings.settings)
+    getFilteredTableData(id, useShowSettings.settings)
   );
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const CompanyAllDataPanel = ({
       setStateFunc: updateTableData,
       getFilteredTableData,
     };
-    showSettings.subscribe(tableDataUpdaters);
+    useShowSettings.subscribe(tableDataUpdaters);
 
     // for translating when lang button is clicked
     const translatingUpdater = {
@@ -80,7 +80,7 @@ const CompanyAllDataPanel = ({
     useLangContext.subscribe(translatingUpdater);
 
     return () => {
-      showSettings.unsubscribe(tableDataUpdaters);
+      useShowSettings.unsubscribe(tableDataUpdaters);
       useLangContext.unsubscribe(translatingUpdater);
     };
   }, []);
