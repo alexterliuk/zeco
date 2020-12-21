@@ -1,5 +1,4 @@
-import React from 'react';
-import zecoConfig from '../../config/zeco-config';
+import React, { useState } from 'react';
 import Search, { SearchItem, SearchOnClick } from './search';
 import companies, { companiesIds } from '../data/companies';
 import translations, {
@@ -7,6 +6,21 @@ import translations, {
   CompanyId,
 } from '../translations/translations';
 import { translateCommon } from '../translations/translate';
+import useLangContext from '../hooks/use-lang-context';
+
+const getSearchComponent = (
+  data: SearchItem[],
+  onClick: SearchOnClick,
+  qtyOfFoundItemsToShow?: number
+) => (
+  <Search
+    data={data}
+    labelName={translateCommon('enterCompanyNameOrUsreou')}
+    onClick={onClick}
+    border={false}
+    qtyOfFoundItemsToShow={qtyOfFoundItemsToShow}
+  />
+);
 
 const composeDataForSearch = () =>
   companiesIds.reduce(
@@ -29,6 +43,8 @@ const composeDataForSearch = () =>
   );
 const dataOnLang = composeDataForSearch();
 
+let prevLang = useLangContext.getLang();
+
 const SearchCompanies = ({
   onClick,
   qtyOfFoundItemsToShow,
@@ -36,14 +52,30 @@ const SearchCompanies = ({
   onClick: SearchOnClick;
   qtyOfFoundItemsToShow?: number;
 }) => {
+  const lang = useLangContext.getLang();
+  const translatedData = dataOnLang[lang];
+  const [dataTuple, refreshDataTuple] = useState([null, translatedData]);
+
+  if (prevLang !== lang) {
+    prevLang = lang;
+    refreshDataTuple(() =>
+      dataTuple[0] ? [null, translatedData] : [translatedData, null]
+    );
+  }
+
+  const searchComponent = getSearchComponent(
+    translatedData,
+    onClick,
+    qtyOfFoundItemsToShow
+  );
+  // A new Search is returned on lang change. Already shown Search is not reused,
+  // because it uses useRefs, so pop-down options are not translated.
+  // (NB: dataTuple is also used in CompanyAllDataAndCharts)
   return (
-    <Search
-      data={dataOnLang[zecoConfig.getItem(['lang'])]}
-      labelName={translateCommon('enterCompanyNameOrUsreou')}
-      onClick={onClick}
-      border={false}
-      qtyOfFoundItemsToShow={qtyOfFoundItemsToShow}
-    />
+    <>
+      {dataTuple[0] ? searchComponent : null}
+      {dataTuple[1] ? searchComponent : null}
+    </>
   );
 };
 
