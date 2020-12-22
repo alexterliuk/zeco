@@ -3,6 +3,7 @@ import PropTypes, { InferProps } from 'prop-types';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import SwitchLanguage from '../components/switch-language';
+import { translateCommon } from '../translations/translate';
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
@@ -86,10 +87,14 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
         </Logo>
         <PageButtons>
           <PageBtn role="button" className={companies ? 'active' : ''}>
-            <PageBtnLink to="/companies/">Companies</PageBtnLink>
+            <PageBtnLink to="/companies/">
+              {translateCommon('companiesBtn')}
+            </PageBtnLink>
           </PageBtn>
           <PageBtn role="button" className={charts ? 'active' : ''}>
-            <PageBtnLink to="/companies-and-charts/">Charts</PageBtnLink>
+            <PageBtnLink to="/companies-and-charts/">
+              {translateCommon('chartsBtn')}
+            </PageBtnLink>
           </PageBtn>
         </PageButtons>
         <SwitchLanguage />
