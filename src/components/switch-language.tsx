@@ -43,8 +43,8 @@ const SwitchLanguage = () => {
   return (
     <Container>
       <LangBtn
-        onClick={() => updateLang('uk')}
-        className={lang === 'uk' ? 'active' : ''}
+        onClick={() => updateLang('ua')}
+        className={lang === 'ua' ? 'active' : ''}
       >
         UA
       </LangBtn>

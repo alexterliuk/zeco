@@ -25,7 +25,7 @@ const translate = (
     item = translations.common[commonKey];
   }
 
-  return (item && (item[getLang()] || item.uk)) || '';
+  return (item && (item[getLang()] || item.ua)) || '';
 };
 
 const translateCommon = (commonKey: TranslationsCommonKey): string =>
@@ -59,7 +59,7 @@ const translateChart = (
 
 export interface ChartSpecTranslations {
   en: ChartSpec;
-  uk: ChartSpec;
+  ua: ChartSpec;
 }
 
 export {

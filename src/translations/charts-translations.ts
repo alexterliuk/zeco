@@ -9,9 +9,9 @@ export const theadRowTranslations: {
   '2q': ChartTranslationsItem;
   '3q': ChartTranslationsItem;
 } = {
-  '1q': { uk: '1к', en: '1q' },
-  '2q': { uk: '2к', en: '2q' },
-  '3q': { uk: '3к', en: '3q' },
+  '1q': { ua: '1к', en: '1q' },
+  '2q': { ua: '2к', en: '2q' },
+  '3q': { ua: '3к', en: '3q' },
 };
 
 // these are all keys to FinancialStatements in company.statements[year]
@@ -43,8 +43,8 @@ export const statementsKeys: Exclude<
   'ebitdaMargin',
 ];
 
-const unit = { uk: ' млн грн', en: ' m uah' };
-const percent = { uk: '%', en: '%' };
+const unit = { ua: ' млн грн', en: ' m uah' };
+const percent = { ua: '%', en: '%' };
 
 const chartsTranslations: ChartSpecsPartialTranslations = {
   netProfit: { unit },
@@ -68,19 +68,19 @@ const chartsTranslations: ChartSpecsPartialTranslations = {
 // below is an example of full translation for chartsTranslations:
 // chartsTranslations.netProfit = {
 //   title: {
-//     uk: 'Динаміка чистого прибутку',
+//     ua: 'Динаміка чистого прибутку',
 //     en: 'Changes in net profit',
 //   },
 //   btnName: {
-//     uk: 'Чистий прибуток',
+//     ua: 'Чистий прибуток',
 //     en: 'Net Profit',
 //   },
 //   dataKey: {
-//     uk: 'Чистий Прибуток',
+//     ua: 'Чистий Прибуток',
 //     en: 'Net Profit',
 //   },
 //   unit: {
-//     uk: ' млн грн',
+//     ua: ' млн грн',
 //     en: ' m uah',
 //   },
 // };

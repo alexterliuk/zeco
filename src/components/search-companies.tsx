@@ -35,7 +35,7 @@ const composeDataForSearch = () =>
       });
       return acc;
     },
-    // composed as { uk: [], en: [] }
+    // composed as { ua: [], en: [] }
     languages.reduce(
       (acc: { [k: string]: SearchItem[] }, lang) => ((acc[lang] = []), acc),
       {}
