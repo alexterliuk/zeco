@@ -60,6 +60,30 @@ const translations = {
       ua: 'Рядки',
       en: 'Rows',
     },
+    footerInfo1: {
+      ua: 'Якщо у вас є більш свіжа інформація - сайт можно оновити, будь ласка пишіть: alex.terliuk@gmail.com',
+      en: 'If you have newer information - the site can be updated, please write: alex.terliuk@gmail.com',
+    },
+    footerInfo2: {
+      ua: 'Всі дані взято з',
+      en: 'All data taken from',
+    },
+    indexPage1: {
+      ua: 'Цей сайт містить фінансові результати роботи 100 найбільших державних компаній України за період 2016-2020 років. В якості топ-100 взято рейтинг, оприлюднений Мінекономіки, за підсумками роботи підприємств 2018 року. Більш свіжішого знайти не вдалося. Самі фінансові результати держкомпаній взято з сайту www.prozvit.com.ua - там є дані тільки по другий квартал цього року включно.',
+      en: 'This site contains financial results of the 100 largest state-owned companies of Ukraine for the period of 2016-2020. The ranking of enterprises of 2018 published by the Ministry of Economy is taken as the top 100. The newer rating has not been found. The financial results of state-owned companies are taken from www.prozvit.com.ua - there is data only up to the 2nd quarter of the current year.',
+    },
+    indexPage2: {
+      ua: 'Загалом, видно стійкий тренд по збільшенню збитків держкомпаній. Нижче сумарні дані всіх більш ніж 3 тис. держкомпаній України. Якщо в 2018 році вони загалом отримали 41,4 млрд гривень прибутку, то в 2019 - лише 1,2 млрд, а далі - увійшли в зону збитків.',
+      en: 'In general, there is a steady trend of increasing losses of state-owned companies. Below is the summary data of all more than 3 thousand state-owned companies of Ukraine. If in 2018 they received a total of 41.4 billion hryvnias in profit, in 2019 - only 1.2 billion, and then - entered the loss zone.',
+    },
+    indexPage3: {
+      ua: 'На панелі з квадратами можна переглянути фінансові результати 100 найбільших держкомпаній. Якщо натискати на кнопки періодів, то видно, як панель все більше червоніє - збільшується кількість компаній, які перестали генерувати прибутки. І загалом їх збитки покриваються за рахунок держави, тобто з грошей всіх українців.',
+      en: 'In the box-panel you can see the financial results of the 100 largest state-owned companies. If you click on the time period buttons, you can see that the panel is getting redder - the number of companies that have stopped generating profits is increasing. And in general, their losses are covered by the state, i.e. with the money of all Ukrainians.',
+    },
+    indexPage4: {
+      ua: 'Кожен квадрат представляє держкомпанію, натисніть на нього і нижче з’явиться додаткова інформаційна панель. З неї за посиланням "Показати більше" можна перейти на сторінку, присвячену обраній компанії, де є всі дані і графіки.',
+      en: 'Each box represents a state-owned company, click on it and an additional information panel will appear below. From there, you can follow the link "Show more" to go to the page dedicated to the selected company, where there is all the data and graphics.',
+    },
   },
   companyKeys: {
     name: {

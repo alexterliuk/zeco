@@ -8,6 +8,7 @@ import FinResPresentation from '../components/fin-res-presentation';
 import { BarCharts } from '../components/bar-charts';
 import profitsAllStateCompaniesChartSpec from '../data/profits-all-state-companies-chart-spec';
 import useLangContext from '../hooks/use-lang-context';
+import { translateCommon } from '../translations/translate';
 
 const ImageContainer = styled.div`
   max-width: 300px;
@@ -34,14 +35,16 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Home" />
       <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
+      <p>{translateCommon('indexPage1')}</p>
+      <p>{translateCommon('indexPage2')}</p>
       <ImageContainer>
         <Image />
       </ImageContainer>
-      <ProfitPresentation />
-      <FinResPresentation />
       <BarCharts initChartSpec={profitsAllStateCompaniesChartSpec} />
+      <ProfitPresentation />
+      <p>{translateCommon('indexPage3')}</p>
+      <p>{translateCommon('indexPage4')}</p>
+      <FinResPresentation />
     </Layout>
   );
 };
