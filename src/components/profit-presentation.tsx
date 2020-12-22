@@ -47,6 +47,7 @@ const ProfitFig = styled.p`
 const ToggleProfitFigButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin-bottom: 1.45rem;
 `;
 
 const BlnHryvnias = styled.p`
