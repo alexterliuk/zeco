@@ -3,6 +3,7 @@ import PropTypes, { ReactElementLike } from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Header, { ShownPage } from './header';
+import { translateCommon } from '../translations/translate';
 import './layout.css';
 
 const getLayoutStyles = (maxWidth: string) => `
@@ -30,6 +31,11 @@ const LayoutFooter = styled(Footer)`
   margin-top: 2rem;
 `;
 
+const FooterInfo = styled.p`
+  font-size: 90%;
+  margin-bottom: 0;
+`;
+
 const Layout = ({ children, size, shownPage }: LayoutProps) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -53,9 +59,14 @@ const Layout = ({ children, size, shownPage }: LayoutProps) => {
       <Container>
         <main style={{ flexGrow: 1 }}>{children}</main>
         <LayoutFooter>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          <h4 style={{ marginBottom: '1rem' }}>© {new Date().getFullYear()}</h4>
+          <FooterInfo>{translateCommon('footerInfo1')}</FooterInfo>
+          <FooterInfo>
+            {translateCommon('footerInfo2')}{' '}
+            <a href="https://www.prozvit.com.ua" target="_blank">
+              www.prozvit.com.ua
+            </a>
+          </FooterInfo>
         </LayoutFooter>
       </Container>
     </>

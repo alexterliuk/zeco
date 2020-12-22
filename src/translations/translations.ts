@@ -60,6 +60,16 @@ const translations = {
       ua: 'Рядки',
       en: 'Rows',
     },
+    footerInfo1: {
+      ua:
+        'Якщо у вас є більш свіжа інформація - сайт можно оновити, будь ласка пишіть: alex.terliuk@gmail.com',
+      en:
+        'If you have newer information - the site can be updated, please write: alex.terliuk@gmail.com',
+    },
+    footerInfo2: {
+      ua: 'Всі дані взято з',
+      en: 'All data taken from',
+    },
   },
   companyKeys: {
     name: {
