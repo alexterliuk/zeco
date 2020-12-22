@@ -6,7 +6,7 @@ import { Language } from '../translations/translations';
  */
 const useLangContext = (() => {
   const langContext = {
-    lang: zecoConfig.getItem(['lang']),
+    lang: localStorage.getItem('lang') || zecoConfig.getItem(['lang']),
   };
 
   const _subscribers: Subscriber[] = [];
@@ -23,8 +23,9 @@ const useLangContext = (() => {
       if (idx > -1) _subscribers.splice(idx, 1);
     },
     updateDependentStates: (lang: Language) => {
+      langContext.lang = lang;
+      localStorage.setItem('lang', lang);
       _subscribers.forEach(s => {
-        langContext.lang = lang;
         if (s.triggerTranslating) s.triggerTranslating();
         if (s.updateLangAttr) s.updateLangAttr();
       });
