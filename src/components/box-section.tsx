@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Box from './box';
@@ -16,7 +16,7 @@ const Container = styled.section`
 const BoxSection = ({ updateCompanyPanel, timePeriod }: BoxSectionProps) => {
   const boxes = companiesIds.map(k => {
     const company: CompanyProfile = companies[k];
-    const { shortName, id } = company;
+    const { id } = company;
     const { year, quarter } = timePeriod;
 
     const netProfitObj = company.statements[year].financials.netProfit;
@@ -28,7 +28,6 @@ const BoxSection = ({ updateCompanyPanel, timePeriod }: BoxSectionProps) => {
 
     return (
       <Box
-        name={shortName}
         profit={profit}
         handleClick={updateCompanyPanel}
         id={id}

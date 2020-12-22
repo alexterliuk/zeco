@@ -3,6 +3,7 @@ import PropTypes, { InferProps } from 'prop-types';
 import styled from 'styled-components';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';
+import { translate } from '../translations/translate';
 
 const Container = styled.button`
   display: inline-block;
@@ -15,9 +16,9 @@ const Container = styled.button`
   border-radius: 2px;
 `;
 
-const Box = ({ id, name, profit, handleClick }: BoxProps) => (
+const Box = ({ id, profit, handleClick }: BoxProps) => (
   <Tooltip
-    label={name}
+    label={translate(id, 'companies', 'shortName')}
     style={{
       background: 'hsla(0, 0%, 0%, 0.75)',
       color: 'white',
@@ -40,14 +41,12 @@ const Box = ({ id, name, profit, handleClick }: BoxProps) => (
 
 Box.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string,
   profit: PropTypes.bool,
   handleClick: PropTypes.func,
 };
 
 interface BoxProps {
   id: string;
-  name: string;
   profit: boolean;
   handleClick: (id: string) => void;
 }
