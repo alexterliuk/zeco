@@ -36,7 +36,7 @@ const profitsAllStateCompaniesChartSpec = {
 
 const chartSpecTranslations = {
   en: profitsAllStateCompaniesChartSpec,
-  uk: {
+  ua: {
     title: 'Прибутки/збитки всіх державних компаній України',
     btnName: 'Прибутки всіх компаній',
     data: [

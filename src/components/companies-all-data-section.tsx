@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { companiesIds } from '../data/companies';
 import CompanyAllDataRow from './company-all-data-row';
 import CheckboxControl from '../components/checkbox-control';
-import showSettings from '../hooks/use-company-all-data-panel-show-settings';
+import useShowSettings from '../hooks/use-company-all-data-panel-show-settings';
 
 const Container = styled.section`
   padding: 20px 30px;
@@ -22,8 +22,8 @@ const CompaniesAllDataSection = () => {
 
   return (
     <>
-      <CheckboxControl checkboxSettings={showSettings} />
-      <Container>{companiesRows}</Container>)
+      <CheckboxControl checkboxSettings={useShowSettings} />
+      <Container>{companiesRows}</Container>
     </>
   );
 };

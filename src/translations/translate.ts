@@ -1,4 +1,3 @@
-import zecoConfig from '../../config/zeco-config';
 import translations, {
   TranslationsType,
   TranslationsCommonKey,
@@ -6,6 +5,7 @@ import translations, {
   Language,
 } from './translations';
 import { ChartSpec } from '../components/bar-charts';
+import useLangContext from '../hooks/use-lang-context';
 
 const translate = (
   id: string,
@@ -13,7 +13,7 @@ const translate = (
   companyKey?: TranslationsCompanyKey,
   commonKey?: TranslationsCommonKey
 ): string => {
-  const lang: Language = zecoConfig.getItem(['lang']);
+  const { getLang } = useLangContext;
   let item;
 
   if (companyKey && entityType === 'companyKeys') {
@@ -25,7 +25,7 @@ const translate = (
     item = translations.common[commonKey];
   }
 
-  return (item && (item[lang] || item.uk)) || '';
+  return (item && (item[getLang()] || item.ua)) || '';
 };
 
 const translateCommon = (commonKey: TranslationsCommonKey): string =>
@@ -46,7 +46,7 @@ const translateChart = (
   translateOneItem?: string | undefined,
   lang?: Language
 ) => {
-  let _lang: Language = lang || zecoConfig.getItem(['lang']);
+  const _lang: Language = lang || useLangContext.getLang();
   const key = translateOneItem;
   if (typeof key === 'string') {
     return key === 'title' || key === 'btnName'
@@ -59,7 +59,7 @@ const translateChart = (
 
 export interface ChartSpecTranslations {
   en: ChartSpec;
-  uk: ChartSpec;
+  ua: ChartSpec;
 }
 
 export {

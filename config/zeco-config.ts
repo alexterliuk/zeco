@@ -3,7 +3,7 @@ import { getStatementsTemplate } from '../src/data/build-company-profile';
 import prependKeysToPathsIfNeeded from '../src/helpers/prepend-keys-to-paths-if-needed';
 
 const zecoConfig: ZecoConfig = {
-  lang: 'uk',
+  lang: 'ua',
   statements: {
     format: { // format affects both CompanyAllDataPanel and CompanyPanel
       uah: [
