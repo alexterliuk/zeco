@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import PropTypes, { InferProps } from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Tooltip from '@reach/tooltip';
 import '@reach/tooltip/styles.css';

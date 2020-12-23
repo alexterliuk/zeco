@@ -25,17 +25,17 @@ const FinResPresentation = () => {
     quarter: 1,
   });
   const [toggleBoxSectBtnActive, setToggleBoxSectBtnActive] = useState(
-    Array(finResPresentationTimePeriods.length).fill('')
+    ['active'].concat(Array(finResPresentationTimePeriods.length - 1).fill(''))
   );
   const delay = 150;
   const update = (id: string) => {
-    setCompanyId(id);
+    setCompanyId(() => id);
   };
   const preUpdate = () => {
-    setCompanyPanelOpacity(0);
+    setCompanyPanelOpacity(() => 0);
   };
   const postUpdate = () => {
-    setCompanyPanelOpacity(1);
+    setCompanyPanelOpacity(() => 1);
   };
 
   const updateCompanyPanel = (id: string) => {
@@ -45,12 +45,10 @@ const FinResPresentation = () => {
   };
 
   const handleTimePeriodClick = (timePeriod: ParsedTimePeriod, i: number) => {
-    setToggleBoxSectBtnActive(
-      finResPresentationTimePeriods.map((_, y) =>
-        i === y && !toggleBoxSectBtnActive[i] ? 'active' : ''
-      )
+    setToggleBoxSectBtnActive(() =>
+      finResPresentationTimePeriods.map((_, y) => (i === y ? 'active' : ''))
     );
-    setTimePeriod(timePeriod);
+    setTimePeriod(() => timePeriod);
   };
 
   return (
