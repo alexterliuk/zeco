@@ -11,6 +11,16 @@ const Container = styled.section`
   margin: 10px auto;
   padding: 5px;
   max-width: 762px;
+
+  @media (max-width: 802px) {
+    max-width: 612px;
+  }
+  @media (max-width: 652px) {
+    max-width: 312px;
+  }
+  @media (max-width: 348px) {
+    max-width: 252px;
+  }
 `;
 
 const BoxSection = ({ updateCompanyPanel, timePeriod }: BoxSectionProps) => {

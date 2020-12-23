@@ -8,8 +8,8 @@ import { translateTimePeriod } from '../translations/translate';
 import { Button } from './styled-elements';
 
 const Container = styled.section`
-  margin: 10px;
-  padding: 5px;
+  margin: 10px 0;
+  padding: 5px 0;
 `;
 
 const ToggleBoxSectButtonContainer = styled.div`

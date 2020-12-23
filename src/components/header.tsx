@@ -20,6 +20,10 @@ const headerDefaultProps = {
 const Container = styled.div`
   background-color: #212121;
   margin-bottom: 1.45rem;
+  
+  @media (max-width: 372px) {
+    font-size: 90%;
+  }
 `;
 
 const getInnerStyles = (maxWidth: string) => `
@@ -65,6 +69,10 @@ const PageBtn = styled.div`
   &.active {
     border: 2px solid aliceblue;
     background-color: steelblue;
+  }
+
+  @media (max-width: 372px) {
+    margin-left: 10px;
   }
 `;
 

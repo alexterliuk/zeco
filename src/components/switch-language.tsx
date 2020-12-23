@@ -8,6 +8,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-left: 20px;
+
+  @media (max-width: 372px) {
+    margin-left: 10px;
+  }
 `;
 
 const LangBtn = styled.button`
