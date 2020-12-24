@@ -7,7 +7,7 @@ const HomeImage = () => {
     query {
       placeholderImage: file(relativePath: { eq: "zeco-home.png" }) {
         childImageSharp {
-          fluid(maxWidth: 800) {
+          fluid(maxWidth: 840) {
             ...GatsbyImageSharpFluid
           }
         }
