@@ -39,9 +39,13 @@ const LangBtn = styled.button`
 const SwitchLanguage = () => {
   const [lang, setLang] = useState(useLangContext.getLang());
 
-  const updateLang = (lang: Language) => {
-    setLang(lang);
-    setTimeout(() => { useLangContext.updateDependentStates(lang); }, 0);
+  const updateLang = (clickedLang: Language) => {
+    if (clickedLang !== lang) {
+      setLang(() => clickedLang);
+      setTimeout(() => {
+        useLangContext.updateDependentStates(clickedLang);
+      }, 0);
+    }
   };
 
   return (
