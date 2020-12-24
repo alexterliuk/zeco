@@ -13,13 +13,15 @@ const getSearchComponent = (
   onClick: SearchOnClick,
   qtyOfFoundItemsToShow?: number
 ) => (
-  <Search
-    data={data}
-    labelName={translateCommon('enterCompanyNameOrUsreou')}
-    onClick={onClick}
-    border={false}
-    qtyOfFoundItemsToShow={qtyOfFoundItemsToShow}
-  />
+  typeof Search === 'string'
+    ? () => {}
+    : <Search
+        data={data}
+        labelName={translateCommon('enterCompanyNameOrUsreou')}
+        onClick={onClick}
+        border={false}
+        qtyOfFoundItemsToShow={qtyOfFoundItemsToShow}
+      />
 );
 
 const composeDataForSearch = () =>

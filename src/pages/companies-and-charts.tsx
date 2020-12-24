@@ -36,7 +36,6 @@ const CompaniesAndCharts = () => {
   const updateCompanyId = () => {
     const query =
       typeof window !== 'undefined' ? window.location.search.slice(1) : '';
-    console.log(query);
     const usreou = query.length === 8 && toUsreou(query) && query;
     setCompanyId(() => (usreou ? usreousAndIds[usreou] : ''));
   };

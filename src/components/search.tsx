@@ -53,7 +53,7 @@ const FoundItems = styled.div`
 // data consists of pop-down options, for each a button (ButtonAsRow) is created;
 // on a button's click, option.onClick is called (if exists), or Search's onClick
 // (if exists), or noop
-const Search = ({
+const Search = (inBrowser => !inBrowser ? '' : ({
   data,
   onClick,
   labelName,
@@ -403,22 +403,25 @@ const Search = ({
   ) : (
     <ContainerNoBorder {...props}>{children}</ContainerNoBorder>
   );
-};
+})(typeof window !== 'undefined');
 
-Search.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-      onClick: PropTypes.func,
-    })
-  ),
-  onClick: PropTypes.func,
-  labelName: PropTypes.string,
-  maxWidth: PropTypes.number,
-  qtyOfFoundItemsToShow: PropTypes.number,
-  border: PropTypes.bool,
-};
+if (Search) {
+  // @ts-ignore
+  Search.propTypes = {
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        onClick: PropTypes.func,
+      })
+    ),
+    onClick: PropTypes.func,
+    labelName: PropTypes.string,
+    maxWidth: PropTypes.number,
+    qtyOfFoundItemsToShow: PropTypes.number,
+    border: PropTypes.bool,
+  };
+}
 
 interface SearchProps {
   data: SearchItem[];
