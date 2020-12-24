@@ -34,20 +34,24 @@ const CompaniesAndCharts = () => {
   const [NOT_USED, triggerTranslating] = useState('');
 
   const updateCompanyId = () => {
-    const query = window.location.search.slice(1);
+    const query =
+      typeof window !== 'undefined' ? window.location.search.slice(1) : '';
+    console.log(query);
     const usreou = query.length === 8 && toUsreou(query) && query;
     setCompanyId(() => (usreou ? usreousAndIds[usreou] : ''));
   };
 
   const updateHistory = (companyId: CompanyId) => {
     const usreou = usreousAndIds[companyId];
-    if (usreou) {
+    if (usreou && typeof window !== 'undefined') {
       window.history.pushState({ usreou, companyId }, '', `?${usreou}`);
     }
   };
 
   useEffect(() => {
-    window.onpopstate = updateCompanyId;
+    if (typeof window !== 'undefined') {
+      window.onpopstate = updateCompanyId;
+    }
     const translatingUpdater = {
       id: 'Charts Page',
       triggerTranslating: () => {
@@ -57,7 +61,9 @@ const CompaniesAndCharts = () => {
     useLangContext.subscribe(translatingUpdater);
 
     return () => {
-      window.onpopstate = null;
+      if (typeof window !== 'undefined') {
+        window.onpopstate = null;
+      }
       useLangContext.unsubscribe(translatingUpdater);
     };
   }, []);
