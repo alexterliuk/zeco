@@ -16,8 +16,13 @@ const getLayoutStyles = (maxWidth: string) => `
   padding: 0 1.0875rem 1.45rem;
 `;
 
-const getContainer = (size: number) =>
-  styled.div`${getLayoutStyles(widths[size] || widths[0])}`;
+const containers = [
+  styled.div`${getLayoutStyles(widths[0])}`,
+  styled.div`${getLayoutStyles(widths[1])}`,
+  styled.div`${getLayoutStyles(widths[2])}`,
+  styled.div`${getLayoutStyles(widths[3])}`,
+  styled.div`${getLayoutStyles(widths[4])}`,
+];
 
 const Footer = ({ className, children }: any) => (
   <footer className={className}>{children}</footer>
@@ -44,7 +49,7 @@ const Layout = ({ children, size, shownPage }: LayoutProps) => {
   `);
 
   const _size = size || 1;
-  const Container = getContainer(_size);
+  const Container = containers[_size];
 
   return (
     <>

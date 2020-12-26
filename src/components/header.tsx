@@ -35,8 +35,13 @@ const getInnerStyles = (maxWidth: string) => `
   max-width: ${maxWidth};
 `;
 
-const getInnerDiv = (size: number) =>
-  styled.div`${getInnerStyles(widths[size] || widths[0])}`;
+const innerDivs = [
+  styled.div`${getInnerStyles(widths[0])}`,
+  styled.div`${getInnerStyles(widths[1])}`,
+  styled.div`${getInnerStyles(widths[2])}`,
+  styled.div`${getInnerStyles(widths[3])}`,
+  styled.div`${getInnerStyles(widths[4])}`,
+];
 
 const Logo = styled.h1`
   line-height: 1;
@@ -97,7 +102,7 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
     }, 0);
   }
 
-  const Inner = getInnerDiv(size as number);
+  const Inner = innerDivs[size || 1];
   const companies = shownPage === 'Show All Companies';
   const charts = shownPage === 'Companies And Charts';
 
