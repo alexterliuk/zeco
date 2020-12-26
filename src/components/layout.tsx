@@ -1,10 +1,11 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import PropTypes, { ReactElementLike } from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Header, { ShownPage } from './header';
 import { translateCommon } from '../translations/translate';
 import './layout.css';
+import widths from '../data/widths';
 
 const getLayoutStyles = (maxWidth: string) => `
   display: flex;
@@ -15,13 +16,8 @@ const getLayoutStyles = (maxWidth: string) => `
   padding: 0 1.0875rem 1.45rem;
 `;
 
-const containers = [
-  styled.div`${getLayoutStyles('none')}`,
-  styled.div`${getLayoutStyles('960px')}`,
-  styled.div`${getLayoutStyles('1280px')}`,
-  styled.div`${getLayoutStyles('1440px')}`,
-  styled.div`${getLayoutStyles('1600px')}`,
-];
+const getContainer = (size: number) =>
+  styled.div`${getLayoutStyles(widths[size] || widths[0])}`;
 
 const Footer = ({ className, children }: any) => (
   <footer className={className}>{children}</footer>
@@ -47,13 +43,14 @@ const Layout = ({ children, size, shownPage }: LayoutProps) => {
     }
   `);
 
-  const Container = containers[size || 1];
+  const _size = size || 1;
+  const Container = getContainer(_size);
 
   return (
     <>
       <Header
         siteTitle={data.site.siteMetadata?.title || `Title`}
-        size={size}
+        size={_size}
         shownPage={shownPage}
       />
       <Container>

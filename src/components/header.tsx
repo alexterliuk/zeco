@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import SwitchLanguage from '../components/switch-language';
 import { translateCommon } from '../translations/translate';
 import delayAndCall from '../helpers/delay-and-call';
+import widths from '../data/widths';
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
@@ -34,13 +35,8 @@ const getInnerStyles = (maxWidth: string) => `
   max-width: ${maxWidth};
 `;
 
-const innerDivs = [
-  styled.div`${getInnerStyles('none')}`,
-  styled.div`${getInnerStyles('960px')}`,
-  styled.div`${getInnerStyles('1280px')}`,
-  styled.div`${getInnerStyles('1440px')}`,
-  styled.div`${getInnerStyles('1600px')}`,
-];
+const getInnerDiv = (size: number) =>
+  styled.div`${getInnerStyles(widths[size] || widths[0])}`;
 
 const Logo = styled.h1`
   line-height: 1;
@@ -101,7 +97,7 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
     }, 0);
   }
 
-  const Inner = innerDivs[size || 1];
+  const Inner = getInnerDiv(size as number);
   const companies = shownPage === 'Show All Companies';
   const charts = shownPage === 'Companies And Charts';
 
