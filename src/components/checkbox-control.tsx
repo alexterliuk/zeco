@@ -14,6 +14,10 @@ const CheckboxControlWrapper = styled.div``;
 const InputsBlockWrapper = styled.div`
   display: flex;
   align-items: center;
+
+  &:not(:first-child) {
+    border-top: 1px solid #d4d9dc;
+  }
 `;
 const InputsBlockName = styled.h4`
   margin: 0 20px 0 0;
