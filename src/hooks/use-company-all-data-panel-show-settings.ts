@@ -6,6 +6,24 @@ import {
   GetFilteredTableData,
 } from '../components/company-all-data-panel';
 
+const shownRowsByDefault = [
+  'netProfit',
+  'profitGrowth',
+  'netIncome',
+  'incomeGrowth',
+  'netLoss',
+  // 'equity',
+  // 'assets.current',
+  // 'assets.fixed',
+  'assets.totalValue',
+  // 'producedCost',
+  // 'salaryExpenses',
+  // 'grossProfit',
+  // 'grossLoss',
+  'ebitda',
+  // 'ebitdaMargin',
+];
+
 /**
  * Singleton which stores settings of what columns and rows to show.
  */
@@ -22,9 +40,13 @@ const useCompanyAllDataPanelShowSettings = (() => {
     },
     {
       name: 'rows',
-      inputs: _settings.rows.map((y: string) => ({ name: y, value: true })),
+      inputs: _settings.rows.map((y: string) => ({
+        name: y,
+        value: shownRowsByDefault.includes(y),
+      })),
     },
   ];
+  _settings.rows = shownRowsByDefault;
 
   // const _extractInputValues = (inpBlocks?: InpBlock[]) => {
   //   const inpValues: boolean[] = [];
