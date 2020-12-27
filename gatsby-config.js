@@ -5,7 +5,7 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `Zeco`,
-    description: `Financial results of Top-100 state owned companies of Ukraine in 2016-2020.`,
+    description: `Фінансові результати Топ-100 держкомпаній України за 2016-2020 роки.`,
     author: `https://github.com/alexterliuk`,
   },
   plugins: [

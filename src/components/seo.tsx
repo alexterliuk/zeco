@@ -26,7 +26,7 @@ function SEO({ description, meta, title }: SEOProps) {
     };
   }, []);
 
-  const { site } = useStaticQuery(
+  const { site, image } = useStaticQuery(
     graphql`
       query {
         site {
@@ -35,6 +35,9 @@ function SEO({ description, meta, title }: SEOProps) {
             description
             author
           }
+        }
+        image: file(relativePath: {eq: "zeco-home.jpg"}) {
+          publicURL
         }
       }
     `
@@ -57,11 +60,15 @@ function SEO({ description, meta, title }: SEOProps) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: `Zeco | Збитки держпідприємств України`,
         },
         {
           property: `og:description`,
           content: metaDescription,
+        },
+        {
+          property: `og:image`,
+          content: image.publicURL,
         },
         {
           property: `og:type`,

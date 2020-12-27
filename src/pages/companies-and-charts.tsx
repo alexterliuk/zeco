@@ -13,6 +13,7 @@ import CheckboxControl from '../components/checkbox-control';
 import useShowSettings from '../hooks/use-company-all-data-panel-show-settings';
 import useLangContext from '../hooks/use-lang-context';
 import delayAndCall from '../helpers/delay-and-call';
+import { translateCommon } from '../translations/translate';
 
 const SearchWrapper = styled.section`
   border-radius: 8px;
@@ -91,7 +92,7 @@ const CompaniesAndCharts = () => {
 
   return (
     <Layout size={3} shownPage="Companies And Charts">
-      <SEO title="Companies And Charts" />
+      <SEO title={translateCommon('chartsPageTitle')} />
       {initLoad ? null : (
         <>
           <LinkToHomepage />

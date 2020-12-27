@@ -100,6 +100,14 @@ const translations = {
       ua: 'Шкода, але такої сторінки не існує.',
       en: 'This page does not exist, sadness.',
     },
+    companiesPageTitle: {
+      ua: 'Компанії',
+      en: 'Companies',
+    },
+    chartsPageTitle: {
+      ua: 'Компанії та графіки',
+      en: 'Companies And Charts',
+    },
   },
   companyKeys: {
     name: {

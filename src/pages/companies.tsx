@@ -34,8 +34,8 @@ const Companies = () => {
   }
 
   return (
-    <Layout size={3} shownPage="Show All Companies">
-      <SEO title="Show All Companies" />
+    <Layout size={3} shownPage="Companies">
+      <SEO title={translateCommon('companiesPageTitle')} />
       {initLoad ? null : (
         <>
           <LinkToHomepage />

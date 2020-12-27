@@ -103,7 +103,7 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
   }
 
   const Inner = innerDivs[size || 1];
-  const companies = shownPage === 'Show All Companies';
+  const companies = shownPage === 'Companies';
   const charts = shownPage === 'Companies And Charts';
 
   return (
@@ -141,6 +141,6 @@ Header.propTypes = headerPropTypes;
 Header.defaultProps = headerDefaultProps;
 
 type HeaderProps = InferProps<typeof headerPropTypes>;
-export type ShownPage = 'Show All Companies' | 'Companies And Charts';
+export type ShownPage = 'Companies' | 'Companies And Charts';
 
 export default Header;

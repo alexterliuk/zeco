@@ -46,15 +46,17 @@ const IndexPage = () => {
     }, 0);
   }
 
+  const title = translateCommon('indexPageTitle');
+
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title={title} />
       <ImageContainer>
         <HomeImage />
       </ImageContainer>
       {initLoad ? null : (
         <>
-          <Title>{translateCommon('indexPageTitle')}</Title>
+          <Title>{title}</Title>
           <p>{translateCommon('indexPage1')}</p>
           <p>{translateCommon('indexPage2')}</p>
           <BarCharts initChartSpec={profitsAllStateCompaniesChartSpec} />
