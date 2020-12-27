@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { translateCommon } from '../translations/translate';
-import LinkToHomepage from '../components/link-to-homepage';
-import CompaniesAllDataSection from '../components/companies-all-data-section';
 import useLangContext from '../hooks/use-lang-context';
+import LinkToHomepage from '../components/link-to-homepage';
 import delayAndCall from '../helpers/delay-and-call';
 
 let initLoad = true;
 
-const Companies = () => {
+const NotFoundPage = () => {
   const [NOT_USED, triggerTranslating] = useState('');
 
   useEffect(() => {
     const translatingUpdater = {
-      id: 'Companies Page',
+      id: '404 Page',
       triggerTranslating: () => {
         triggerTranslating(() => useLangContext.getLang());
       },
@@ -33,21 +32,17 @@ const Companies = () => {
   }
 
   return (
-    <Layout size={3} shownPage="Show All Companies">
-      <SEO title="Show All Companies" />
+    <Layout>
+      <SEO title="404: Not found" />
       {initLoad ? null : (
         <>
           <LinkToHomepage />
-          <h1>{translateCommon('allCompanies')}</h1>
-          <p>
-            {translateCommon('clickOnRowForView')}{' '}
-            {translateCommon('dataGivenInKHryvnias')}
-          </p>
-          <CompaniesAllDataSection />
+          <h1>404 :(</h1>
+          <p>{translateCommon('404Page')}</p>
         </>
       )}
     </Layout>
   );
 };
 
-export default Companies;
+export default NotFoundPage;

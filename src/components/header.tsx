@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes, { InferProps } from 'prop-types';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import SwitchLanguage from '../components/switch-language';
 import { translateCommon } from '../translations/translate';
+import delayAndCall from '../helpers/delay-and-call';
+import widths from '../data/widths';
 
 const headerPropTypes = {
   siteTitle: PropTypes.string,
@@ -20,7 +22,7 @@ const headerDefaultProps = {
 const Container = styled.div`
   background-color: #212121;
   margin-bottom: 1.45rem;
-  
+
   @media (max-width: 372px) {
     font-size: 90%;
   }
@@ -34,11 +36,11 @@ const getInnerStyles = (maxWidth: string) => `
 `;
 
 const innerDivs = [
-  styled.div`${getInnerStyles('none')}`,
-  styled.div`${getInnerStyles('960px')}`,
-  styled.div`${getInnerStyles('1280px')}`,
-  styled.div`${getInnerStyles('1440px')}`,
-  styled.div`${getInnerStyles('1600px')}`,
+  styled.div`${getInnerStyles(widths[0])}`,
+  styled.div`${getInnerStyles(widths[1])}`,
+  styled.div`${getInnerStyles(widths[2])}`,
+  styled.div`${getInnerStyles(widths[3])}`,
+  styled.div`${getInnerStyles(widths[4])}`,
 ];
 
 const Logo = styled.h1`
@@ -82,7 +84,24 @@ const PageBtnLink = styled(Link)`
   font-family: Roboto;
 `;
 
+const SwitchLanguagePlaceholder = styled.div`
+  display: flex;
+  width: 55px;
+  transition: 0.5s;
+  opacity: ${props => props.theme.opacity};
+`;
+
+let initLoad = true;
+
 const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
+  const [opacity, setOpacity] = useState(initLoad ? 0 : 1);
+  if (initLoad) {
+    delayAndCall(() => {
+      initLoad = false;
+      setOpacity(() => 1);
+    }, 0);
+  }
+
   const Inner = innerDivs[size || 1];
   const companies = shownPage === 'Show All Companies';
   const charts = shownPage === 'Companies And Charts';
@@ -93,19 +112,26 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
         <Logo>
           <LogoLink to="/">{siteTitle}</LogoLink>
         </Logo>
-        <PageButtons>
-          <PageBtn role="button" className={companies ? 'active' : ''}>
-            <PageBtnLink to="/companies/">
-              {translateCommon('companiesBtn')}
-            </PageBtnLink>
-          </PageBtn>
-          <PageBtn role="button" className={charts ? 'active' : ''}>
-            <PageBtnLink to="/companies-and-charts/">
-              {translateCommon('chartsBtn')}
-            </PageBtnLink>
-          </PageBtn>
-        </PageButtons>
-        <SwitchLanguage />
+        {/* prevent possible wrong translations of buttons' names due to default lang */}
+        {initLoad ? null : (
+          <>
+            <PageButtons>
+              <PageBtn role="button" className={companies ? 'active' : ''}>
+                <PageBtnLink to="/companies/">
+                  {translateCommon('companiesBtn')}
+                </PageBtnLink>
+              </PageBtn>
+              <PageBtn role="button" className={charts ? 'active' : ''}>
+                <PageBtnLink to="/companies-and-charts/">
+                  {translateCommon('chartsBtn')}
+                </PageBtnLink>
+              </PageBtn>
+            </PageButtons>
+          </>
+        )}
+        <SwitchLanguagePlaceholder theme={{ opacity }}>
+          {initLoad ? null : <SwitchLanguage />}
+        </SwitchLanguagePlaceholder>
       </Inner>
     </Container>
   );

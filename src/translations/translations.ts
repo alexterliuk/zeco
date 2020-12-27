@@ -96,6 +96,10 @@ const translations = {
       ua: 'Всі дані взято з',
       en: 'All data taken from',
     },
+    '404Page': {
+      ua: 'Шкода, але такої сторінки не існує.',
+      en: 'This page does not exist, sadness.',
+    },
   },
   companyKeys: {
     name: {
