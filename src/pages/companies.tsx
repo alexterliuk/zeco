@@ -25,6 +25,7 @@ const Companies = () => {
     };
   }, []);
 
+  // prevent possible default lang page flash before selected lang is applied
   if (initLoad) {
     delayAndCall(() => {
       initLoad = false;

@@ -32,6 +32,7 @@ const usreousAndIds = mapUsreousToCompaniesIds();
 let initLoad = true;
 
 const CompaniesAndCharts = () => {
+  const [justMounted, setJustMounted] = useState(true);
   const [companyId, setCompanyId] = useState('');
   const [NOT_USED, triggerTranslating] = useState('');
 
@@ -69,13 +70,18 @@ const CompaniesAndCharts = () => {
     };
   }, []);
 
-  // on loading page check if URL contains usreou, if so - set appropriate id
+  // prevent possible default lang page flash before selected lang is applied
   if (initLoad) {
     delayAndCall(() => {
       initLoad = false;
-      updateCompanyId();
       triggerTranslating(() => useLangContext.getLang());
     }, 0);
+  }
+
+  // on mounting component check if URL contains usreou and set appropriate id
+  if (!initLoad && justMounted) {
+    setJustMounted(() => false);
+    updateCompanyId();
   }
 
   const searchOnClick: SearchOnClick = id => {
