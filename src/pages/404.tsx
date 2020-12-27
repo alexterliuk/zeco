@@ -4,9 +4,12 @@ import SEO from '../components/seo';
 import { translateCommon } from '../translations/translate';
 import useLangContext from '../hooks/use-lang-context';
 import LinkToHomepage from '../components/link-to-homepage';
+import delayAndCall from '../helpers/delay-and-call';
+
+let initLoad = true;
 
 const NotFoundPage = () => {
-  const [NOT_USED, triggerTranslating] = useState(useLangContext.getLang());
+  const [NOT_USED, triggerTranslating] = useState('');
 
   useEffect(() => {
     const translatingUpdater = {
@@ -21,12 +24,23 @@ const NotFoundPage = () => {
     };
   }, []);
 
+  if (initLoad) {
+    delayAndCall(() => {
+      initLoad = false;
+      triggerTranslating(() => useLangContext.getLang());
+    }, 0);
+  }
+
   return (
     <Layout>
       <SEO title="404: Not found" />
-      <LinkToHomepage />
-      <h1>404 :(</h1>
-      <p>{translateCommon('404Page')}</p>
+      {initLoad ? null : (
+        <>
+          <LinkToHomepage />
+          <h1>404 :(</h1>
+          <p>{translateCommon('404Page')}</p>
+        </>
+      )}
     </Layout>
   );
 };

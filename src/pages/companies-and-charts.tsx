@@ -12,6 +12,7 @@ import companies, { companiesIds } from '../data/companies';
 import CheckboxControl from '../components/checkbox-control';
 import useShowSettings from '../hooks/use-company-all-data-panel-show-settings';
 import useLangContext from '../hooks/use-lang-context';
+import delayAndCall from '../helpers/delay-and-call';
 
 const SearchWrapper = styled.section`
   border-radius: 8px;
@@ -28,8 +29,9 @@ const mapUsreousToCompaniesIds = () =>
   }, {});
 const usreousAndIds = mapUsreousToCompaniesIds();
 
+let initLoad = true;
+
 const CompaniesAndCharts = () => {
-  const [initLoad, setInitLoad] = useState(true);
   const [companyId, setCompanyId] = useState('');
   const [NOT_USED, triggerTranslating] = useState('');
 
@@ -69,8 +71,11 @@ const CompaniesAndCharts = () => {
 
   // on loading page check if URL contains usreou, if so - set appropriate id
   if (initLoad) {
-    setInitLoad(() => false);
-    updateCompanyId();
+    delayAndCall(() => {
+      initLoad = false;
+      updateCompanyId();
+      triggerTranslating(() => useLangContext.getLang());
+    }, 0);
   }
 
   const searchOnClick: SearchOnClick = id => {
@@ -81,10 +86,14 @@ const CompaniesAndCharts = () => {
   return (
     <Layout size={3} shownPage="Companies And Charts">
       <SEO title="Companies And Charts" />
-      <LinkToHomepage />
-      <SearchWrapper>
-        <SearchCompanies onClick={searchOnClick} />
-      </SearchWrapper>
+      {initLoad ? null : (
+        <>
+          <LinkToHomepage />
+          <SearchWrapper>
+            <SearchCompanies onClick={searchOnClick} />
+          </SearchWrapper>
+        </>
+      )}
       {companyId ? (
         <CheckboxControl checkboxSettings={useShowSettings} />
       ) : null}

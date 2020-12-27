@@ -5,6 +5,9 @@ import { translateCommon } from '../translations/translate';
 import LinkToHomepage from '../components/link-to-homepage';
 import CompaniesAllDataSection from '../components/companies-all-data-section';
 import useLangContext from '../hooks/use-lang-context';
+import delayAndCall from '../helpers/delay-and-call';
+
+let initLoad = true;
 
 const Companies = () => {
   const [NOT_USED, triggerTranslating] = useState('');
@@ -22,16 +25,27 @@ const Companies = () => {
     };
   }, []);
 
+  if (initLoad) {
+    delayAndCall(() => {
+      initLoad = false;
+      triggerTranslating(() => useLangContext.getLang());
+    }, 0);
+  }
+
   return (
     <Layout size={3} shownPage="Show All Companies">
       <SEO title="Show All Companies" />
-      <LinkToHomepage />
-      <h1>{translateCommon('allCompanies')}</h1>
-      <p>
-        {translateCommon('clickOnRowForView')}{' '}
-        {translateCommon('dataGivenInKHryvnias')}
-      </p>
-      <CompaniesAllDataSection />
+      {initLoad ? null : (
+        <>
+          <LinkToHomepage />
+          <h1>{translateCommon('allCompanies')}</h1>
+          <p>
+            {translateCommon('clickOnRowForView')}{' '}
+            {translateCommon('dataGivenInKHryvnias')}
+          </p>
+          <CompaniesAllDataSection />
+        </>
+      )}
     </Layout>
   );
 };

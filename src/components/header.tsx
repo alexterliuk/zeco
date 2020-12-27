@@ -112,18 +112,23 @@ const Header = ({ siteTitle, size, shownPage }: HeaderProps) => {
         <Logo>
           <LogoLink to="/">{siteTitle}</LogoLink>
         </Logo>
-        <PageButtons>
-          <PageBtn role="button" className={companies ? 'active' : ''}>
-            <PageBtnLink to="/companies/">
-              {translateCommon('companiesBtn')}
-            </PageBtnLink>
-          </PageBtn>
-          <PageBtn role="button" className={charts ? 'active' : ''}>
-            <PageBtnLink to="/companies-and-charts/">
-              {translateCommon('chartsBtn')}
-            </PageBtnLink>
-          </PageBtn>
-        </PageButtons>
+        {/* prevent possible wrong translations of buttons' names due to default lang */}
+        {initLoad ? null : (
+          <>
+            <PageButtons>
+              <PageBtn role="button" className={companies ? 'active' : ''}>
+                <PageBtnLink to="/companies/">
+                  {translateCommon('companiesBtn')}
+                </PageBtnLink>
+              </PageBtn>
+              <PageBtn role="button" className={charts ? 'active' : ''}>
+                <PageBtnLink to="/companies-and-charts/">
+                  {translateCommon('chartsBtn')}
+                </PageBtnLink>
+              </PageBtn>
+            </PageButtons>
+          </>
+        )}
         <SwitchLanguagePlaceholder theme={{ opacity }}>
           {initLoad ? null : <SwitchLanguage />}
         </SwitchLanguagePlaceholder>
