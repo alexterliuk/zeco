@@ -97,7 +97,10 @@ const CompaniesAndCharts = () => {
         <>
           <LinkToHomepage />
           <SearchWrapper>
-            <SearchCompanies onClick={searchOnClick} />
+            <SearchCompanies
+              onClick={searchOnClick}
+              qtyOfFoundItemsToShow={10}
+            />
           </SearchWrapper>
         </>
       )}
