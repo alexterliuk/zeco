@@ -117,7 +117,7 @@ const Search = (inBrowser => !inBrowser ? '' : ({
       }
       return 26; // expected value as a fallback
     },
-    // since buttons styles are changed, watch last one, because
+    // since buttons' styles change (on hover/keydown), watch last one, because
     // it is less likely to be hovered over or pressed than first one
     [dataAndButtonsRef.current[dataAndButtonsRef.current.length - 1]]
   );
@@ -247,7 +247,7 @@ const Search = (inBrowser => !inBrowser ? '' : ({
                   fis.scrollBy(0, 0 - filtData.length * buttonHeight);
                 } else if (
                   // scroll if button is one to last (penultimate);
-                  // if need to scroll at last, remove: - 1
+                  // if need to scroll at last, remove '- 1'
                   btnTop - fisTop >= buttonHeight * (qtyOfFoundItemsToShow - 1)
                 ) {
                   fis.scrollBy(0, buttonHeight);
@@ -259,7 +259,7 @@ const Search = (inBrowser => !inBrowser ? '' : ({
                   fis.scrollBy(0, filtData.length * buttonHeight);
                 } else if (
                   // scroll if button is one to last (penultimate);
-                  // if need to scroll at last, make: btnTop < fisTop
+                  // if need to scroll at last, remove '+ buttonHeight'
                   btnTop < fisTop + buttonHeight
                 ) {
                   fis.scrollBy(0, 0 - buttonHeight);
@@ -296,7 +296,7 @@ const Search = (inBrowser => !inBrowser ? '' : ({
     if (prevBtn) prevBtn.style.background = '';
     let selItem = findSelItem();
     if (!selItem && currBtn) {
-      // nothing is selected (neither up/down key pressed, nor hover occurred before)
+      // nothing is selected (neither up/down key pressed, nor hover occurred earlier)
       selectCurrItem(currBtn);
     } else if (type === 'enter' && selItem && currBtn) {
       // some button is selected, unselect it and select one being hovered over
