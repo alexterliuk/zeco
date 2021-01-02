@@ -199,7 +199,8 @@ function composeCompanyAllDataPanel(id: string, companyData: KeyValuePairs) {
   const statements = companyData.filter(d => d.key === 'statements')[0].value;
   const statementsBlocksKeys: BlocksKeys = { assets: [], financials: [] };
   const idx = { val: -1 };
-  const currYear = '' + new Date().getFullYear();
+  // const currYear = '' + new Date().getFullYear();
+  const currYear = '2020';
 
   const {
     subheader,

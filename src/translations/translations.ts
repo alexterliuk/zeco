@@ -53,8 +53,10 @@ const translations = {
       en: 'bln hryvnias',
     },
     currYearQuarters: {
-      ua: 'Квартали поточного року',
-      en: 'Current year quarters',
+      // ua: 'Квартали поточного року',
+      // en: 'Current year quarters',
+      ua: 'Квартали 2020 року',
+      en: '2020 year quarters',
     },
     quarters: {
       ua: 'Квартали',
