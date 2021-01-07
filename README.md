@@ -4,4 +4,4 @@ This is a static website which presents financial results of 100 state-owned com
 
 It is written in React and TypeScript. As a starter Gatsby's default starter has been used.
 
-The site is deployed on Heroku platform: https://zeconomics.herokuapp.com (initial load may take ~30s if the site hasn't been used for some time and Heroku has unloaded it)
+The site is deployed on Heroku platform: https://zeconomics.herokuapp.com (initial load may take ~30s if the site hasn't been used for some time and Heroku has unloaded it).
