@@ -13,15 +13,9 @@ const Companies = () => {
   const [NOT_USED, triggerTranslating] = useState('');
 
   useEffect(() => {
-    const translatingUpdater = {
-      id: 'Companies Page',
-      triggerTranslating: () => {
-        triggerTranslating(() => useLangContext.getLang());
-      },
-    };
-    useLangContext.subscribe(translatingUpdater);
+    const updater = useLangContext.on('Companies Page', triggerTranslating);
     return () => {
-      useLangContext.unsubscribe(translatingUpdater);
+      useLangContext.off(updater);
     };
   }, []);
 

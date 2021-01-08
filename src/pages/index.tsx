@@ -26,15 +26,9 @@ const IndexPage = () => {
   const [NOT_USED, triggerTranslating] = useState('');
 
   useEffect(() => {
-    const translatingUpdater = {
-      id: 'Index Page',
-      triggerTranslating: () => {
-        triggerTranslating(() => useLangContext.getLang());
-      },
-    };
-    useLangContext.subscribe(translatingUpdater);
+    const updater = useLangContext.on('Index Page', triggerTranslating);
     return () => {
-      useLangContext.unsubscribe(translatingUpdater);
+      useLangContext.off(updater);
     };
   }, []);
 

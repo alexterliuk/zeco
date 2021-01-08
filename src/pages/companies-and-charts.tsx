@@ -55,19 +55,13 @@ const CompaniesAndCharts = () => {
     if (typeof window !== 'undefined') {
       window.onpopstate = updateCompanyId;
     }
-    const translatingUpdater = {
-      id: 'Charts Page',
-      triggerTranslating: () => {
-        triggerTranslating(() => useLangContext.getLang());
-      },
-    };
-    useLangContext.subscribe(translatingUpdater);
 
+    const updater = useLangContext.on('Companies Page', triggerTranslating);
     return () => {
       if (typeof window !== 'undefined') {
         window.onpopstate = null;
       }
-      useLangContext.unsubscribe(translatingUpdater);
+      useLangContext.off(updater);
     };
   }, []);
 

@@ -12,15 +12,9 @@ const NotFoundPage = () => {
   const [NOT_USED, triggerTranslating] = useState('');
 
   useEffect(() => {
-    const translatingUpdater = {
-      id: '404 Page',
-      triggerTranslating: () => {
-        triggerTranslating(() => useLangContext.getLang());
-      },
-    };
-    useLangContext.subscribe(translatingUpdater);
+    const updater = useLangContext.on('404 Page', triggerTranslating);
     return () => {
-      useLangContext.unsubscribe(translatingUpdater);
+      useLangContext.off(updater);
     };
   }, []);
 

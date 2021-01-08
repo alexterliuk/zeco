@@ -71,17 +71,11 @@ const CompanyAllDataPanel = ({
     useShowSettings.subscribe(tableDataUpdaters);
 
     // for translating when lang button is clicked
-    const translatingUpdater = {
-      id,
-      triggerTranslating: () => {
-        triggerTranslating(() => useLangContext.getLang());
-      },
-    };
-    useLangContext.subscribe(translatingUpdater);
+    const updater = useLangContext.on(`${id} panel`, triggerTranslating);
 
     return () => {
       useShowSettings.unsubscribe(tableDataUpdaters);
-      useLangContext.unsubscribe(translatingUpdater);
+      useLangContext.off(updater);
     };
   }, []);
 
