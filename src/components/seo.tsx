@@ -14,15 +14,9 @@ import useLangContext from '../hooks/use-lang-context';
 function SEO({ description, meta, title }: SEOProps) {
   const [lang, setLang] = useState(useLangContext.getLang());
   useEffect(() => {
-    const langUpdater = {
-      id: 'SEO',
-      updateLangAttr: () => {
-        setLang(() => useLangContext.getLang());
-      },
-    };
-    useLangContext.subscribe(langUpdater);
+    const updater = useLangContext.on('SEO', setLang);
     return () => {
-      useLangContext.unsubscribe(langUpdater);
+      useLangContext.off(updater);
     };
   }, []);
 
@@ -36,7 +30,7 @@ function SEO({ description, meta, title }: SEOProps) {
             author
           }
         }
-        image: file(relativePath: {eq: "zeco-home.jpg"}) {
+        image: file(relativePath: { eq: "zeco-home.jpg" }) {
           publicURL
         }
       }

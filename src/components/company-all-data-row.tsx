@@ -24,15 +24,10 @@ const CompanyAllDataRow = function ({ id }: { id: string }) {
   );
 
   useEffect(() => {
-    const translatingUpdater = {
-      id,
-      triggerTranslating: () => {
-        translateName(() => translate(id, 'companies', 'shortName'));
-      },
-    };
-    useLangContext.subscribe(translatingUpdater);
+    const boundTranslate = translate.bind(null, id, 'companies', 'shortName');
+    const updater = useLangContext.on(id, translateName, boundTranslate);
     return () => {
-      useLangContext.unsubscribe(translatingUpdater);
+      useLangContext.off(updater);
     };
   }, []);
 

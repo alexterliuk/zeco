@@ -1,5 +1,6 @@
 import zecoConfig from '../../config/zeco-config';
 import { Language } from '../translations/translations';
+import { Dispatch, SetStateAction } from 'react';
 
 /**
  * Singleton which stores current lang to share it between components.
@@ -33,6 +34,24 @@ const useLangContext = (() => {
         if (s.triggerTranslating) s.triggerTranslating();
         if (s.updateLangAttr) s.updateLangAttr();
       });
+    },
+    on: (
+      id: string,
+      setStateFunc: Dispatch<SetStateAction<Language | string>>,
+      innerFunc?: () => string
+    ) => {
+      const funcName = id === 'SEO' ? 'updateLangAttr' : 'triggerTranslating';
+      const updater = {
+        id,
+        [funcName]: () => {
+          setStateFunc(() => (innerFunc || useLangContext.getLang)());
+        },
+      };
+      api.subscribe(updater);
+      return updater;
+    },
+    off: (updater: Subscriber) => {
+      api.unsubscribe(updater);
     },
     getLang: () => langContext.lang,
   };
