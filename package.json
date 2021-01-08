@@ -40,7 +40,7 @@
   "keywords": [
     "gatsby", "zeco", "financial results", "economics", "state-owned companies", "Ukraine"
   ],
-  "license": "0BSD",
+  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
